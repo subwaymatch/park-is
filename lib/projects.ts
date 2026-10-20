@@ -99,8 +99,14 @@ export const projects: Project[] = [
       { label: "Website", url: "https://area.is/react-3d-mockups" },
       { label: "GitHub", url: "https://github.com/area-is/react-3d-mockups" },
     ],
-    captions: ["", "", "", "", ""],
-    videoCaption: "",
+    captions: [
+      "The landing page: “3D mockups for React” above a carousel with a Galaxy S26 mockup on stage.",
+      "The landing page on a phone: the carousel shows a Galaxy S26 mockup with its “Slow turns” screen.",
+      "The Ledger example on a phone: watch, laptop and phone mockups above the add-an-expense buttons.",
+      "The Galaxy Z Fold 8 page: a live prop explorer with its props panel and the generated demo.tsx.",
+      "The Aperture Festival campaign example: a 14 × 48 ft billboard mockup carrying the festival art.",
+    ],
+    videoCaption: "Spinning a phone in the landing carousel, filtering the gallery to foldables, folding a Z Fold 8 and adding expenses in Ledger.",
     heroTone: "light",
   },
   {
