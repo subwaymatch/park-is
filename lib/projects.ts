@@ -148,8 +148,14 @@ export const projects: Project[] = [
       { label: "Live demo", url: "https://samsung-drs-demo.subwaymatch.workers.dev/" },
       { label: "GitHub", url: "https://github.com/subwaymatch/samsung-drs-demo" },
     ],
-    captions: ["", "", "", "", ""],
-    videoCaption: "",
+    captions: [
+      "The Insights migration diagram: DRS linking IBM Rational and Review Board to Perforce and Atlassian.",
+      "The defect list on a phone: scope tabs, status filter, search, sort and defect cards.",
+      "Defect D-17-0363 on a phone: in progress, critical, its reporter and the affected PS-C3150FR model.",
+      "Defect D-17-0363: status, severity, reporter, affected model and the PS-C3150FR spec card.",
+      "The defect list searched for C3150FR, with two defects selected and the bulk edit bar open.",
+    ],
+    videoCaption: "Insights, a defect search with J/K keys, a relationship map, a review diff and duplicate detection.",
     heroTone: "light",
   },
 ];
