@@ -69,8 +69,14 @@ export const projects: Project[] = [
       { label: "Visit site", url: "https://dataslope.com" },
       { label: "GitHub", url: "https://github.com/dataslope/dataslope/" },
     ],
-    captions: ["", "", "", "", ""],
-    videoCaption: "",
+    captions: [
+      "The home page: a scrolling language marquee above a runnable Python challenge card.",
+      "A Python Basics lesson on a phone: a runnable code block with its output preview.",
+      "The course catalog on a phone, with search, language and difficulty filters and 33 courses.",
+      "The PostgreSQL workbench: schema tree, a JOIN query in a tab and its 18-row result grid.",
+      "A C++ lesson on variables and memory: a locker illustration above a table of declarations.",
+    ],
+    videoCaption: "The home page, the catalog filtered to SQL, a Python lesson edited and run, a Postgres query, then interview prep.",
     heroTone: "light",
   },
   {
