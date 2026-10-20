@@ -39,8 +39,14 @@ export const projects: Project[] = [
       { label: "Visit site", url: "https://tabbied.com" },
       { label: "GitHub", url: "https://github.com/tabbied-design/tabbied/" },
     ],
-    captions: ["", "", "", "", ""],
-    videoCaption: "",
+    captions: [
+      "The homepage: free website templates for every trade, 377 of them, above a carousel of trades.",
+      "The Understory plant-care template on a phone, its hero set over a monstera-leaf pattern.",
+      "The High Pass Lodge template on a phone: a mountain lodge hero with booking buttons.",
+      "The pattern editor on Northern Lights, with palette, aspect ratio, density and frequency controls.",
+      "The template gallery: trade category filters above cards for Wild Stem, Live Wire Electric and more.",
+    ],
+    videoCaption: "The homepage, the template gallery, the Wild Stem florist site and recoloring it, then the pattern editor.",
     heroTone: "light",
   },
   {
@@ -112,8 +118,14 @@ export const projects: Project[] = [
       { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
       { label: "GitHub", url: "https://github.com/subwaymatch/layer-is-python" },
     ],
-    captions: ["", "", "", "", ""],
-    videoCaption: "",
+    captions: [
+      "The documentation overview: tagline, a look switcher with its code, and a cross-processed photo.",
+      "The overview on a phone: look tabs, the Cross-processed curve code and the resulting photo.",
+      "The Neon Nights recipe on a phone: before/after slider, description, methods used and code.",
+      "The blend modes page: overlay, soft light, hard light and vivid light on three sample photos.",
+      "The examples page: the Teal & Orange recipe with a before/after slider and its curve code.",
+    ],
+    videoCaption: "A tour of the documentation: switching looks, dragging before/after sliders, the blend-mode grid and the API.",
     heroTone: "light",
   },
   {
