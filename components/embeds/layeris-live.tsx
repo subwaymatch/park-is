@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { data } from "./layeris-data";
+import { breakable } from "./layeris-static";
 import styles from "./layeris.module.css";
 
 type Img = { readonly src: string; readonly width: number; readonly height: number };
@@ -173,11 +174,6 @@ export function Compare({
   );
 }
 
-/** A line of code with wrap points after method dots and commas, so a narrow column breaks between calls, not inside a number. */
-function breakable(line: string) {
-  return line.split(/(?<=\.(?=[a-z_])|,)/).flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
-}
-
 /* ------------------------------------------------------------------------ */
 /* Pipeline: each step of a chain with its line of code                      */
 /* ------------------------------------------------------------------------ */
@@ -200,10 +196,10 @@ export function Pipeline({ which }: { which: "chain" | "curveChain" }) {
   }, 0.3);
   useEffect(() => () => clearInterval(timer.current), []);
 
-  // The load line sits above the strip, on one line; each step shows the line it adds.
+  // The load line sits above the strip, in the page column; each step shows the line it adds.
   return (
     <div ref={root} className={styles.pipeWrap}>
-      <pre className={styles.code}>{p.steps[0].line}</pre>
+      <pre className={`${styles.code} ${styles.pipeLead}`}>{p.steps[0].line}</pre>
       <div
         className={`${styles.pipe} ${tall ? styles.tallSteps : ""}`}
         style={{ "--n": p.steps.length } as CSSProperties}
@@ -225,14 +221,13 @@ export function Pipeline({ which }: { which: "chain" | "curveChain" }) {
             }}
             onBlur={() => (held.current = false)}
           >
-            <div className={styles.stepHead}>
-              <span className={styles.num}>{String(i).padStart(2, "0")}</span>
-              <span>{i === 0 ? p.photo : `step ${i}`}</span>
-            </div>
             <div className={`${styles.tile} ${tall ? styles.portrait : styles.landscape}`}>
               <Photo img={s.img} alt={i === 0 ? `${p.photo}, original` : `${p.photo} after: ${s.line}`} />
             </div>
-            {i > 0 && <pre className={`${styles.code} ${styles.wrap}`}>{breakable(s.line)}</pre>}
+            <div className={styles.under}>
+              <div className={styles.underLabel}>{i === 0 ? "Original" : `Step ${i}`}</div>
+              {i > 0 && <pre className={`${styles.code} ${styles.wrap}`}>{breakable(s.line)}</pre>}
+            </div>
           </div>
         ))}
       </div>

@@ -7,7 +7,7 @@ export const samsungDrs: Project = {
   tagline: "A defect and code review tracker, recreated from Samsung’s printing division.",
   links: [
     { label: "Live demo", url: "https://samsung-drs-demo.subwaymatch.workers.dev/" },
-    { label: "GitHub", url: "https://github.com/subwaymatch/samsung-drs-demo" },
+    { label: "Source", url: "https://github.com/subwaymatch/samsung-drs-demo" },
   ],
   summary: [
     "A recreation of the defect and code review tracker built at Samsung Electronics’ printing division in 2016–2017. Firmware, QA and code review teams in Suwon and Bangalore used it while moving from IBM Rational and Review Board to Perforce, Helix Swarm, Jira and Confluence.",
@@ -97,6 +97,11 @@ export const samsungDrs: Project = {
         shape: "tall",
         caption: "Defect D-17-0363: status, severity, the PS-C3150FR spec card and its records in five systems.",
       },
+    },
+    {
+      type: "embed",
+      name: "details-regions",
+      caption: "Engineering fields and three sales-region dot maps; Korea and Japan get a ring.",
     },
     {
       type: "full",

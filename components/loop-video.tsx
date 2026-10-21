@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 
 /**
- * A muted, looping clip that plays only while on screen, and not at all for
- * people who ask for reduced motion (they see the poster). Unless `eager`, the
- * poster is fetched only as the clip nears the viewport, since a long page
- * holds many of these.
+ * A muted, looping clip that plays only while at least half of it is on
+ * screen, and not at all for people who ask for reduced motion (they see the
+ * poster). A long page holds many of these, so unless `eager`, a clip's poster
+ * and source are attached only as it nears the viewport, and the source is
+ * detached again once it is far away, which frees its decoder and buffered
+ * frames.
  */
 export function LoopVideo({ src, poster, label, eager = false }: { src: string; poster: string; label: string; eager?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null);
@@ -16,34 +18,51 @@ export function LoopVideo({ src, poster, label, eager = false }: { src: string; 
     if (!video) return;
     // React doesn't render `muted` into server HTML; autoplay needs it set.
     video.muted = true;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const attach = () => {
+      if (!still && !video.getAttribute("src")) video.src = src;
+    };
+    const detach = () => {
+      if (!video.getAttribute("src")) return;
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    };
     const near = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) return;
-        video.poster = poster;
-        near.disconnect();
+        if (entry.isIntersecting) {
+          video.poster = poster;
+          attach();
+        } else {
+          detach();
+        }
       },
       { rootMargin: "800px 0px" },
     );
-    if (!eager) near.observe(video);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return () => near.disconnect();
+    near.observe(video);
+    if (still) return () => near.disconnect();
     const visible = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
+        if (entry.intersectionRatio >= 0.5) {
+          attach();
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
       },
-      { rootMargin: "200px 0px" },
+      { threshold: 0.5 },
     );
     visible.observe(video);
     return () => {
       near.disconnect();
       visible.disconnect();
     };
-  }, [poster, eager]);
+  }, [src, poster]);
 
   return (
     <video
       ref={ref}
-      src={src}
+      src={eager ? src : undefined}
       poster={eager ? poster : undefined}
       aria-label={label}
       muted

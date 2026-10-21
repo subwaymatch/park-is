@@ -7,8 +7,8 @@ export const tabbied: Project = {
   revived: "2026",
   tagline: "Free website templates for every trade, with generated patterns in place of stock photos.",
   links: [
-    { label: "Visit site", url: "https://tabbied.com" },
-    { label: "GitHub", url: "https://github.com/tabbied-design/tabbied/" },
+    { label: "https://tabbied.com", url: "https://tabbied.com" },
+    { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
     "Tabbied is a free library of 377 one-page website templates for trades, 382 generated patterns and 437 color palettes. Every template is built around a pattern instead of stock photos.",
@@ -32,7 +32,7 @@ export const tabbied: Project = {
       type: "text",
       label: "Templates",
       paragraphs: [
-        "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds Northside Plumbing.",
+        "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
       ],
     },
     {
@@ -54,35 +54,52 @@ export const tabbied: Project = {
     {
       type: "full",
       figure: {
-        file: "site-northside",
+        file: "site-bex",
         kind: "loop",
         shape: "wide",
-        caption: "Northside Plumbing on desktop: the emergency number, the services and a fixed-price job list.",
+        caption: "Chronométrie Bex, a watch manufacture, from its hero numbers to the workshop.",
       },
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-posy",
+          kind: "loop",
+          shape: "phone",
+          caption: "Posy, a wedding florist, opening its menu on a phone.",
+        },
+        {
+          file: "phone-pho-nam",
+          kind: "loop",
+          shape: "phone",
+          caption: "Pho Nam, a Vietnamese noodle house, from its hours to the numbered board.",
+        },
+      ],
     },
     {
       type: "full",
       figure: {
-        file: "site-lodge",
+        file: "site-casa-olivo",
         kind: "loop",
         shape: "wide",
-        caption: "High Pass Lodge on desktop, from its illustrated hero to the rooms and dinner.",
+        caption: "Casa Olivo, a tapas bar: the tiled hero, then sixteen plates on the wall.",
       },
     },
     {
       type: "pair",
       figures: [
         {
-          file: "phone-arcade",
+          file: "phone-forge",
           kind: "loop",
           shape: "phone",
-          caption: "Continue?, an arcade bar template, on a phone.",
+          caption: "Forge Strength, a strength gym: hours, memberships, then eight ways to train.",
         },
         {
-          file: "phone-balloons",
+          file: "phone-odd-shape",
           kind: "loop",
           shape: "phone",
-          caption: "Halfmoon Balloon Flights on a phone, from the weather panel to the flights.",
+          caption: "Odd Shape Studio, a freelance graphic designer, from its pitch to selected identities.",
         },
       ],
     },
@@ -90,18 +107,84 @@ export const tabbied: Project = {
       type: "pair",
       figures: [
         {
-          file: "phone-paws",
+          file: "site-vektor",
           kind: "loop",
-          shape: "phone",
-          caption: "Muddy Paws, a mobile dog groomer, opening its menu, then the week’s route.",
+          shape: "wide",
+          caption: "Bureau Vektor, a public statistics office: headline figures, then one series.",
         },
         {
-          file: "phone-inkwell",
+          file: "site-klangwerk",
           kind: "loop",
-          shape: "phone",
-          caption: "Inkwell Tattoo on a phone: this month’s flash sheet, with sizes and prices.",
+          shape: "wide",
+          caption: "Klangwerk, an electroacoustic studio, from its dark hero to the three rooms.",
         },
       ],
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-sleepwell",
+          kind: "loop",
+          shape: "phone",
+          caption: "Sleepwell, a sleep clinic, opening its menu, then a night’s chart and a checklist.",
+        },
+        {
+          file: "phone-zenith",
+          kind: "loop",
+          shape: "phone",
+          caption: "Zenith, an observatory: a countdown to the next viewing night, then the evening’s program.",
+        },
+      ],
+    },
+    {
+      type: "full",
+      figure: {
+        file: "site-saltline",
+        kind: "loop",
+        shape: "wide",
+        caption: "Saltline Oyster Bar, a seafood restaurant: today’s oysters charted by brine, then the raw bar.",
+      },
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-fringe",
+          kind: "loop",
+          shape: "phone",
+          caption: "Fringe, a hair salon: hours and address, then prices at three stylist levels.",
+        },
+        {
+          file: "phone-delancey",
+          kind: "loop",
+          shape: "phone",
+          caption: "Delancey Deli, a sandwich deli: a paid receipt, then the board of sandwiches.",
+        },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "site-orbital",
+          kind: "loop",
+          shape: "wide",
+          caption: "Orbital, a listening bar: three rings of seats, then the nine parts of its system.",
+        },
+        {
+          file: "site-zwoelfton",
+          kind: "loop",
+          shape: "wide",
+          caption: "Zwölfton, a new-music ensemble: a twelve-tone row, then the season’s six nights.",
+        },
+      ],
+    },
+    {
+      type: "embed",
+      name: "templates",
+      bleed: true,
+      caption: "Twelve more templates at desktop width, from a golf club to a payroll consultant.",
     },
     { type: "embed", name: "strip", bleed: true },
     {
@@ -151,7 +234,7 @@ export const tabbied: Project = {
         file: "customize-download",
         kind: "loop",
         shape: "wide",
-        caption: "The Download menu: HTML & CSS or React, free and unlimited.",
+        caption: "Corner Pharmacy, an independent pharmacy, in the customizer’s Download menu: HTML & CSS or React.",
       },
     },
     {
@@ -227,7 +310,7 @@ export const tabbied: Project = {
         file: "walkthrough",
         kind: "video",
         shape: "wide",
-        caption: "The home page, the gallery, recoloring the Wild Stem florist site, then the pattern editor.",
+        caption: "Home page, gallery search for “tapas”, Casa Olivo recolored and reshuffled, then the pattern editor.",
       },
     },
     {
