@@ -6,6 +6,7 @@
   --bg: #ffffff;
   --gutter: 24px;
   --max: 1120px;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   color-scheme: light;
 }
 
@@ -27,6 +28,13 @@ body {
 a {
   color: var(--ink);
   text-decoration: none;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--mono);
 }
 
 a:hover {
