@@ -8,7 +8,7 @@ export const tabbied: Project = {
   tagline: "Free website templates for every trade, with generated patterns in place of stock photos.",
   links: [
     { label: "https://tabbied.com", url: "https://tabbied.com" },
-    { label: "GitHub", url: "https://github.com/tabbied-design/tabbied/" },
+    { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
     "Tabbied is a free library of 377 one-page website templates for trades, 382 generated patterns and 437 color palettes. Every template is built around a pattern instead of stock photos.",

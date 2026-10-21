@@ -7,7 +7,7 @@ export const dataslope: Project = {
   tagline: "Learn Python, SQL, C++ and more in the browser. Free, no sign-up.",
   links: [
     { label: "https://dataslope.com", url: "https://dataslope.com" },
-    { label: "GitHub", url: "https://github.com/dataslope/dataslope/" },
+    { label: "Source", url: "https://github.com/dataslope/dataslope/" },
   ],
   summary: [
     "Free courses, challenges, interview prep and playgrounds for Python, SQL, R, C, C++, Java, C# and more, with no account needed.",

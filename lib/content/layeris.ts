@@ -8,7 +8,7 @@ export const layeris: Project = {
   tagline: "Photoshop-style blend modes, adjustments and curves for Python.",
   links: [
     { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
-    { label: "GitHub", url: "https://github.com/subwaymatch/layer-is-python" },
+    { label: "Source", url: "https://github.com/subwaymatch/layer-is-python" },
     { label: "PyPI", url: "https://pypi.org/project/layeris/" },
   ],
   summary: [
