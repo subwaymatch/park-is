@@ -17,7 +17,6 @@ import {
   petalcut,
   radius,
   truchetrings,
-  windowpane,
 } from "tabbied/patterns";
 import { TabbiedPattern, type TabbiedPatternHandle } from "tabbied/react";
 import styles from "./tabbied.module.css";
@@ -53,40 +52,29 @@ function useVisibleInterval(ref: React.RefObject<HTMLElement | null>, ms: number
   }, [ref, ms]);
 }
 
-/** A full-width band of Radius, the pattern from Tabbied's first homepage. Its pale cyan ink would vanish on white, so its blue ground takes that slot. */
-export function PatternBand() {
-  return (
-    <div className={styles.band}>
-      <TabbiedPattern
-        pattern={radius}
-        palette={["transparent", "#3B3F45", "#3FFFB2", "#3EECFF", "#3E8BFF", "#FF3D8B"]}
-        density={0.55}
-        redrawInterval={4000}
-      />
-    </div>
-  );
-}
+const BAND_ROWS = 3;
 
-/** The library's three numbers set large beside a pattern, Swiss poster style. */
-export function PatternNumbers() {
-  const rows = [
-    ["382", "patterns"],
-    ["437", "palettes"],
-    ["377", "templates"],
-  ];
+/** A full-width band of Radius, the pattern from Tabbied's first homepage, in warm greys a step off the page's surface. Its cells are sized from the band's height, so it is always three rows tall. */
+export function PatternBand() {
+  const box = useRef<HTMLDivElement>(null);
+  const [cellSize, setCellSize] = useState<number>();
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setCellSize(entry.contentRect.height / BAND_ROWS));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   return (
-    <div className={styles.numbers}>
-      <div className={styles.numbersArt}>
-        <TabbiedPattern pattern={windowpane} palette={clear(windowpane)} density={0.4} redrawInterval={6000} />
-      </div>
-      <dl className={styles.numbersList}>
-        {rows.map(([n, label]) => (
-          <div key={label} className={styles.numbersRow}>
-            <dt>{label}</dt>
-            <dd>{n}</dd>
-          </div>
-        ))}
-      </dl>
+    <div ref={box} className={styles.band}>
+      {cellSize && (
+        <TabbiedPattern
+          pattern={radius}
+          palette={["transparent", "#E9E8E3", "#DCDAD4", "#CDCAC3", "#BCB9B1", "#F0EFEB"]}
+          cellSize={cellSize}
+          redrawInterval={4000}
+        />
+      )}
     </div>
   );
 }

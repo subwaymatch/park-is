@@ -13,50 +13,6 @@
   height: 360px;
 }
 
-/* A pattern and the library's numbers, set large between rules. */
-
-.numbers {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.numbersArt {
-  grid-column: 1 / span 2;
-  aspect-ratio: 1;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
-.numbersList {
-  grid-column: 3 / span 2;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
-
-.numbersRow {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 0 0;
-  border-top: 1px solid var(--ink);
-}
-
-.numbersRow dt {
-  color: var(--ink-3);
-}
-
-.numbersRow dd {
-  margin: 0;
-  font-size: clamp(64px, 9vw, 128px);
-  font-weight: 500;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-}
-
 /* Labels under plates and panels. */
 
 .label {
@@ -205,15 +161,9 @@
     height: 220px;
   }
 
-  .numbersArt,
-  .numbersList,
   .snippet,
   .result {
     grid-column: 1 / -1;
-  }
-
-  .numbersRow {
-    padding-bottom: 16px;
   }
 
   .specimens {

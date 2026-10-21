@@ -27,13 +27,18 @@ export const tabbied: Project = {
   ],
   sections: [
     { type: "embed", name: "band", bleed: true },
-    { type: "embed", name: "numbers" },
     {
       type: "text",
       label: "Templates",
       paragraphs: [
         "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
       ],
+    },
+    {
+      type: "embed",
+      name: "templates",
+      bleed: true,
+      caption: "Twelve templates at desktop width, from a golf club to a payroll consultant.",
     },
     {
       type: "full",
@@ -179,12 +184,6 @@ export const tabbied: Project = {
           caption: "Zwölfton, a new-music ensemble: a twelve-tone row, then the season’s six nights.",
         },
       ],
-    },
-    {
-      type: "embed",
-      name: "templates",
-      bleed: true,
-      caption: "Twelve more templates at desktop width, from a golf club to a payroll consultant.",
     },
     { type: "embed", name: "strip", bleed: true },
     {
