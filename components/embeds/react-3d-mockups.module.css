@@ -1,25 +1,73 @@
-/* Stages: the server renders these empty at their final size. */
+/* Stages: the server renders these empty at their final size. They run the
+   full width of the window, but take their height from the content column
+   (--content), so a wide window shows more of the backdrop, not a taller
+   scene. */
 .stage {
+  --content: min(100vw - 2 * var(--gutter), var(--max));
   position: relative;
   width: 100%;
   overflow: hidden;
+  background: var(--surface);
 }
 .desk {
-  aspect-ratio: 16 / 9;
+  height: calc(var(--content) * 9 / 16);
 }
-.shelf {
-  aspect-ratio: 16 / 8;
-}
+.shelf,
 .street {
-  aspect-ratio: 16 / 8;
+  height: calc(var(--content) / 2);
 }
 @media (max-width: 640px) {
   .desk {
-    aspect-ratio: 4 / 5;
+    height: calc(var(--content) * 5 / 4);
   }
   .shelf,
   .street {
-    aspect-ratio: 1 / 1;
+    height: var(--content);
+  }
+}
+
+/* Swipe hint: a pill at the foot of the stage, like Tabbied's Shuffle
+   button. It lets clicks through, and fades once the stage is touched. */
+.hint {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 15px 7px 12px;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.92);
+  color: var(--ink);
+  font-size: 13px;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 0.12);
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.hint[data-hidden] {
+  opacity: 0;
+}
+.hint svg {
+  width: 18px;
+  height: 22px;
+  flex: none;
+}
+.hand {
+  animation: swipe 1.8s ease-in-out infinite;
+}
+@keyframes swipe {
+  0%,
+  100% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hand {
+    animation: none;
   }
 }
 

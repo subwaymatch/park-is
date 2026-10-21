@@ -37,7 +37,12 @@ export const react3dMockups: Project = {
         caption: "The landing carousel: picking a finish, then stepping through models and their screen sizes.",
       },
     },
-    { type: "embed", name: "desk", caption: "Live: one React state on a MacBook, an iPhone and an Apple Watch. Drag to turn." },
+    {
+      type: "embed",
+      name: "desk",
+      bleed: true,
+      caption: "Live: one React state on a MacBook, an iPhone and an Apple Watch. Drag to turn.",
+    },
     {
       type: "text",
       label: "Lineup",
@@ -62,7 +67,12 @@ export const react3dMockups: Project = {
         },
       ],
     },
-    { type: "embed", name: "shelf", caption: "Live: a book, a tea carton, a poster and a card, each wearing generated art." },
+    {
+      type: "embed",
+      name: "shelf",
+      bleed: true,
+      caption: "Live: a book, a tea carton, a poster and a card, each wearing generated art.",
+    },
     {
       type: "text",
       label: "Prop explorer",
@@ -161,7 +171,12 @@ export const react3dMockups: Project = {
         caption: "Aperture Festival: turning the 14 × 48 ft billboard to walk around it.",
       },
     },
-    { type: "embed", name: "street", caption: "Live: one sneaker campaign on a billboard and a bus shelter." },
+    {
+      type: "embed",
+      name: "street",
+      bleed: true,
+      caption: "Live: one sneaker campaign on a billboard and a bus shelter.",
+    },
     {
       type: "pair",
       figures: [
