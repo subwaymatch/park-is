@@ -65,11 +65,6 @@ export const samsungDrs: Project = {
       },
     },
     {
-      type: "embed",
-      name: "details-insights",
-      caption: "Insights up close: system card, KPI tile, target line, heatmap, donut, waves and waffle.",
-    },
-    {
       type: "text",
       label: "Defects",
       paragraphs: [
@@ -127,11 +122,6 @@ export const samsungDrs: Project = {
       },
     },
     {
-      type: "embed",
-      name: "details-defect",
-      caption: "Reporter, status line, severity clocks, duplicate warning, bulk edit bar, subscribers and most active rows.",
-    },
-    {
       type: "text",
       label: "Code reviews",
       paragraphs: [
@@ -146,11 +136,6 @@ export const samsungDrs: Project = {
         shape: "tall",
         caption: "CR-2225’s diff, unified and side by side, then a comment on one line.",
       },
-    },
-    {
-      type: "embed",
-      name: "details-review",
-      caption: "A line comment, reviewers, Helix Swarm votes, Perforce changelists and an approval.",
     },
     {
       type: "text",
@@ -215,11 +200,6 @@ export const samsungDrs: Project = {
         shape: "wide",
         caption: "Ctrl+K: a search for duplex, then for a person (keys shown bottom right).",
       },
-    },
-    {
-      type: "embed",
-      name: "details-tools",
-      caption: "Phone drawer, role switcher, grouped search, digest settings and counts, a person card and shortcuts.",
     },
     {
       type: "pair",
