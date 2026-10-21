@@ -7,7 +7,7 @@ export const tabbied: Project = {
   revived: "2026",
   tagline: "Free website templates for every trade, with generated patterns in place of stock photos.",
   links: [
-    { label: "Visit site", url: "https://tabbied.com" },
+    { label: "https://tabbied.com", url: "https://tabbied.com" },
     { label: "GitHub", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [

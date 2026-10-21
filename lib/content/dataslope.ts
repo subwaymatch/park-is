@@ -6,7 +6,7 @@ export const dataslope: Project = {
   year: "2026",
   tagline: "Learn Python, SQL, C++ and more in the browser. Free, no sign-up.",
   links: [
-    { label: "Visit site", url: "https://dataslope.com" },
+    { label: "https://dataslope.com", url: "https://dataslope.com" },
     { label: "GitHub", url: "https://github.com/dataslope/dataslope/" },
   ],
   summary: [

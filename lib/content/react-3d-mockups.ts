@@ -6,7 +6,7 @@ export const react3dMockups: Project = {
   year: "2026",
   tagline: "Live 3D device mockups for React. Real DOM on the glass.",
   links: [
-    { label: "Website", url: "https://area.is/react-3d-mockups" },
+    { label: "https://area.is/react-3d-mockups", url: "https://area.is/react-3d-mockups" },
     { label: "GitHub", url: "https://github.com/area-is/react-3d-mockups" },
     { label: "npm", url: "https://www.npmjs.com/package/react-3d-mockups" },
   ],
