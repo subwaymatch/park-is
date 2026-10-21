@@ -18,6 +18,7 @@ export const layeris: Project = {
   facts: [
     ["Stack", "Python 3.10+, NumPy, Pillow and Requests"],
     ["Award", "2nd place (Gold Prize, NIPA President’s Award), 2019 Open Source Software Developer Competition"],
+    ["Photos", "Sample photos generated with GPT Image 2.5 at low quality; every edit rendered by layeris 0.4.0"],
     ["License", "MIT"],
   ],
   sections: [
@@ -29,6 +30,11 @@ export const layeris: Project = {
     {
       type: "logo",
       caption: "The Layer.is mark: three translucent layers sharing one white-to-cyan gradient.",
+    },
+    {
+      type: "embed",
+      name: "chain",
+      caption: "The quick-start chain, one line at a time. Hover a step to hold it.",
     },
     {
       type: "full",
@@ -49,9 +55,21 @@ export const layeris: Project = {
       },
     },
     {
+      type: "embed",
+      name: "compare-sea",
+      bleed: true,
+      caption: "The same recipe on a calm sea. Drag the divider, or use the arrow keys.",
+    },
+    {
       type: "text",
       label: "Recipes",
       paragraphs: ["24 complete looks, each with a before/after slider and code that runs as printed."],
+    },
+    {
+      type: "embed",
+      name: "band",
+      bleed: true,
+      caption: "One bicycle, six looks. Hover a look for its code.",
     },
     {
       type: "pair",
@@ -71,6 +89,16 @@ export const layeris: Project = {
       ],
     },
     {
+      type: "embed",
+      name: "compare-dune",
+      caption: "Teal & Orange on a dune: shadows go teal, sunlit sand goes orange.",
+    },
+    {
+      type: "embed",
+      name: "triptych",
+      caption: "A white stair three ways. The red filter turns the blue sky almost black.",
+    },
+    {
       type: "full",
       figure: {
         file: "filter",
@@ -87,13 +115,14 @@ export const layeris: Project = {
       ],
     },
     {
-      type: "full",
-      figure: {
-        file: "blend-grid",
-        kind: "loop",
-        shape: "wide",
-        caption: "Every blend mode on the same three photos, each with its formula.",
-      },
+      type: "embed",
+      name: "blend-grid",
+      caption: "All 14 blend modes, one color, one chair. Hover a result to see the base.",
+    },
+    {
+      type: "embed",
+      name: "opacity",
+      caption: "Opacity mixes the blended result back with the original.",
     },
     {
       type: "aside",
@@ -121,6 +150,11 @@ export const layeris: Project = {
       },
     },
     {
+      type: "embed",
+      name: "curve-chain",
+      caption: "A duotone, one channel at a time: grayscale, then curves on red, green, blue.",
+    },
+    {
       type: "pair",
       figures: [
         {
@@ -138,6 +172,11 @@ export const layeris: Project = {
       ],
     },
     {
+      type: "embed",
+      name: "compare-vase",
+      caption: "Sepia print: three channel curves map black to brown and white to cream.",
+    },
+    {
       type: "text",
       label: "Lookup table",
       paragraphs: [
@@ -152,6 +191,11 @@ export const layeris: Project = {
         shape: "wide",
         caption: "Install, quick start and the performance numbers.",
       },
+    },
+    {
+      type: "embed",
+      name: "preset",
+      caption: "One JSON preset applied to four photos.",
     },
     {
       type: "full",

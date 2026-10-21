@@ -1,0 +1,519 @@
+/* layeris embeds: sample photos run through layeris, beside the code that made them. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px 24px;
+}
+
+.code {
+  margin: 0;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  white-space: pre;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.wrap {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.name {
+  color: var(--ink);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--surface);
+}
+
+.tile img,
+.compare img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Before/after slider */
+
+.compare {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--surface);
+  cursor: ew-resize;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.compare img {
+  pointer-events: none;
+}
+
+.compare:has(input:focus-visible) {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.before {
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: #ffffff;
+  box-shadow: 0 0 0 0.5px rgb(27 27 25 / 0.12);
+  pointer-events: none;
+}
+
+.handle {
+  position: absolute;
+  top: 50%;
+  left: var(--pos);
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 8px rgb(27 27 25 / 0.22);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.tag {
+  position: absolute;
+  bottom: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #ffffff;
+  background: rgb(27 27 25 / 0.5);
+  pointer-events: none;
+}
+
+.tagStart {
+  left: 10px;
+}
+
+.tagEnd {
+  right: 10px;
+}
+
+.range {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.cmpWide > .compare {
+  grid-column: 1 / -1;
+  aspect-ratio: 3 / 2;
+}
+
+.cmpWide > .meta {
+  grid-column: 1;
+}
+
+.cmpWide > .code {
+  grid-column: 2 / -1;
+}
+
+.cmpPortrait > .compare {
+  grid-column: 1 / span 2;
+  aspect-ratio: 2 / 3;
+}
+
+.side {
+  grid-column: 3 / span 2;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cmpBleed > .compare {
+  aspect-ratio: 21 / 9;
+  border-radius: 0;
+}
+
+.inner {
+  width: min(100% - 2 * var(--gutter), var(--max));
+  margin: 12px auto 0;
+}
+
+/* Pipeline: one photo, one line of code per step */
+
+.pipe {
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: 12px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding-top: 8px;
+  border-top: 1px solid rgb(27 27 25 / 0.14);
+  transition: border-color 0.4s ease;
+  outline: none;
+}
+
+.step .code {
+  font-size: 10.5px;
+  transition: color 0.4s ease;
+}
+
+.step[data-active="true"] {
+  border-top-color: var(--ink);
+}
+
+.step[data-active="true"] .code {
+  color: var(--ink);
+}
+
+.step:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.stepHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.landscape {
+  aspect-ratio: 3 / 2;
+}
+
+.portrait {
+  aspect-ratio: 2 / 3;
+}
+
+/* Full-bleed band: one photo, several looks */
+
+.band {
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: 4px;
+}
+
+.bandItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.bandItem .tile {
+  border-radius: 0;
+}
+
+.bandLabel {
+  padding: 0 10px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.peekCode {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 12px;
+  font-size: 10.5px;
+  color: #ffffff;
+  background: rgb(27 27 25 / 0.72);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.bandItem .tile:hover .peekCode,
+.bandItem .tile:focus-visible .peekCode {
+  opacity: 1;
+  transform: none;
+}
+
+.bandItem .tile:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+/* Triptych */
+
+.trip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.tripItem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.tripHead {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+/* Blend modes: a numbered Swiss grid */
+
+.blendHead {
+  margin-bottom: 20px;
+  align-items: baseline;
+}
+
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.blend {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 22px 12px;
+}
+
+.blendItem {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.blendLabel {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.blendItem .tile img + img {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.blendItem .tile:hover img + img {
+  opacity: 1;
+}
+
+.group {
+  margin-left: auto;
+  color: var(--ink-3);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Opacity strip */
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: 8px;
+}
+
+.stripItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* One preset, many photos */
+
+.toggle {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 2px;
+  border-radius: 6px;
+  background: var(--surface);
+  width: fit-content;
+}
+
+.toggle button {
+  font: inherit;
+  font-size: 12px;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+.toggle button[aria-pressed="true"] {
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 0 0 1px rgb(27 27 25 / 0.07);
+}
+
+.toggle button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.presetGrid {
+  grid-column: 2 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 12px;
+}
+
+.presetItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.fade {
+  transition: opacity 0.8s ease;
+}
+
+.presetCode {
+  grid-column: 2 / -1;
+}
+
+.rest {
+  grid-column: 2 / -1;
+  min-width: 0;
+}
+
+.first {
+  grid-column: 1;
+  min-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade,
+  .step,
+  .step .code,
+  .peekCode {
+    transition: none;
+  }
+}
+
+/* Phones: one column; long rows scroll sideways inside the embed. */
+
+@media (max-width: 640px) {
+  .grid > * {
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+  }
+
+  .cmpBleed > .compare {
+    aspect-ratio: 4 / 3;
+  }
+
+  .pipe,
+  .band,
+  .trip,
+  .strip {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .pipe,
+  .pipe.tallSteps {
+    grid-auto-columns: 68%;
+  }
+
+  .band {
+    grid-auto-columns: 74%;
+  }
+
+  .trip {
+    grid-auto-columns: 70%;
+    gap: 16px;
+  }
+
+  .strip {
+    grid-auto-columns: 38%;
+  }
+
+  .pipe > *,
+  .band > *,
+  .trip > *,
+  .strip > * {
+    scroll-snap-align: start;
+  }
+
+  .blend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px 8px;
+  }
+
+  .group {
+    display: none;
+  }
+
+  .blendHead {
+    margin-bottom: 12px;
+  }
+}
