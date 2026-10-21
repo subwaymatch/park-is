@@ -78,6 +78,8 @@
   margin-left: auto;
   color: var(--ink-3);
   white-space: nowrap;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
 }
 
 /* Specimen sheet: a 12-column grid, the first plate 6 × 2. */
