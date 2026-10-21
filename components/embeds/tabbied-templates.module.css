@@ -1,0 +1,53 @@
+/* The template wall (tabbied-templates.tsx): a full-bleed grid of desktop
+   hero crops, edge to edge with 4px gaps, no rules, 2px radii, a two-line
+   label under each. */
+
+.wall {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 4px;
+  row-gap: 14px;
+  margin: 0;
+  padding: 0 4px;
+  list-style: none;
+}
+
+@media (min-width: 700px) {
+  .wall {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .wall {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.item {
+  min-width: 0;
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin: 6px 0 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.trade {
+  color: var(--ink-3);
+}
