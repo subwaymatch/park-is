@@ -162,7 +162,7 @@ export const dataslope: Project = {
         },
       ],
     },
-    { type: "embed", name: "riso-lessons" },
+    { type: "embed", name: "riso-lessons", bleed: true },
     {
       type: "text",
       label: "Challenges",
@@ -190,7 +190,7 @@ export const dataslope: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "riso-challenges" },
+    { type: "embed", name: "riso-challenges", bleed: true },
     {
       type: "text",
       label: "Playgrounds",

@@ -1,5 +1,4 @@
-import type { CSSProperties } from "react";
-import { CLOSING, CLUSTER_CHALLENGES, CLUSTER_LESSONS, type PlacedRiso, type Riso, WALL } from "./dataslope-riso-data";
+import type { Riso } from "./dataslope-riso-data";
 import styles from "./dataslope.module.css";
 
 // Dataslope's risograph lesson illustrations, set straight on the page background:
@@ -20,42 +19,11 @@ function Img({ r, decorative = false }: { r: Riso; decorative?: boolean }) {
   );
 }
 
-/** Edge to edge, justified rows: every image in a row shares one height and the row fills the width. */
-export function RisoWall() {
-  return (
-    <ul className={styles.wall}>
-      {WALL.map((r) => (
-        <li key={r.file} style={{ "--ar": r.w / r.h } as CSSProperties}>
-          <Img r={r} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** A Swiss-grid cluster in the content column: 12 columns, asymmetric spans, images standing on each row's baseline. */
-export function RisoCluster({ set }: { set: "lessons" | "challenges" }) {
-  const items: PlacedRiso[] = set === "lessons" ? CLUSTER_LESSONS : CLUSTER_CHALLENGES;
-  return (
-    <ul className={styles.cluster}>
-      {items.map((r) => (
-        <li
-          key={r.file}
-          data-wide={r.wide || undefined}
-          style={{ "--start": r.start, "--span": r.span } as CSSProperties}
-        >
-          <Img r={r} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 /** Edge to edge, a strict grid of equal columns; each row's images stand on a shared baseline. */
-export function RisoClosing() {
+export function RisoGrid({ items }: { items: Riso[] }) {
   return (
-    <ul className={styles.closing}>
-      {CLOSING.map((r) => (
+    <ul className={styles.grid}>
+      {items.map((r) => (
         <li key={r.file}>
           <Img r={r} />
         </li>
