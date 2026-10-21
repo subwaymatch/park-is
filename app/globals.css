@@ -179,16 +179,25 @@ button:focus-visible {
   min-height: 44px;
 }
 
-/* Project page hero: the loop runs full-bleed with the header over it. */
+/* Project page hero: the loop on the surface colour, with the header over the
+   clip's own top margin. The clip grows with the window up to 1600 × 900 and
+   never past 88% of the window's height. Any spare width is surface colour, so
+   the clip is never cropped at the top (under the header) and never shown much
+   larger than its 1920px source. Narrow screens crop its sides instead. */
 
 .hero {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 88vh;
-  min-height: 360px;
+  height: max(360px, min(100vw * 9 / 16, 88vh, 900px));
   background: var(--surface);
   overflow: hidden;
+}
+
+.hero > .media-fill {
+  inset: 0 auto auto 50%;
+  width: auto;
+  aspect-ratio: 16 / 9;
+  transform: translateX(-50%);
 }
 
 .hero-bar {
@@ -720,7 +729,7 @@ figcaption {
   /* The loop is cropped to the middle of the frame here; a taller hero and a
      higher header keep the logo clear of the screen inset in the clip. */
   .hero {
-    min-height: 400px;
+    height: max(400px, min(100vw * 9 / 16, 88vh, 900px));
   }
 
   .hero-bar .site-header {
