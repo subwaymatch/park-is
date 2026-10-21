@@ -138,13 +138,14 @@
   }
 }
 
-/* The playgrounds' illustration: one of the page's larger images, the full
-   content width (at most 1,120 CSS px of its 1536). */
+/* The playgrounds' illustration, about 700 CSS px wide and centered: small
+   enough to sit as a vignette, still sharp at 2x from its 1536. */
 
 .playground {
   display: block;
-  width: 100%;
+  width: min(100%, 700px);
   height: auto;
+  margin: 0 auto;
 }
 
 /* Phones: the cluster becomes two columns; wide items take both. */

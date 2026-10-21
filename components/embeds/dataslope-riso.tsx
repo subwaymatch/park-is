@@ -65,9 +65,8 @@ export function RisoClosing() {
 }
 
 /**
- * The playgrounds' illustration (1536 × 924), one of the page's larger images:
- * it spans the content width, at most 1,120 CSS px, so it is never shown above
- * its pixel size on a 1× screen.
+ * The playgrounds' illustration (1536 × 924), shown about 700 CSS px wide and
+ * centered (dataslope.module.css).
  */
 export function PlaygroundArt() {
   return (

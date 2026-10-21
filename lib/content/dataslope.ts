@@ -101,28 +101,44 @@ export const dataslope: Project = {
       },
     },
     {
-      type: "pair",
-      figures: [
-        {
-          file: "lesson-sql",
-          kind: "loop",
-          shape: "wide",
-          caption: "PostgreSQL: ORDER BY inside OVER turns totals into running totals.",
-        },
-        {
-          file: "lesson-r",
-          kind: "loop",
-          shape: "wide",
-          caption: "R on WebR: grouping mtcars by gear with dplyr.",
-        },
-      ],
+      type: "full",
+      figure: {
+        file: "lesson-sql",
+        kind: "loop",
+        shape: "wide",
+        caption: "PostgreSQL: ORDER BY inside OVER turns totals into running totals.",
+        mat: true,
+      },
     },
     {
-      type: "pair",
-      figures: [
-        { file: "lesson-c", kind: "loop", shape: "wide", caption: "C compiled with Clang and run in the tab." },
-        { file: "lesson-csharp", kind: "loop", shape: "wide", caption: "C# LINQ compiled with Roslyn." },
-      ],
+      type: "full",
+      figure: {
+        file: "lesson-r",
+        kind: "loop",
+        shape: "wide",
+        caption: "R on WebR: grouping mtcars by gear with dplyr.",
+        mat: true,
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "lesson-c",
+        kind: "loop",
+        shape: "wide",
+        caption: "C compiled with Clang and run in the tab.",
+        mat: true,
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "lesson-csharp",
+        kind: "loop",
+        shape: "wide",
+        caption: "C# LINQ compiled with Roslyn.",
+        mat: true,
+      },
     },
     {
       type: "pair",
@@ -181,16 +197,18 @@ export const dataslope: Project = {
       caption: "The playgrounds’ illustration: a marmot on the slide, a fox and penguin on the seesaw.",
     },
     {
-      type: "pair",
-      figures: [
-        { file: "playgrounds", kind: "still", shape: "tall", caption: "The playground index." },
-        {
-          file: "pg-postgres",
-          kind: "loop",
-          shape: "tall",
-          caption: "The PostgreSQL workbench: schema tree, a query and its result grid.",
-        },
-      ],
+      type: "aside",
+      figure: { file: "playgrounds", kind: "still", shape: "tall", caption: "The playground index." },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "pg-postgres",
+        kind: "loop",
+        shape: "tall",
+        caption: "The PostgreSQL workbench: schema tree, a query and its result grid.",
+        mat: true,
+      },
     },
     {
       type: "pair",

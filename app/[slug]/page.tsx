@@ -37,13 +37,34 @@ function Paragraphs({ items }: { items: string[] }) {
   ));
 }
 
-/** The media of a figure in its frame. Phones sit on the surface colour already, so they get no hairline. */
+/**
+ * The media of a figure in its frame. Phones sit on the surface colour already, so they get no hairline; a matted
+ * figure is set on it here, in a screen of its own shape.
+ */
 function Frame({ slug, f, className = "" }: { slug: string; f: Figure; className?: string }) {
-  const m = media(slug);
   const shape = SHAPES[f.shape];
+  if (f.mat) {
+    return (
+      <div className={["frame is-bare is-matted", className].filter(Boolean).join(" ")}>
+        <div className={`frame-screen ${shape.ratio}`}>
+          <Media slug={slug} f={f} />
+        </div>
+      </div>
+    );
+  }
   const classes = ["frame", shape.ratio, f.shape === "phone" ? "is-bare" : "", f.kind === "video" ? "is-video" : "", className];
   return (
     <div className={classes.filter(Boolean).join(" ")}>
+      <Media slug={slug} f={f} />
+    </div>
+  );
+}
+
+function Media({ slug, f }: { slug: string; f: Figure }) {
+  const m = media(slug);
+  const shape = SHAPES[f.shape];
+  return (
+    <>
       {f.kind === "loop" && <LoopVideo src={m.clip(f.file)} poster={m.image(f.file)} label={f.caption} />}
       {f.kind === "video" && (
         <video
@@ -67,7 +88,7 @@ function Frame({ slug, f, className = "" }: { slug: string; f: Figure; className
           className="media-fill"
         />
       )}
-    </div>
+    </>
   );
 }
 
