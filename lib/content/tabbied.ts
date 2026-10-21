@@ -26,6 +26,8 @@ export const tabbied: Project = {
     ],
   ],
   sections: [
+    { type: "embed", name: "band", bleed: true },
+    { type: "embed", name: "numbers" },
     {
       type: "text",
       label: "Templates",
@@ -101,6 +103,7 @@ export const tabbied: Project = {
         },
       ],
     },
+    { type: "embed", name: "strip", bleed: true },
     {
       type: "text",
       label: "Make it yours",
@@ -159,6 +162,11 @@ export const tabbied: Project = {
       ],
     },
     {
+      type: "embed",
+      name: "specimens",
+      caption: "Nine of the 382 designs, drawn live by the tabbied package; each reseeds on its own clock.",
+    },
+    {
       type: "full",
       figure: {
         file: "library",
@@ -192,6 +200,11 @@ export const tabbied: Project = {
       ],
     },
     {
+      type: "embed",
+      name: "palettes",
+      caption: "Ogee in six library palettes, reseeded together so only the color changes.",
+    },
+    {
       type: "pair",
       figures: [
         {
@@ -223,6 +236,11 @@ export const tabbied: Project = {
       paragraphs: [
         "The tabbied npm package draws the same patterns in React, Vue, Svelte, a web component or plain JavaScript, and a bundle carries only the designs it imports.",
       ],
+    },
+    {
+      type: "embed",
+      name: "code",
+      caption: "The React component from the package: the seed in the code is the seed on screen.",
     },
     {
       type: "full",
@@ -264,6 +282,7 @@ export const tabbied: Project = {
         "The site is a static Next.js export on Cloudflare Workers. A small Hono Worker handles accounts, downloads, the API and MCP, with D1 and R2 behind it.",
       ],
     },
+    { type: "embed", name: "closing", bleed: true },
   ],
   ogImage: "gallery",
   heroTone: "light",

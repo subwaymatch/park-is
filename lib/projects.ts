@@ -32,7 +32,12 @@ export type Block =
   /** A figure in the right three columns, its caption beside it. */
   | { type: "aside"; figure: Figure }
   /** The project's own logo, drawn and animated on the page. */
-  | { type: "logo"; caption: string };
+  | { type: "logo"; caption: string }
+  /**
+   * A live component from components/embeds/<slug>.tsx, by name: patterns,
+   * sliders, 3D scenes. `bleed` runs it the full width of the window.
+   */
+  | { type: "embed"; name: string; caption?: string; bleed?: boolean };
 
 export type Project = {
   slug: string;

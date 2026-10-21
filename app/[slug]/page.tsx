@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowUpRightIcon } from "@/components/icons";
+import { Embed } from "@/components/embeds";
 import { LoopVideo } from "@/components/loop-video";
 import { ProjectLogo } from "@/components/project-logo";
 import { RichText } from "@/components/rich-text";
@@ -104,6 +105,15 @@ function Section({ slug, block }: { slug: string; block: Block }) {
         <figure className="cols figure-aside">
           <figcaption className="col-label">{block.figure.caption}</figcaption>
           <Frame slug={slug} f={block.figure} className="col-rest" />
+        </figure>
+      );
+    case "embed":
+      return (
+        <figure className="cols">
+          <div className={block.bleed ? "col-all bleed" : "col-all"}>
+            <Embed slug={slug} name={block.name} />
+          </div>
+          {block.caption && <figcaption className="col-rest">{block.caption}</figcaption>}
         </figure>
       );
     case "logo":

@@ -28,6 +28,11 @@ function mediaSizes(): Plugin {
 }
 
 export default defineConfig({
+  // Bundle the live-embed libraries up front, so the first page that uses one
+  // doesn't re-optimize mid-load and briefly run two copies of React.
+  optimizeDeps: {
+    include: ["tabbied/react", "tabbied/patterns", "react-3d-mockups", "three", "@react-three/fiber", "@react-three/drei"],
+  },
   plugins: [
     mediaSizes(),
     vinext({
