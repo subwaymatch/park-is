@@ -6,7 +6,6 @@ import {
   bauhaus,
   cairo,
   chamfer,
-  diamondconfetti,
   duotonetruchet,
   halftone,
   kawung,
@@ -16,6 +15,7 @@ import {
   pentomino,
   petalcut,
   radius,
+  sliver,
   truchetrings,
 } from "tabbied/patterns";
 import { TabbiedPattern, type TabbiedPatternHandle } from "tabbied/react";
@@ -160,11 +160,16 @@ export function PatternPalettes() {
   );
 }
 
-/** A thin full-width divider. */
+/** A full-width divider of Sliver's strokes on the open page, in the closing band's greys. Its 40px cell divides both of the strip's heights, so no row is cut. */
 export function PatternStrip() {
   return (
     <div className={styles.strip}>
-      <TabbiedPattern pattern={diamondconfetti} palette={clear(diamondconfetti)} density={0.7} redrawInterval={4500} />
+      <TabbiedPattern
+        pattern={sliver}
+        palette={["transparent", "#BDBAB2", "#A5A29A", "#D3D1CA"]}
+        cellSize={40}
+        redrawInterval={4500}
+      />
     </div>
   );
 }
@@ -202,11 +207,16 @@ import { chamfer } from "tabbied/patterns";
   );
 }
 
-/** A tall band to close the page. */
+/** A tall band to close the page, in the opening band's warm greys, a step deeper so its 2px rings still read. */
 export function PatternClosing() {
   return (
     <div className={styles.closing}>
-      <TabbiedPattern pattern={truchetrings} palette={clear(truchetrings)} density={0.45} redrawInterval={5000} />
+      <TabbiedPattern
+        pattern={truchetrings}
+        palette={["transparent", "#BDBAB2", "#A5A29A", "#D3D1CA"]}
+        density={0.45}
+        redrawInterval={5000}
+      />
     </div>
   );
 }
