@@ -5,9 +5,9 @@ import { Band, BlendGrid, Opacity, Triptych } from "./layeris-static";
 export const embeds: Record<string, () => React.ReactNode> = {
   chain: () => <Pipeline which="chain" />,
   "curve-chain": () => <Pipeline which="curveChain" />,
-  "compare-sea": () => <Compare which="sea" layout="bleed" />,
-  "compare-dune": () => <Compare which="dune" layout="wide" />,
-  "compare-vase": () => <Compare which="vase" layout="portrait" />,
+  "compare-river": () => <Compare which="han-river" layout="bleed" />,
+  "compare-jeju": () => <Compare which="jeju-wall" layout="wide" />,
+  "compare-celadon": () => <Compare which="celadon" layout="portrait" />,
   band: () => <Band />,
   triptych: () => <Triptych />,
   "blend-grid": () => <BlendGrid />,

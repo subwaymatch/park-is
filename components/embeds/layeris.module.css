@@ -185,6 +185,13 @@
 
 /* Pipeline: one photo, one line of code per step */
 
+.pipeWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
 .pipe {
   display: grid;
   grid-template-columns: repeat(var(--n), minmax(0, 1fr));
@@ -205,7 +212,7 @@
 .step .code {
   font-size: 12.5px;
   white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   transition: color 0.4s ease;
 }
 

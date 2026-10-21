@@ -56,9 +56,9 @@ export const layeris: Project = {
     },
     {
       type: "embed",
-      name: "compare-sea",
+      name: "compare-river",
       bleed: true,
-      caption: "The same recipe on a calm sea. Drag the divider, or use the arrow keys.",
+      caption: "Neon Nights on the Han River at dawn. Drag the divider or use arrow keys.",
     },
     {
       type: "text",
@@ -69,7 +69,7 @@ export const layeris: Project = {
       type: "embed",
       name: "band",
       bleed: true,
-      caption: "One bicycle, six looks. Hover a look for its code.",
+      caption: "One hanok window, six looks. Hover a look for its code.",
     },
     {
       type: "pair",
@@ -90,13 +90,13 @@ export const layeris: Project = {
     },
     {
       type: "embed",
-      name: "compare-dune",
-      caption: "Teal & Orange on a dune: shadows go teal, sunlit sand goes orange.",
+      name: "compare-jeju",
+      caption: "Teal & Orange on a Jeju stone wall: teal shadows, orange evening light.",
     },
     {
       type: "embed",
       name: "triptych",
-      caption: "A white stair three ways. The red filter turns the blue sky almost black.",
+      caption: "Dancheong eaves three ways. The red filter turns the blue sky almost black.",
     },
     {
       type: "full",
@@ -117,7 +117,7 @@ export const layeris: Project = {
     {
       type: "embed",
       name: "blend-grid",
-      caption: "All 14 blend modes, one color, one chair. Hover a result to see the base.",
+      caption: "All 14 blend modes, one color, one rice bowl. Hover to see the base.",
     },
     {
       type: "embed",
@@ -173,8 +173,8 @@ export const layeris: Project = {
     },
     {
       type: "embed",
-      name: "compare-vase",
-      caption: "Sepia print: three channel curves map black to brown and white to cream.",
+      name: "compare-celadon",
+      caption: "Sepia print on a celadon vase: three channel curves, black to brown, white to cream.",
     },
     {
       type: "text",
