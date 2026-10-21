@@ -141,6 +141,66 @@ export const data = {
         "width": 1024,
         "height": 1536
       }
+    },
+    "namsan-fog": {
+      "photo": "namsan-fog.jpg",
+      "name": "Winter blues",
+      "code": "image = LayerImage.from_file(\"namsan-fog.jpg\")\n(image.soft_light(\"#1f5fd1\", opacity=0.8)\n      .curve(\"b\", [0.1, 0.55, 1])\n      .lightness(0.05))",
+      "before": {
+        "src": "/media/layeris/gen/compare-namsan-fog-before.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "after": {
+        "src": "/media/layeris/gen/compare-namsan-fog-after.webp",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    "tea-field": {
+      "photo": "tea-field.jpg",
+      "name": "Cross-processed",
+      "code": "image = LayerImage.from_file(\"tea-field.jpg\")\n(image.curve(\"r\", [0, 0.15, 0.55, 0.9, 1])\n      .curve(\"g\", [0, 0.2, 0.55, 0.85, 1])\n      .curve(\"b\", [0.22, 0.35, 0.48, 0.6, 0.72]))",
+      "before": {
+        "src": "/media/layeris/gen/compare-tea-field-before.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "after": {
+        "src": "/media/layeris/gen/compare-tea-field-after.webp",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    "bukchon-dusk": {
+      "photo": "bukchon-dusk.jpg",
+      "name": "Duotone",
+      "code": "image = LayerImage.from_file(\"bukchon-dusk.jpg\")\nimage.grayscale().contrast(1.2)\nimage.curve(\"r\", [0.12, 1.0])\nimage.curve(\"g\", [0.08, 0.45])\nimage.curve(\"b\", [0.4, 0.42])",
+      "before": {
+        "src": "/media/layeris/gen/compare-bukchon-dusk-before.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "after": {
+        "src": "/media/layeris/gen/compare-bukchon-dusk-after.webp",
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    "lake-pavilion": {
+      "photo": "lake-pavilion.jpg",
+      "name": "Golden glow",
+      "code": "image = LayerImage.from_file(\"lake-pavilion.jpg\")\n(image.screen(\"#3a1800\", opacity=0.7)\n      .overlay(\"#ff9d3b\", opacity=0.25)\n      .curve(\"rgb\", [0, 0.18, 0.5, 0.82, 1]))",
+      "before": {
+        "src": "/media/layeris/gen/compare-lake-pavilion-before.webp",
+        "width": 1536,
+        "height": 1024
+      },
+      "after": {
+        "src": "/media/layeris/gen/compare-lake-pavilion-after.webp",
+        "width": 1536,
+        "height": 1024
+      }
     }
   },
   "band": {

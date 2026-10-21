@@ -74,6 +74,7 @@
 
 .compare img {
   pointer-events: none;
+  object-position: var(--focus, 50% 50%);
 }
 
 .compare:has(input:focus-visible) {

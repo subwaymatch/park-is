@@ -47,7 +47,16 @@ const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) /
 
 type CompareKey = keyof typeof data.compares;
 
-export function Compare({ which, layout }: { which: CompareKey; layout: "wide" | "portrait" | "bleed" }) {
+export function Compare({
+  which,
+  layout,
+  focus,
+}: {
+  which: CompareKey;
+  layout: "wide" | "portrait" | "bleed";
+  /** object-position for both photos when the frame crops them, e.g. "50% 80%". */
+  focus?: string;
+}) {
   const c = data.compares[which];
   const [pos, setPos] = useState(50);
   const box = useRef<HTMLDivElement>(null);
@@ -87,7 +96,7 @@ export function Compare({ which, layout }: { which: CompareKey; layout: "wide" |
     <div
       ref={box}
       className={styles.compare}
-      style={{ "--pos": `${pos}%` } as CSSProperties}
+      style={{ "--pos": `${pos}%`, ...(focus ? { "--focus": focus } : {}) } as CSSProperties}
       onPointerDown={(e) => {
         touched.current = true;
         stop();
