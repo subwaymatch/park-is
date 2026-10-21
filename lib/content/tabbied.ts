@@ -11,53 +11,202 @@ export const tabbied: Project = {
     { label: "GitHub", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
-    "377 free website templates for florists, electricians, bakers and other trades. Each template uses a generated pattern instead of stock photography.",
-    "Palettes and patterns can be changed per template, and sites download as HTML/CSS or React. The patterns are also available on their own as PNG, SVG or a React component.",
+    "Tabbied is a free library of 377 one-page website templates for trades, 382 generated patterns and 437 color palettes. Every template is built around a pattern instead of stock photos.",
+    "Recolor a template, swap its patterns and download it as HTML/CSS or React, with no account. The patterns are also an npm package for React, Vue, Svelte and plain JavaScript, with an MCP server for coding agents.",
   ],
-  facts: [],
+  facts: [
+    ["Stack", "Next.js static export on Cloudflare Workers, with a Hono Worker, D1 and R2"],
+    [
+      "Packages",
+      "[tabbied](https://www.npmjs.com/package/tabbied) and [tabbied-mcp](https://www.npmjs.com/package/tabbied-mcp) on npm, MIT licensed",
+    ],
+    [
+      "Credits",
+      "Built with [Sy Hong](https://www.syunghong.com/), who came up with the idea and designed Tabbied. Patterns are drawn with [css-doodle](https://css-doodle.com/) by Chuan Yuan.",
+    ],
+  ],
   sections: [
+    {
+      type: "text",
+      label: "Templates",
+      paragraphs: [
+        "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds Northside Plumbing.",
+      ],
+    },
     {
       type: "full",
       figure: {
-        file: "still-01",
-        kind: "still",
+        file: "gallery",
+        kind: "loop",
         shape: "wide",
-        caption: "The homepage: free website templates for every trade, 377 of them, above a carousel of trades.",
+        caption: "The template gallery filtered by trade: Food & drink, Health, then Studio.",
       },
     },
     {
       type: "text",
-      label: "Process",
+      label: "Whole sites",
       paragraphs: [
-        "Every pattern is a small css-doodle program rather than a picture, drawn fresh in the browser, so pressing Shuffle gives an arrangement nobody has seen before. A pattern exports as a 3000px PNG for print or as a vector SVG.",
-        "Each template is a complete one-page site for a real kind of business, built around one pattern and themed with a single palette, which is why no two look alike. The site is a static Next.js export on Cloudflare Workers, with a small Hono Worker for accounts, downloads and the API.",
+        "Each template has the sections a small business needs, with copy written for its trade. Every one works on a phone, most with their links behind a Menu button.",
+      ],
+    },
+    {
+      type: "full",
+      figure: {
+        file: "site-northside",
+        kind: "loop",
+        shape: "wide",
+        caption: "Northside Plumbing on desktop: the emergency number, the services and a fixed-price job list.",
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "site-lodge",
+        kind: "loop",
+        shape: "wide",
+        caption: "High Pass Lodge on desktop, from its illustrated hero to the rooms and dinner.",
+      },
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-arcade",
+          kind: "loop",
+          shape: "phone",
+          caption: "Continue?, an arcade bar template, on a phone.",
+        },
+        {
+          file: "phone-balloons",
+          kind: "loop",
+          shape: "phone",
+          caption: "Halfmoon Balloon Flights on a phone, from the weather panel to the flights.",
+        },
       ],
     },
     {
       type: "pair",
       figures: [
         {
-          file: "still-02",
-          kind: "still",
+          file: "phone-paws",
+          kind: "loop",
           shape: "phone",
-          caption: "The Understory plant-care template on a phone, its hero set over a monstera-leaf pattern.",
+          caption: "Muddy Paws, a mobile dog groomer, opening its menu, then the week’s route.",
         },
         {
-          file: "still-03",
-          kind: "still",
+          file: "phone-inkwell",
+          kind: "loop",
           shape: "phone",
-          caption: "The High Pass Lodge template on a phone: a mountain lodge hero with booking buttons.",
+          caption: "Inkwell Tattoo on a phone: this month’s flash sheet, with sizes and prices.",
         },
+      ],
+    },
+    {
+      type: "text",
+      label: "Make it yours",
+      paragraphs: [
+        "Picking a palette recolors the whole page through its CSS custom properties, on many templates the illustrations too. Shuffle patterns redraws every pattern field from the library.",
       ],
     },
     {
       type: "aside",
       figure: {
-        file: "still-04",
-        kind: "still",
+        file: "home-make",
+        kind: "loop",
         shape: "tall",
-        caption: "The pattern editor on Northern Lights, with palette, aspect ratio, density and frequency controls.",
+        caption: "The home page demo: Live Wire Electric recolored and given new patterns from a toolbar.",
       },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "customize-colors",
+        kind: "loop",
+        shape: "wide",
+        caption: "High Pass Lodge recolored in the customizer; the mountains follow each palette.",
+      },
+    },
+    {
+      type: "aside",
+      figure: {
+        file: "customize-patterns",
+        kind: "loop",
+        shape: "tall",
+        caption: "Shuffle patterns redraws every pattern field on Understory Plant Care.",
+      },
+    },
+    {
+      type: "text",
+      label: "Downloads",
+      paragraphs: [
+        "Downloads are free and need no account: plain HTML that opens straight from a folder, or a React project with a Vite scaffold.",
+      ],
+    },
+    {
+      type: "full",
+      figure: {
+        file: "customize-download",
+        kind: "loop",
+        shape: "wide",
+        caption: "The Download menu: HTML & CSS or React, free and unlimited.",
+      },
+    },
+    {
+      type: "text",
+      label: "Patterns",
+      paragraphs: [
+        "Each pattern is a small [css-doodle](https://css-doodle.com/) program drawn live in the browser from a seed, so Shuffle gives a new arrangement every time.",
+      ],
+    },
+    {
+      type: "full",
+      figure: {
+        file: "library",
+        kind: "loop",
+        shape: "wide",
+        caption: "The pattern library recolored from its sidebar, every card drawn live.",
+      },
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "editor-shuffle",
+          kind: "loop",
+          shape: "tall",
+          caption: "Shuffle in the editor: a new seed, and the cells ease into place.",
+        },
+        {
+          file: "editor-layout",
+          kind: "loop",
+          shape: "tall",
+          caption: "Aspect ratio from tall to wide, then grid density from fine to coarse.",
+        },
+      ],
+    },
+    {
+      type: "text",
+      label: "Palettes",
+      paragraphs: [
+        "437 curated palettes of 3 to 7 colors, searchable by name, color the library, the editor and the templates alike. A pattern exports as a 3000px PNG, a vector SVG or code.",
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "palette-search",
+          kind: "loop",
+          shape: "tall",
+          caption: "Searching palettes for “berry” and “light”, and trying the results on Blossom.",
+        },
+        {
+          file: "editor-export",
+          kind: "still",
+          shape: "tall",
+          caption: "Export: PNG, SVG, a share link, or code for React, Vue, Svelte and more.",
+        },
+      ],
     },
     {
       type: "full",
@@ -65,26 +214,57 @@ export const tabbied: Project = {
         file: "walkthrough",
         kind: "video",
         shape: "wide",
-        caption:
-          "The homepage, the template gallery, the Wild Stem florist site and recoloring it, then the pattern editor.",
+        caption: "The home page, the gallery, recoloring the Wild Stem florist site, then the pattern editor.",
       },
     },
     {
       type: "text",
+      label: "For developers",
       paragraphs: [
-        "Tabbied now has 382 patterns, 437 palettes and 377 templates. The patterns are published as the tabbied npm package for React, Vue, Svelte and plain JavaScript, and an MCP server lets coding agents use them. Sy Hong came up with the idea and designed Tabbied; Ye Joo Park built it.",
+        "The tabbied npm package draws the same patterns in React, Vue, Svelte, a web component or plain JavaScript, and a bundle carries only the designs it imports.",
       ],
     },
     {
       type: "full",
       figure: {
-        file: "still-05",
-        kind: "still",
+        file: "docs",
+        kind: "loop",
         shape: "wide",
-        caption: "The template gallery: trade category filters above cards for Wild Stem, Live Wire Electric and more.",
+        caption: "The For developers page: one package, six setups and tools for AI assistants.",
       },
     },
+    {
+      type: "text",
+      label: "MCP server",
+      paragraphs: [
+        "At tabbied.com/mcp, coding agents can search the patterns, look at their previews and get ready code. Run locally, the server also renders SVG and PNG files.",
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "mcp",
+          kind: "loop",
+          shape: "wide",
+          caption: "The MCP server’s page: one URL to add, with setup for each client.",
+        },
+        {
+          file: "mcp-tools",
+          kind: "loop",
+          shape: "wide",
+          caption: "The seven tools, from search_designs to render_design, and example prompts.",
+        },
+      ],
+    },
+    {
+      type: "text",
+      label: "Stack",
+      paragraphs: [
+        "The site is a static Next.js export on Cloudflare Workers. A small Hono Worker handles accounts, downloads, the API and MCP, with D1 and R2 behind it.",
+      ],
+    },
   ],
-  ogImage: "still-01",
+  ogImage: "gallery",
   heroTone: "light",
 };
