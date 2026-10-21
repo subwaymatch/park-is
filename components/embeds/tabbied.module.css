@@ -1,0 +1,255 @@
+/* Live Tabbied patterns on the Tabbied page (tabbied-patterns.tsx). The grids
+   follow the page's: 24px gutters, 6px radii, small muted labels. */
+
+.band {
+  height: 240px;
+}
+
+.strip {
+  height: 56px;
+}
+
+.closing {
+  height: 360px;
+}
+
+/* A pattern and the library's numbers, set large between rules. */
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.numbersArt {
+  grid-column: 1 / span 2;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.numbersList {
+  grid-column: 3 / span 2;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.numbersRow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0 0;
+  border-top: 1px solid var(--ink);
+}
+
+.numbersRow dt {
+  color: var(--ink-3);
+}
+
+.numbersRow dd {
+  margin: 0;
+  font-size: clamp(64px, 9vw, 128px);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Labels under plates: index, name, note. */
+
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgb(27 27 25 / 0.12);
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.index {
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.note {
+  margin-left: auto;
+  color: var(--ink-3);
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+
+/* Specimen sheet: a 12-column grid, the first plate 6 × 2. */
+
+.specimens {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 32px 24px;
+}
+
+.specimen {
+  grid-column: span 3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.plate {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* The large plate stretches to the two rows beside it. */
+.specimenLarge {
+  grid-column: 1 / span 6;
+  grid-row: span 2;
+}
+
+.specimenLarge .plate {
+  flex: 1;
+  aspect-ratio: auto;
+}
+
+/* Palettes: six panels in a row, one design. */
+
+.palettes {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+
+.palette {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.panel {
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.swatches {
+  display: flex;
+  margin-left: auto;
+}
+
+.swatches i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: -3px;
+  box-shadow: 0 0 0 1.5px var(--bg);
+}
+
+/* The React snippet beside what it draws. */
+
+.code {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.snippet {
+  grid-column: 1 / span 2;
+  margin: 0;
+  padding: 24px;
+  border-radius: 6px;
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  align-self: stretch;
+}
+
+.seed {
+  background: #ffd23e;
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.result {
+  grid-column: 3 / span 2;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.shuffle {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 99px;
+  background: rgb(255 255 255 / 0.92);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgb(0 0 0 / 0.15);
+}
+
+.shuffle:hover {
+  background: #ffffff;
+}
+
+/* Phones: two-column sheet, three-column palettes, everything else stacked. */
+
+@media (max-width: 640px) {
+  .band {
+    height: 160px;
+  }
+
+  .strip {
+    height: 40px;
+  }
+
+  .closing {
+    height: 220px;
+  }
+
+  .numbersArt,
+  .numbersList,
+  .snippet,
+  .result {
+    grid-column: 1 / -1;
+  }
+
+  .numbersRow {
+    padding-bottom: 16px;
+  }
+
+  .specimens {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+
+  .specimen {
+    grid-column: span 1;
+  }
+
+  .specimenLarge {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .specimenLarge .plate {
+    aspect-ratio: 1;
+  }
+
+  .palettes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
