@@ -9,22 +9,29 @@ function Photo({ img, alt }: { img: Img; alt: string }) {
 }
 
 const num = (i: number) => String(i).padStart(2, "0");
+
+/** A line of code with wrap points after method dots and commas, so a narrow column breaks between calls, not inside a number. */
+export function breakable(line: string) {
+  return line.split(/(?<=\.(?=[a-z_])|,)/).flatMap((part, i) => (i === 0 ? [part] : [<wbr key={i} />, part]));
+}
 /** The code after the load line, which every look shares. */
 const body = (code: string) => code.split("\n").slice(1).join("\n");
 
-/** One photo in several looks, edge to edge across the window. */
+/** One photo in several looks, edge to edge across the window, each with its code below. */
 export function Band() {
   const { photo, looks } = data.band;
   return (
     <div className={styles.band} style={{ "--n": looks.length } as CSSProperties}>
       {looks.map((l, i) => (
         <div key={l.name} className={styles.bandItem}>
-          <div className={`${styles.tile} ${styles.landscape}`} tabIndex={0} title={l.code}>
+          <div className={`${styles.tile} ${styles.landscape}`}>
             <Photo img={l.img} alt={`${photo}, ${l.name}`} />
-            {i > 0 && <pre className={`${styles.code} ${styles.peekCode}`}>{body(l.code)}</pre>}
           </div>
-          <div className={styles.bandLabel}>
-            <span className={styles.num}>{num(i)}</span>&ensp;{l.name}
+          <div className={styles.under}>
+            <div className={styles.underLabel}>
+              <span className={styles.num}>{num(i)}</span>&ensp;{l.name}
+            </div>
+            {i > 0 && <pre className={`${styles.code} ${styles.wrap}`}>{breakable(body(l.code).replace(/^\s+/gm, "  "))}</pre>}
           </div>
         </div>
       ))}

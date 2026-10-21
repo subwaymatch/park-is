@@ -34,6 +34,7 @@ export const layeris: Project = {
     {
       type: "embed",
       name: "chain",
+      bleed: true,
       caption: "The quick-start chain, one line at a time. Hover a step to hold it.",
     },
     {
@@ -69,7 +70,7 @@ export const layeris: Project = {
       type: "embed",
       name: "band",
       bleed: true,
-      caption: "One hanok window, six looks. Hover a look for its code.",
+      caption: "One hanok window, six looks, each with the code that made it.",
     },
     {
       type: "pair",
@@ -164,6 +165,7 @@ export const layeris: Project = {
     {
       type: "embed",
       name: "curve-chain",
+      bleed: true,
       caption: "A duotone, one channel at a time: grayscale, then curves on red, green, blue.",
     },
     {

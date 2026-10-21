@@ -184,7 +184,8 @@
   margin: 12px auto 0;
 }
 
-/* Pipeline: one photo, one line of code per step */
+/* Pipeline: one photo, one line of code per step, edge to edge across the
+   window. The load line above stays in the page column. */
 
 .pipeWrap {
   display: flex;
@@ -193,48 +194,58 @@
   min-width: 0;
 }
 
+.pipeLead {
+  width: min(var(--max), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
 .pipe {
   display: grid;
   grid-template-columns: repeat(var(--n), minmax(0, 1fr));
-  gap: 12px;
+  gap: 4px;
 }
 
 .step {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
-  padding-top: 8px;
-  border-top: 1px solid rgb(27 27 25 / 0.14);
-  transition: border-color 0.4s ease;
   outline: none;
 }
 
+.step .tile,
+.bandItem .tile {
+  border-radius: 2px;
+}
+
+/* The marker: the active step's label and code turn dark. */
+.step .under,
 .step .code {
-  font-size: 12.5px;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
   transition: color 0.4s ease;
 }
 
-.step[data-active="true"] {
-  border-top-color: var(--ink);
-}
-
+.step[data-active="true"] .under,
 .step[data-active="true"] .code {
   color: var(--ink);
 }
 
 .step:focus-visible {
   outline: 2px solid var(--ink);
-  outline-offset: 4px;
+  outline-offset: -2px;
 }
 
-.stepHead {
+/* Label and code under an image in a strip or band. */
+.under {
   display: flex;
-  justify-content: space-between;
-  font-size: 12px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 10px;
+  font-size: 12.5px;
   color: var(--ink-3);
+}
+
+.under .code {
+  font-size: 12.5px;
 }
 
 .landscape {
@@ -245,7 +256,7 @@
   aspect-ratio: 2 / 3;
 }
 
-/* Full-bleed band: one photo, several looks */
+/* Full-bleed band: one photo, several looks, each with its code below */
 
 .band {
   display: grid;
@@ -256,46 +267,8 @@
 .bandItem {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   min-width: 0;
-}
-
-.bandItem .tile {
-  border-radius: 0;
-}
-
-.bandLabel {
-  padding: 0 10px;
-  font-size: 12px;
-  color: var(--ink-3);
-}
-
-.peekCode {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 10px 12px;
-  font-size: 12.5px;
-  color: #ffffff;
-  background: rgb(27 27 25 / 0.72);
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  overflow: hidden;
-}
-
-.bandItem .tile:hover .peekCode,
-.bandItem .tile:focus-visible .peekCode {
-  opacity: 1;
-  transform: none;
-}
-
-.bandItem .tile:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: -2px;
 }
 
 /* Triptych */
@@ -459,9 +432,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .fade,
-  .step,
-  .step .code,
-  .peekCode {
+  .step .under,
+  .step .code {
     transition: none;
   }
 }

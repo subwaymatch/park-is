@@ -63,8 +63,6 @@
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding-top: 8px;
-  border-top: 1px solid rgb(27 27 25 / 0.12);
   color: var(--ink);
   font-size: 13px;
 }
