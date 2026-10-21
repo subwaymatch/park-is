@@ -481,6 +481,10 @@ figcaption {
   overflow: visible;
 }
 
+.logo-stage[data-ready]:not([data-seen]) .logo-mark {
+  visibility: hidden;
+}
+
 .logo-stage[data-seen] .logo-glow {
   animation: logo-glow 7s ease-in-out infinite;
 }
@@ -641,6 +645,44 @@ figcaption {
 @keyframes dataslope-sway-right {
   50% {
     transform: rotate(3.5deg);
+  }
+}
+
+/* React 3D Mockups: three slabs drop into a stack, bottom first, then spread
+   apart and settle back like an exploded view. */
+
+.logo-stage[data-seen] .r3m-slab-bottom {
+  animation:
+    r3m-drop 1.2s cubic-bezier(0.3, 0.9, 0.3, 1) 0.1s backwards,
+    r3m-spread-bottom 6s ease-in-out 1.9s infinite;
+}
+
+.logo-stage[data-seen] .r3m-slab-middle {
+  animation: r3m-drop 1.2s cubic-bezier(0.3, 0.9, 0.3, 1) 0.4s backwards;
+}
+
+.logo-stage[data-seen] .r3m-slab-top {
+  animation:
+    r3m-drop 1.2s cubic-bezier(0.3, 0.9, 0.3, 1) 0.7s backwards,
+    r3m-spread-top 6s ease-in-out 1.9s infinite;
+}
+
+@keyframes r3m-drop {
+  from {
+    transform: translateY(-70px);
+    opacity: 0;
+  }
+}
+
+@keyframes r3m-spread-bottom {
+  50% {
+    transform: translateY(9px);
+  }
+}
+
+@keyframes r3m-spread-top {
+  50% {
+    transform: translateY(-9px);
   }
 }
 

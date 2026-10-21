@@ -103,6 +103,34 @@ function DataslopeLogo() {
   );
 }
 
+/** React 3D Mockups: three slabs drop into a stack, then breathe apart and back. */
+function React3dMockupsLogo() {
+  return (
+    <LogoStage color="#2D9F4F">
+      <svg viewBox="46.51 46.51 162.97 162.97" className="logo-mark" role="img" aria-label="The React 3D Mockups logo">
+          <g className="r3m-slab r3m-slab-bottom">
+            <g transform="matrix(0.866025 0.5 0.866025 -0.5 40.53 145)">
+              <path d="M 3.51 3.51 A 12 12 0 0 1 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 114.49 80.49 L 123.49 71.49 A 12 12 0 0 0 127 63 L 127 3 A 12 12 0 0 0 115 -9 L 21 -9 A 12 12 0 0 0 12.51 -5.49 Z" fill="#1E5A32" />
+              <path d="M 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 106 84 L 12 84 A 12 12 0 0 1 0 72 L 0 12 A 12 12 0 0 1 12 0 Z" fill="#276D3E" />
+            </g>
+          </g>
+          <g className="r3m-slab r3m-slab-middle">
+            <g transform="matrix(0.866025 0.5 0.866025 -0.5 40.53 115)">
+              <path d="M 3.51 3.51 A 12 12 0 0 1 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 114.49 80.49 L 123.49 71.49 A 12 12 0 0 0 127 63 L 127 3 A 12 12 0 0 0 115 -9 L 21 -9 A 12 12 0 0 0 12.51 -5.49 Z" fill="#1E5A32" />
+              <path d="M 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 106 84 L 12 84 A 12 12 0 0 1 0 72 L 0 12 A 12 12 0 0 1 12 0 Z" fill="#2D9F4F" />
+            </g>
+          </g>
+          <g className="r3m-slab r3m-slab-top">
+            <g transform="matrix(0.866025 0.5 0.866025 -0.5 40.53 85)">
+              <path d="M 3.51 3.51 A 12 12 0 0 1 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 114.49 80.49 L 123.49 71.49 A 12 12 0 0 0 127 63 L 127 3 A 12 12 0 0 0 115 -9 L 21 -9 A 12 12 0 0 0 12.51 -5.49 Z" fill="#276D3E" />
+              <path d="M 12 0 L 106 0 A 12 12 0 0 1 118 12 L 118 72 A 12 12 0 0 1 106 84 L 12 84 A 12 12 0 0 1 0 72 L 0 12 A 12 12 0 0 1 12 0 Z" fill="#31D322" />
+            </g>
+          </g>
+      </svg>
+    </LogoStage>
+  );
+}
+
 /** A project's logo, drawn large and animated. Projects without one render nothing. */
 export function ProjectLogo({ slug }: { slug: string }) {
   switch (slug) {
@@ -112,6 +140,8 @@ export function ProjectLogo({ slug }: { slug: string }) {
       return <LayerisLogo />;
     case "dataslope":
       return <DataslopeLogo />;
+    case "react-3d-mockups":
+      return <React3dMockupsLogo />;
     default:
       return null;
   }
