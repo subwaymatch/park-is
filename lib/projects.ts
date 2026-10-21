@@ -20,7 +20,10 @@ export type Figure = {
   kind: "loop" | "video" | "still";
   shape: Shape;
   caption: string;
-  /** Set a desktop clip on the surface colour with a margin around it, the way the phone shots sit. */
+  /**
+   * Set a desktop shot on the surface colour with a margin around it, the way the phone shots sit: for white pages
+   * that would otherwise dissolve into this one.
+   */
   mat?: boolean;
 };
 

@@ -44,6 +44,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The look switcher: four looks of one photo, each beside the code that made it.",
+        mat: true,
       },
     },
     {
@@ -53,6 +54,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Neon Nights: a blue curve and a magenta soft light, before and after.",
+        mat: true,
       },
     },
     {
@@ -80,12 +82,14 @@ export const layeris: Project = {
           kind: "loop",
           shape: "wide",
           caption: "Teal & Orange: opposing S-curves on the red and blue channels.",
+          mat: true,
         },
         {
           file: "cross-processed",
           kind: "loop",
           shape: "wide",
           caption: "Cross-processed: three per-channel curves and nothing else.",
+          mat: true,
         },
       ],
     },
@@ -106,6 +110,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Filtering the recipes by the methods they use.",
+        mat: true,
       },
     },
     {
@@ -132,6 +137,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Hovering a result shows the photo underneath.",
+        mat: true,
       },
     },
     {
@@ -154,6 +160,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Each adjustment beside its one-line call.",
+        mat: true,
       },
     },
     {
@@ -176,12 +183,14 @@ export const layeris: Project = {
           kind: "loop",
           shape: "wide",
           caption: "Warm Up Skin Tones: red and blue curves as a white balance.",
+          mat: true,
         },
         {
           file: "cyanotype",
           kind: "loop",
           shape: "wide",
           caption: "Cyanotype: grayscale, then a curve on each channel.",
+          mat: true,
         },
       ],
     },
@@ -204,6 +213,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Install, quick start and the performance numbers.",
+        mat: true,
       },
     },
     {
@@ -218,6 +228,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "A look saved as a JSON preset and applied to four photos.",
+        mat: true,
       },
     },
     {
@@ -238,6 +249,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "tall",
         caption: "The API reference: signatures, parameters, returns and errors.",
+        mat: true,
       },
     },
     {
@@ -247,6 +259,7 @@ export const layeris: Project = {
         kind: "video",
         shape: "wide",
         caption: "A tour of the docs: looks, sliders, blend modes and the API.",
+        mat: true,
       },
     },
     {
@@ -263,6 +276,7 @@ export const layeris: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The docs switched to the dark theme and back.",
+        mat: true,
       },
     },
     {

@@ -46,7 +46,7 @@ function Frame({ slug, f, className = "" }: { slug: string; f: Figure; className
   if (f.mat) {
     return (
       <div className={["frame is-bare is-matted", className].filter(Boolean).join(" ")}>
-        <div className={`frame-screen ${shape.ratio}`}>
+        <div className={["frame-screen", shape.ratio, f.kind === "video" ? "is-video" : ""].filter(Boolean).join(" ")}>
           <Media slug={slug} f={f} />
         </div>
       </div>

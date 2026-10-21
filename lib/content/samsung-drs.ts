@@ -37,6 +37,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The migration diagram, drawn with React Flow, then defects by migration state.",
+        mat: true,
       },
     },
     {
@@ -53,6 +54,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Switching the reporting period; the tiles and severity targets recompute.",
+        mat: true,
       },
     },
     {
@@ -62,6 +64,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Reported vs resolved, review outcomes, a product line heatmap and turnaround by change type.",
+        mat: true,
       },
     },
     {
@@ -78,6 +81,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Scope tabs, a status filter, a search for C3150 and a sort by severity.",
+        mat: true,
       },
     },
     {
@@ -87,6 +91,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "J and K move, X selects, and the bulk edit bar appears (keys shown bottom right).",
+        mat: true,
       },
     },
     {
@@ -96,6 +101,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Defect D-17-0363: status, severity, the PS-C3150FR spec card and its records in five systems.",
+        mat: true,
       },
     },
     {
@@ -110,6 +116,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The relationship map: linked reviews, suggested defects and affected product lines.",
+        mat: true,
       },
     },
     {
@@ -119,6 +126,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Reporting a duplex jam: D-17-0363 appears as a possible duplicate.",
+        mat: true,
       },
     },
     {
@@ -135,6 +143,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "tall",
         caption: "CR-2225’s diff, unified and side by side, then a comment on one line.",
+        mat: true,
       },
     },
     {
@@ -149,6 +158,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "As a QA engineer a review waits; as the review team lead it gets a reviewer.",
+        mat: true,
       },
     },
     {
@@ -158,6 +168,7 @@ export const samsungDrs: Project = {
         kind: "video",
         shape: "wide",
         caption: "Insights, a defect search, D-17-0363, its relationship map, a review diff and duplicate detection.",
+        mat: true,
       },
     },
     {
@@ -172,6 +183,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Two daily digests, then a weekly one filtered to major and critical defects.",
+        mat: true,
       },
     },
     {
@@ -181,6 +193,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The Teams page, searched for Bangalore.",
+        mat: true,
       },
     },
     {
@@ -190,6 +203,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Notifications filtered to unread and mentions, then marked as read.",
+        mat: true,
       },
     },
     {
@@ -199,6 +213,7 @@ export const samsungDrs: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Ctrl+K: a search for duplex, then for a person (keys shown bottom right).",
+        mat: true,
       },
     },
     {

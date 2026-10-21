@@ -116,6 +116,7 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "wide",
           caption: "Bureau Vektor, a public statistics office: headline figures, then one series.",
+          mat: true,
         },
         {
           file: "site-klangwerk",
@@ -200,6 +201,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "tall",
         caption: "The home page demo: Live Wire Electric recolored and given new patterns from a toolbar.",
+        mat: true,
       },
     },
     {
@@ -209,6 +211,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "High Pass Lodge recolored in the customizer; the mountains follow each palette.",
+        mat: true,
       },
     },
     {
@@ -218,6 +221,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Shuffle patterns redraws every pattern field on Understory Plant Care.",
+        mat: true,
       },
     },
     {
@@ -234,6 +238,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Corner Pharmacy, an independent pharmacy, in the customizer’s Download menu: HTML & CSS or React.",
+        mat: true,
       },
     },
     {
@@ -255,6 +260,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The pattern library recolored from its sidebar, every card drawn live.",
+        mat: true,
       },
     },
     {
@@ -265,12 +271,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "tall",
           caption: "Shuffle in the editor: a new seed, and the cells ease into place.",
+          mat: true,
         },
         {
           file: "editor-layout",
           kind: "loop",
           shape: "tall",
           caption: "Aspect ratio from tall to wide, then grid density from fine to coarse.",
+          mat: true,
         },
       ],
     },
@@ -294,12 +302,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "tall",
           caption: "Searching palettes for “berry” and “light”, and trying the results on Blossom.",
+          mat: true,
         },
         {
           file: "editor-export",
           kind: "still",
           shape: "tall",
           caption: "Export: PNG, SVG, a share link, or code for React, Vue, Svelte and more.",
+          mat: true,
         },
       ],
     },
@@ -331,6 +341,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The For developers page: one package, six setups and tools for AI assistants.",
+        mat: true,
       },
     },
     {
@@ -348,12 +359,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "wide",
           caption: "The MCP server’s page: one URL to add, with setup for each client.",
+          mat: true,
         },
         {
           file: "mcp-tools",
           kind: "loop",
           shape: "wide",
           caption: "The seven tools, from search_designs to render_design, and example prompts.",
+          mat: true,
         },
       ],
     },

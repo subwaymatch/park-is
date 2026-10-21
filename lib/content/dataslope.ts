@@ -26,6 +26,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Everything runs in your browser: languages swap in and out around the Dataslope mark.",
+        mat: true,
       },
     },
     {
@@ -46,6 +47,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "The home page’s four cards: courses, interview prep, challenges and code blocks, each animated.",
+        mat: true,
       },
     },
     {
@@ -55,6 +57,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The catalog filtered to SQL, then to intermediate.",
+        mat: true,
       },
     },
     {
@@ -89,6 +92,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Plotly Express: change the data, Run, and the chart redraws.",
+        mat: true,
       },
     },
     {
@@ -98,6 +102,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "A multiple-choice question in an R lesson: a wrong pick, then the right one.",
+        mat: true,
       },
     },
     {
@@ -172,6 +177,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Group Anagrams: a solution submitted against six checks.",
+        mat: true,
       },
     },
     {
@@ -181,6 +187,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The six interview-prep tracks, each with its illustration.",
+        mat: true,
       },
     },
     { type: "embed", name: "riso-challenges" },
@@ -198,7 +205,13 @@ export const dataslope: Project = {
     },
     {
       type: "aside",
-      figure: { file: "playgrounds", kind: "still", shape: "tall", caption: "The playground index." },
+      figure: {
+        file: "playgrounds",
+        kind: "still",
+        shape: "tall",
+        caption: "The playground index.",
+        mat: true,
+      },
     },
     {
       type: "full",
@@ -234,6 +247,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The DuckDB workbench: a query, then its ER diagram.",
+        mat: true,
       },
     },
     {
@@ -243,6 +257,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The Git playground: stage, commit and read the log as the graph updates.",
+        mat: true,
       },
     },
     { type: "embed", name: "riso-strip", bleed: true },
@@ -253,6 +268,7 @@ export const dataslope: Project = {
         kind: "video",
         shape: "wide",
         caption: "The home page, the catalog, interview prep, a Python lesson and a Postgres query.",
+        mat: true,
       },
     },
     {
@@ -262,6 +278,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Ctrl+K search, an FTS5 index on D1, opening a lesson with the word highlighted.",
+        mat: true,
       },
     },
     {
@@ -271,6 +288,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Light and dark: the chart switches palette in place.",
+        mat: true,
       },
     },
     {
@@ -280,6 +298,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The header’s theme switch turns the whole home page dark, then light again.",
+        mat: true,
       },
     },
     {
