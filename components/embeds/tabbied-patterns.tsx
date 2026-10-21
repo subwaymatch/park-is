@@ -92,15 +92,15 @@ export function PatternNumbers() {
 }
 
 const SPECIMENS = [
-  { pattern: bauhaus, name: "Bauhaus", slug: "bauhaus" },
-  { pattern: lintel, name: "Lintel", slug: "lintel" },
-  { pattern: duotonetruchet, name: "Duotone Truchet", slug: "duotonetruchet" },
-  { pattern: halftone, name: "Halftone", slug: "halftone" },
-  { pattern: petalcut, name: "Petalcut", slug: "petalcut" },
-  { pattern: pentomino, name: "Pentomino", slug: "pentomino" },
-  { pattern: cairo, name: "Cairo", slug: "cairo" },
-  { pattern: kawung, name: "Kawung", slug: "kawung" },
-  { pattern: mitre, name: "Mitre", slug: "mitre" },
+  { pattern: bauhaus, name: "Bauhaus" },
+  { pattern: lintel, name: "Lintel" },
+  { pattern: duotonetruchet, name: "Duotone Truchet" },
+  { pattern: halftone, name: "Halftone" },
+  { pattern: petalcut, name: "Petalcut" },
+  { pattern: pentomino, name: "Pentomino" },
+  { pattern: cairo, name: "Cairo" },
+  { pattern: kawung, name: "Kawung" },
+  { pattern: mitre, name: "Mitre" },
 ];
 
 /** A specimen sheet on a 12-column grid: one large plate, eight small, each reseeding on its own clock. */
@@ -108,7 +108,7 @@ export function PatternSpecimens() {
   return (
     <div className={styles.specimens}>
       {SPECIMENS.map((s, i) => (
-        <figure key={s.slug} className={i === 0 ? `${styles.specimen} ${styles.specimenLarge}` : styles.specimen}>
+        <figure key={s.name} className={i === 0 ? `${styles.specimen} ${styles.specimenLarge}` : styles.specimen}>
           <div className={styles.plate}>
             <TabbiedPattern
               pattern={s.pattern}
@@ -117,11 +117,7 @@ export function PatternSpecimens() {
               redrawInterval={5200 + i * 650}
             />
           </div>
-          <figcaption className={styles.label}>
-            <span className={styles.index}>{String(i + 1).padStart(2, "0")}</span>
-            <span>{s.name}</span>
-            <code className={styles.note}>{s.slug}</code>
-          </figcaption>
+          <figcaption className={styles.label}>{s.name}</figcaption>
         </figure>
       ))}
     </div>
