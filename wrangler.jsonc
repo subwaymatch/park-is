@@ -3,6 +3,11 @@
   "name": "park-is",
   "compatibility_date": "2026-10-15",
   "compatibility_flags": ["nodejs_compat"],
+  // Serve production at park-is.<subdomain>.workers.dev, and give every uploaded
+  // version its own Preview URL (<version>-park-is.<subdomain>.workers.dev).
+  // Both are set explicitly: Wrangler leaves Preview URLs off when unset.
+  "workers_dev": true,
+  "preview_urls": true,
   // The vinext app, plus byte-range serving for the videos in /media.
   "main": "./worker/index.ts",
   "assets": {

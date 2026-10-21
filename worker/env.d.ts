@@ -20,7 +20,7 @@ declare module "virtual:vinext-worker-entry" {
   export default app;
 }
 
-/** File name to size in bytes for the videos in public/media, from vite.config.ts. */
+/** Path under public/media (`tabbied/hero.mp4`) to size in bytes for each video there, from vite.config.ts. */
 declare module "virtual:media-sizes" {
   const sizes: Record<string, number>;
   export default sizes;

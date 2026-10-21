@@ -14,30 +14,35 @@ Workers. Every page is prerendered at build time and served from Workers Static 
 | `/<slug>` project page | `app/[slug]/page.tsx` |
 | `/about` | `app/about/page.tsx` |
 
-Project copy, links, captions and the hero tone live in `lib/projects.ts`. Styles are in `app/globals.css`.
+Each project's page is written in `lib/content/<slug>.ts`: a summary, a few facts, then a list of sections (text,
+figures, and an animated logo for some). The types are in `lib/projects.ts`. Styles are in `app/globals.css`, and the
+logos in `components/project-logo.tsx`.
 
 ## Media
 
-Each project has these files in `public/media/`:
+Each project has a folder in `public/media/<slug>/`:
 
-| File | Used for | Size |
-| --- | --- | --- |
-| `<slug>-loop.mp4`, `<slug>-loop.jpg` | Home card and project hero: a short muted loop and its poster | 1920×1080 |
-| `<slug>.mp4`, `<slug>-video.jpg` | Walkthrough with controls, and its poster | 1920×1080 |
-| `<slug>-01.jpg`, `<slug>-05.jpg` | Full-width figures | 1920×1080 |
-| `<slug>-02.jpg`, `<slug>-03.jpg` | Phone screens, side by side | 1600×2000 |
-| `<slug>-04.jpg` | Figure with the caption beside it | 1920×1440 |
+| File | Used for |
+| --- | --- |
+| `hero.mp4`, `hero.jpg` | Home card and project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
+| `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or the walkthrough, which has controls) and its poster |
+| `<name>.jpg` alone | A still figure |
+
+A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920×1080), `tall` 4:3 (1920×1440),
+`phone` 4:5 (a phone screen on the page's surface colour, 1200×1500 or 1600×2000). Phone shots already sit on the
+surface colour, so their frames have no hairline edge.
 
 The videos are H.264 with no audio track, recorded from the live sites with Playwright. Loops play only while on
-screen, and not at all when the visitor prefers reduced motion.
+screen, and not at all when the visitor prefers reduced motion. Their posters load as they near the viewport, since a
+project page holds many of them.
 
-`heroTone` in `lib/projects.ts` is the tone of the top band of a project's loop, where the header sits: `"dark"`
+`heroTone` in `lib/content/<slug>.ts` is the tone of the top band of a project's loop, where the header sits: `"dark"`
 switches the header to white.
 
 Workers Static Assets answer a `Range` request with the whole file, and Safari won't play a video without partial
 responses. So `worker/index.ts` sends `/media/*.mp4` through `worker/media.ts`, which reads the file from the assets
 binding and returns the bytes asked for (206). The file sizes come from `virtual:media-sizes`, a small plugin in
-`vite.config.ts`.
+`vite.config.ts` that reads `public/media` and its folders.
 
 ## Develop
 
@@ -59,6 +64,10 @@ pnpm run deploy
 
 This uses `vinext-cloudflare deploy`, so sign in with `wrangler login` or set `CLOUDFLARE_API_TOKEN` and
 `CLOUDFLARE_ACCOUNT_ID`. The Worker is named `park-is` (`wrangler.jsonc`).
+
+`wrangler.jsonc` turns on both workers.dev URLs: production at `park-is.<subdomain>.workers.dev` (`workers_dev`), and
+a Preview URL for every uploaded version, `<version>-park-is.<subdomain>.workers.dev` (`preview_urls`). Wrangler
+leaves Preview URLs off unless the setting is there.
 
 For Workers Builds (deploy on push), use `pnpm build` as the build command and `npx wrangler deploy` as the deploy
 command. The build writes `.wrangler/deploy/config.json`, which points Wrangler at the generated

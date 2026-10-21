@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CloseIcon, MenuIcon } from "./icons";
+import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "./icons";
 
 const GITHUB = "https://github.com/subwaymatch";
 
@@ -43,8 +43,9 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
           <Link href="/about" className="site-nav-about">
             About
           </Link>
-          <a href={GITHUB} className="site-nav-github">
+          <a href={GITHUB} target="_blank" rel="noopener" className="site-nav-github">
             GitHub
+            <ArrowUpRightIcon />
           </a>
         </nav>
         <button type="button" className="menu-button" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)}>
@@ -65,8 +66,9 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
             <Link href="/about" onClick={() => setOpen(false)}>
               About
             </Link>
-            <a href={GITHUB} onClick={() => setOpen(false)}>
+            <a href={GITHUB} target="_blank" rel="noopener" onClick={() => setOpen(false)}>
               GitHub
+              <ArrowUpRightIcon />
             </a>
           </nav>
         </div>
