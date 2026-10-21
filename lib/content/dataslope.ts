@@ -20,6 +20,15 @@ export const dataslope: Project = {
   ],
   sections: [
     {
+      type: "aside",
+      figure: {
+        file: "home-hub",
+        kind: "loop",
+        shape: "tall",
+        caption: "Everything runs in your browser: languages swap in and out around the Dataslope mark.",
+      },
+    },
+    {
       type: "text",
       label: "Courses",
       paragraphs: [
@@ -29,6 +38,15 @@ export const dataslope: Project = {
     {
       type: "logo",
       caption: "The Dataslope mark: two mirrored strokes in #148cff that overlap at the peak.",
+    },
+    {
+      type: "full",
+      figure: {
+        file: "home-bento",
+        kind: "loop",
+        shape: "tall",
+        caption: "The home page’s four cards: courses, interview prep, challenges and code blocks, each animated.",
+      },
     },
     {
       type: "full",
@@ -45,6 +63,12 @@ export const dataslope: Project = {
       paragraphs: [
         "Every course and track has an isometric illustration in one house style, cut out so it works in light and dark mode.",
       ],
+    },
+    {
+      type: "embed",
+      name: "riso-wall",
+      bleed: true,
+      caption: "Lesson illustrations in a second, risograph style, cut out like the isometric ones.",
     },
     {
       type: "pair",
@@ -65,6 +89,15 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Plotly Express: change the data, Run, and the chart redraws.",
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "lesson-mcq",
+        kind: "loop",
+        shape: "wide",
+        caption: "A multiple-choice question in an R lesson: a wrong pick, then the right one.",
       },
     },
     {
@@ -92,6 +125,24 @@ export const dataslope: Project = {
       ],
     },
     {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-lesson",
+          kind: "loop",
+          shape: "phone",
+          caption: "A Python lesson on a phone, past two of its risograph figures.",
+        },
+        {
+          file: "phone-run",
+          kind: "loop",
+          shape: "phone",
+          caption: "On a phone: edit a code block, Run it in Pyodide, then Reset.",
+        },
+      ],
+    },
+    { type: "embed", name: "riso-lessons" },
+    {
       type: "text",
       label: "Challenges",
       paragraphs: [
@@ -116,12 +167,18 @@ export const dataslope: Project = {
         caption: "The six interview-prep tracks, each with its illustration.",
       },
     },
+    { type: "embed", name: "riso-challenges" },
     {
       type: "text",
       label: "Playgrounds",
       paragraphs: [
         "16 playgrounds: code editors in nine languages, web and React sandboxes, Bash, Git, and a SQL workbench for PostgreSQL, SQLite and DuckDB.",
       ],
+    },
+    {
+      type: "embed",
+      name: "playground-art",
+      caption: "The playgrounds’ illustration: a marmot on the slide, a fox and penguin on the seesaw.",
     },
     {
       type: "pair",
@@ -132,6 +189,23 @@ export const dataslope: Project = {
           kind: "loop",
           shape: "tall",
           caption: "The PostgreSQL workbench: schema tree, a query and its result grid.",
+        },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        {
+          file: "phone-postgres",
+          kind: "loop",
+          shape: "phone",
+          caption: "The PostgreSQL playground on a phone: a join, its result grid, then the schema.",
+        },
+        {
+          file: "phone-python",
+          kind: "loop",
+          shape: "phone",
+          caption: "The Python playground on a phone: Run, and the output tab opens.",
         },
       ],
     },
@@ -153,6 +227,7 @@ export const dataslope: Project = {
         caption: "The Git playground: stage, commit and read the log as the graph updates.",
       },
     },
+    { type: "embed", name: "riso-strip", bleed: true },
     {
       type: "full",
       figure: {
@@ -179,6 +254,21 @@ export const dataslope: Project = {
         shape: "wide",
         caption: "Light and dark: the chart switches palette in place.",
       },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "theme-toggle",
+        kind: "loop",
+        shape: "wide",
+        caption: "The header’s theme switch turns the whole home page dark, then light again.",
+      },
+    },
+    {
+      type: "embed",
+      name: "riso-closing",
+      bleed: true,
+      caption: "About 1,870 lesson illustrations, across 32 courses, are drawn in this style.",
     },
   ],
   ogImage: "catalog",

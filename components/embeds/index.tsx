@@ -1,3 +1,4 @@
+import { embeds as dataslope } from "./dataslope";
 import { embeds as layeris } from "./layeris";
 import { embeds as react3dMockups } from "./react-3d-mockups";
 import { embeds as samsungDrs } from "./samsung-drs";
@@ -6,6 +7,7 @@ import { embeds as tabbied } from "./tabbied";
 /** Each project's live components, by the name a content file uses in an `embed` block. */
 const registry: Record<string, Record<string, () => React.ReactNode>> = {
   tabbied,
+  dataslope,
   layeris,
   "react-3d-mockups": react3dMockups,
   "samsung-drs": samsungDrs,
