@@ -11,7 +11,7 @@ export const dataslope: Project = {
   ],
   summary: [
     "Free courses, challenges, interview prep and playgrounds for Python, SQL, R, C, C++, Java, C# and more, with no account needed.",
-    "There are 33 courses, six interview-prep tracks, 300 challenges and 3,700+ runnable code blocks. Every language runs in the reader’s own tab, so nothing runs on a server and there is no limit on runs.",
+    "There are 30+ courses, 300+ challenges and 3,700+ runnable code blocks, plus interview-prep tracks. Every language runs in the reader’s own tab, so nothing runs on a server and there is no limit on runs.",
   ],
   facts: [
     ["Runtimes", "Pyodide, WebR, PGlite, SQLite WASM, DuckDB-Wasm, Clang, CheerpJ, Roslyn, php-wasm"],
@@ -47,7 +47,6 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "The home page’s four cards: courses, interview prep, challenges and code blocks, each animated.",
-        mat: true,
       },
     },
     {
@@ -167,7 +166,7 @@ export const dataslope: Project = {
       type: "text",
       label: "Challenges",
       paragraphs: [
-        "300 graded challenges, and six interview tracks from data analyst and data engineer to ML and backend engineer.",
+        "300+ graded challenges, and interview tracks from data analyst and data engineer to ML and backend engineer.",
       ],
     },
     {
@@ -195,7 +194,7 @@ export const dataslope: Project = {
       type: "text",
       label: "Playgrounds",
       paragraphs: [
-        "16 playgrounds: code editors in nine languages, web and React sandboxes, Bash, Git, and a SQL workbench for PostgreSQL, SQLite and DuckDB.",
+        "Playgrounds for code editors in nine languages, web and React sandboxes, Bash, Git, and a SQL workbench for PostgreSQL, SQLite and DuckDB.",
       ],
     },
     {
@@ -305,7 +304,7 @@ export const dataslope: Project = {
       type: "embed",
       name: "riso-closing",
       bleed: true,
-      caption: "About 1,870 lesson illustrations, across 32 courses, are drawn in this style.",
+      caption: "1,800+ lesson illustrations, across 30+ courses, are drawn in this style.",
     },
   ],
   ogImage: "catalog",

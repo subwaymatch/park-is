@@ -1,4 +1,4 @@
-// Risograph lesson illustrations from Dataslope, picked by hand across its 32 courses
+// Risograph lesson illustrations from Dataslope, picked by hand across its courses
 // (source: public/images/<id>-cutout.webp and data/illustration-prompts.json in the
 // Dataslope repo). Files are in public/media/dataslope/riso/, sized for their slot at 2x:
 // 520px wide in the grids, 240px tall in the strips; w and h are the file's pixel size.
