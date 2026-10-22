@@ -18,7 +18,6 @@ export const layeris: Project = {
   facts: [
     ["Stack", "Python 3.10+, NumPy, Pillow and Requests"],
     ["Award", "2nd place (Gold Prize, NIPA President’s Award), 2019 Open Source Software Developer Competition"],
-    ["Photos", "Sample photos generated with GPT Image 2.5 at low quality; every edit rendered by layeris 0.4.0"],
     ["License", "MIT"],
   ],
   sections: [
