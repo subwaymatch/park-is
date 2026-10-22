@@ -284,10 +284,15 @@
   margin: 0;
 }
 
+/* The two photos meet edge to edge, square-cornered, so they read as one
+   comparison. */
 .pair {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+}
+
+.pair .tile {
+  border-radius: 0;
 }
 
 .pairCode {

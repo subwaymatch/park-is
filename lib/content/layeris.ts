@@ -202,13 +202,13 @@ export const layeris: Project = {
       type: "text",
       label: "Portraits",
       paragraphs: [
-        "Ten studio portraits, from a minimal magazine shoot and a Korean wedding studio to uniforms and close-ups, each through one of the recipes in the docs.",
+        "Ten studio portraits, from a minimal magazine shoot and a Korean wedding studio to uniforms and close-ups, each given a light look in a few layeris calls.",
       ],
     },
     {
       type: "embed",
       name: "portraits",
-      caption: "Each portrait before and after its recipe, beside the code that made it.",
+      caption: "Each portrait before and after its look, beside the code that made it.",
     },
     {
       type: "text",
