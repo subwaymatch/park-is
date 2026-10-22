@@ -116,7 +116,6 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "wide",
           caption: "Bureau Vektor, a public statistics office: headline figures, then one series.",
-          mat: true,
         },
         {
           file: "site-klangwerk",
