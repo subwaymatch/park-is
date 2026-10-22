@@ -1,5 +1,5 @@
 import { Compare, Pipeline, Preset } from "./layeris-live";
-import { Band, BlendGrid, Opacity, PortraitSplits, Triptych } from "./layeris-static";
+import { Band, BlendGrid, Opacity, PortraitPairs, Triptych } from "./layeris-static";
 
 /** Live components for this project's page, by name. See components/embeds/index.tsx. */
 export const embeds: Record<string, () => React.ReactNode> = {
@@ -17,5 +17,5 @@ export const embeds: Record<string, () => React.ReactNode> = {
   "blend-grid": () => <BlendGrid />,
   opacity: () => <Opacity />,
   preset: () => <Preset />,
-  portraits: () => <PortraitSplits />,
+  portraits: () => <PortraitPairs />,
 };

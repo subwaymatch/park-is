@@ -208,8 +208,7 @@ export const layeris: Project = {
     {
       type: "embed",
       name: "portraits",
-      bleed: true,
-      caption: "Each portrait split down the middle: the original on the left half, the recipe on the right.",
+      caption: "Each portrait before and after its recipe, beside the code that made it.",
     },
     {
       type: "text",

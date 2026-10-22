@@ -271,32 +271,28 @@
   min-width: 0;
 }
 
-/* Portrait splits: the original on the left half, a look on the right; five
-   across, edge to edge with the page's gutter. */
+/* Portrait pairs: one portrait to a row, the recipe in the first column and
+   the original and its look side by side across the other three. */
 
-.splits {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px 12px;
-  padding: 0 var(--gutter);
-}
-
-@media (min-width: 1100px) {
-  .splits {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-.splitItem {
+.pairs {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin: 0;
-  min-width: 0;
+  gap: 40px;
 }
 
-.splitItem .under {
-  padding: 0;
+.pairs > figure {
+  margin: 0;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pairCode {
+  margin-top: 8px;
+  font-size: 12.5px;
 }
 
 /* Triptych */

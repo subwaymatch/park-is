@@ -131,24 +131,27 @@ export function Opacity() {
   );
 }
 
-/** Ten portraits, each split down the middle: the original on the left half and one recipe on the right. Static, not a slider. */
-export function PortraitSplits() {
+/** Ten portraits, one to a row: the recipe on the left, then the original and its look side by side, each in full. */
+export function PortraitPairs() {
   return (
-    <div className={styles.splits}>
+    <div className={styles.pairs}>
       {portraits.map((p, i) => (
-        <figure key={p.slug} className={styles.splitItem}>
-          <div className={`${styles.tile} ${styles.portrait}`} style={{ "--pos": "50%" } as CSSProperties}>
-            <Photo img={p.img} alt={p.alt} />
-            <span className={styles.divider} />
-            <span className={`${styles.tag} ${styles.tagStart}`}>Before</span>
-            <span className={`${styles.tag} ${styles.tagEnd}`}>After</span>
-          </div>
-          <figcaption className={styles.under}>
-            <span>
+        <figure key={p.slug} className={styles.grid}>
+          <figcaption className={`${styles.meta} ${styles.first}`}>
+            <span className={styles.name}>
               <span className={styles.num}>{num(i + 1)}</span>&ensp;{p.look}
             </span>
             <span>{p.style}</span>
+            <pre className={`${styles.code} ${styles.wrap} ${styles.pairCode}`}>{breakable(body(p.code).replace(/^\s+/gm, "  "))}</pre>
           </figcaption>
+          <div className={`${styles.rest} ${styles.pair}`}>
+            {(["before", "after"] as const).map((side) => (
+              <div key={side} className={`${styles.tile} ${styles.portrait}`}>
+                <Photo img={p[side]} alt={side === "before" ? `${p.alt}, the original` : `${p.alt}, in ${p.look}`} />
+                <span className={`${styles.tag} ${styles.tagStart}`}>{side === "before" ? "Before" : "After"}</span>
+              </div>
+            ))}
+          </div>
         </figure>
       ))}
     </div>
