@@ -1,12 +1,25 @@
 /* Live Tabbied patterns on the Tabbied page (tabbied-patterns.tsx). The grids
    follow the page's: 24px gutters, 6px radii, small muted labels. */
 
+/* The bands draw on a box of whole cells, centered; the overhang of the
+   outer columns is cropped at the window's edges. */
+.wholeCells {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wholeCells > * {
+  flex: none;
+}
+
 .band {
   height: 240px;
 }
 
 .strip {
-  height: 120px;
+  height: 200px;
 }
 
 .closing {
@@ -154,7 +167,7 @@
   }
 
   .strip {
-    height: 80px;
+    height: 160px;
   }
 
   .closing {

@@ -11,7 +11,7 @@ export const tabbied: Project = {
     { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
-    "Tabbied is a free library of 377 one-page website templates for trades, 382 generated patterns and 437 color palettes. Every template is built around a pattern instead of stock photos.",
+    "Tabbied is a free library of 300+ one-page website templates for trades, 300+ generated patterns and 400+ color palettes. Every template is built around a pattern instead of stock photos.",
     "Recolor a template, swap its patterns and download it as HTML/CSS or React, with no account. The patterns are also an npm package for React, Vue, Svelte and plain JavaScript, with an MCP server for coding agents.",
   ],
   facts: [
@@ -22,7 +22,7 @@ export const tabbied: Project = {
     ],
     [
       "Credits",
-      "Built with [Sy Hong](https://www.syunghong.com/), who came up with the idea and designed Tabbied. Patterns are drawn with [css-doodle](https://css-doodle.com/) by Chuan Yuan.",
+      "Built with [Sy Hong](https://www.syunghong.com/)\nPatterns drawn with [css-doodle](https://css-doodle.com/) by Chuan Yuan",
     ],
   ],
   sections: [
@@ -31,7 +31,7 @@ export const tabbied: Project = {
       type: "text",
       label: "Templates",
       paragraphs: [
-        "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
+        "300+ one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
       ],
     },
     {
@@ -251,7 +251,7 @@ export const tabbied: Project = {
     {
       type: "embed",
       name: "specimens",
-      caption: "Nine of the 382 designs, drawn live by the tabbied package; each reseeds on its own clock.",
+      caption: "Nine of the 300+ designs in the Limeade palette, drawn live by the tabbied package; each reseeds on its own clock.",
     },
     {
       type: "full",
@@ -286,7 +286,7 @@ export const tabbied: Project = {
       type: "text",
       label: "Palettes",
       paragraphs: [
-        "437 curated palettes of 3 to 7 colors, searchable by name, color the library, the editor and the templates alike. A pattern exports as a 3000px PNG, a vector SVG or code.",
+        "400+ curated palettes of 3 to 7 colors, searchable by name, color the library, the editor and the templates alike. A pattern exports as a 3000px PNG, a vector SVG or code.",
       ],
     },
     {
