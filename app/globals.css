@@ -249,6 +249,23 @@ button:focus-visible {
   display: none;
 }
 
+/* A desktop clip matted on the surface colour, its screen lifted on a soft
+   shadow like the phone shots. The margin is a share of the width, so the mat
+   keeps its proportions on a phone. */
+.frame.is-matted {
+  padding: 6%;
+}
+
+.frame-screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--bg);
+  box-shadow:
+    0 0 0 1px rgb(27 27 25 / 0.06),
+    0 12px 36px rgb(27 27 25 / 0.08);
+}
+
 .ratio-16-9 {
   aspect-ratio: 16 / 9;
 }

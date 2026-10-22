@@ -1,7 +1,7 @@
 "use client";
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
-import { STRIP } from "./dataslope-riso-data";
+import type { Riso } from "./dataslope-riso-data";
 import styles from "./dataslope.module.css";
 
 /**
@@ -10,7 +10,7 @@ import styles from "./dataslope.module.css";
  * assistive tech. It moves only while on screen, and not at all for people
  * who ask for reduced motion (the row then scrolls by hand).
  */
-export function RisoStrip() {
+export function RisoStrip({ items }: { items: Riso[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -24,9 +24,9 @@ export function RisoStrip() {
 
   return (
     <div ref={ref} className={styles.strip} data-playing={visible || undefined}>
-      <ul className={styles.track} style={{ "--count": STRIP.length } as CSSProperties}>
+      <ul className={styles.track} style={{ "--count": items.length } as CSSProperties}>
         {[0, 1].flatMap((copy) =>
-          STRIP.map((r) => (
+          items.map((r) => (
             <li key={`${copy}-${r.file}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
               <img
                 src={`/media/dataslope/riso/${r.file}.webp`}

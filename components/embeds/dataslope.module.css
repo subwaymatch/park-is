@@ -2,65 +2,24 @@
    They are cut-outs on transparency, set straight on the white page: no mats,
    no rules, no frames. The full-bleed pieces keep the page's 24px gutter. */
 
-.wall,
-.cluster,
-.closing,
+.grid,
 .track {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.wall img,
-.cluster img,
-.closing img {
+.grid img {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 2px;
 }
 
-/* Full-bleed wall: justified rows. Each item starts at --h tall (its width is
-   aspect × --h) and grows in proportion to its aspect ratio, so every image in
-   a row ends up the same height and the row fills the width. The filler keeps
-   the last row at its starting size. */
+/* Grids, full bleed: a strict grid of equal columns, each row's images
+   standing on a shared baseline. */
 
-.wall {
-  --h: clamp(56px, 10.5vw, 150px);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 36px 32px;
-  padding: 0 var(--gutter);
-}
-
-.wall::after {
-  content: "";
-  flex: 1000 1 0px;
-}
-
-.wall li {
-  flex: var(--ar) 1 calc(var(--ar) * var(--h));
-  min-width: 0;
-}
-
-/* Swiss cluster in the content column: 12 columns, each image placed by
-   start and span, standing on its row's baseline. */
-
-.cluster {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: end;
-  gap: 44px 24px;
-}
-
-.cluster li {
-  grid-column: var(--start) / span var(--span);
-  min-width: 0;
-}
-
-/* Closing wall, full bleed: a strict grid of equal columns, tight gaps. */
-
-.closing {
+.grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: end;
@@ -68,19 +27,15 @@
   padding: 0 var(--gutter);
 }
 
-.closing img {
-  border-radius: 2px;
-}
-
 @media (min-width: 700px) {
-  .closing {
+  .grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 32px 24px;
   }
 }
 
 @media (min-width: 1100px) {
-  .closing {
+  .grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
@@ -138,32 +93,12 @@
   }
 }
 
-/* The playgrounds' illustration: one of the page's larger images, the full
-   content width (at most 1,120 CSS px of its 1536). */
+/* The playgrounds' illustration, about 700 CSS px wide and centered: small
+   enough to sit as a vignette, still sharp at 2x from its 1536. */
 
 .playground {
   display: block;
-  width: 100%;
+  width: min(100%, 700px);
   height: auto;
-}
-
-/* Phones: the cluster becomes two columns; wide items take both. */
-
-@media (max-width: 640px) {
-  .wall {
-    gap: 18px 14px;
-  }
-
-  .cluster {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 16px;
-  }
-
-  .cluster li {
-    grid-column: auto / span 1;
-  }
-
-  .cluster li[data-wide] {
-    grid-column: 1 / -1;
-  }
+  margin: 0 auto;
 }

@@ -11,7 +11,7 @@ export const dataslope: Project = {
   ],
   summary: [
     "Free courses, challenges, interview prep and playgrounds for Python, SQL, R, C, C++, Java, C# and more, with no account needed.",
-    "There are 33 courses, six interview-prep tracks, 300 challenges and 3,700+ runnable code blocks. Every language runs in the reader’s own tab, so nothing runs on a server and there is no limit on runs.",
+    "There are 30+ courses, 300+ challenges and 3,700+ runnable code blocks, plus interview-prep tracks. Every language runs in the reader’s own tab, so nothing runs on a server and there is no limit on runs.",
   ],
   facts: [
     ["Runtimes", "Pyodide, WebR, PGlite, SQLite WASM, DuckDB-Wasm, Clang, CheerpJ, Roslyn, php-wasm"],
@@ -26,6 +26,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Everything runs in your browser: languages swap in and out around the Dataslope mark.",
+        mat: true,
       },
     },
     {
@@ -55,7 +56,25 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The catalog filtered to SQL, then to intermediate.",
+        mat: true,
       },
+    },
+    {
+      type: "text",
+      label: "Color",
+      paragraphs: [
+        "Four inks, each with one job: blue for anything you can press, green for runs that pass, red for errors and yellow for highlights. The illustrations are printed in the same four.",
+      ],
+    },
+    {
+      type: "embed",
+      name: "ink-overprint",
+      caption: "The four inks overprinted like the risographs: where two cross, they print a third.",
+    },
+    {
+      type: "embed",
+      name: "ink-ramps",
+      caption: "Each ink is step 500 of a ramp built in OKLCH. The palette is made for the dark theme, so text on white takes the deeper step marked Aa.",
     },
     {
       type: "text",
@@ -89,6 +108,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Plotly Express: change the data, Run, and the chart redraws.",
+        mat: true,
       },
     },
     {
@@ -98,31 +118,48 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "A multiple-choice question in an R lesson: a wrong pick, then the right one.",
+        mat: true,
       },
     },
     {
-      type: "pair",
-      figures: [
-        {
-          file: "lesson-sql",
-          kind: "loop",
-          shape: "wide",
-          caption: "PostgreSQL: ORDER BY inside OVER turns totals into running totals.",
-        },
-        {
-          file: "lesson-r",
-          kind: "loop",
-          shape: "wide",
-          caption: "R on WebR: grouping mtcars by gear with dplyr.",
-        },
-      ],
+      type: "full",
+      figure: {
+        file: "lesson-sql",
+        kind: "loop",
+        shape: "wide",
+        caption: "PostgreSQL: ORDER BY inside OVER turns totals into running totals.",
+        mat: true,
+      },
     },
     {
-      type: "pair",
-      figures: [
-        { file: "lesson-c", kind: "loop", shape: "wide", caption: "C compiled with Clang and run in the tab." },
-        { file: "lesson-csharp", kind: "loop", shape: "wide", caption: "C# LINQ compiled with Roslyn." },
-      ],
+      type: "full",
+      figure: {
+        file: "lesson-r",
+        kind: "loop",
+        shape: "wide",
+        caption: "R on WebR: grouping mtcars by gear with dplyr.",
+        mat: true,
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "lesson-c",
+        kind: "loop",
+        shape: "wide",
+        caption: "C compiled with Clang and run in the tab.",
+        mat: true,
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "lesson-csharp",
+        kind: "loop",
+        shape: "wide",
+        caption: "C# LINQ compiled with Roslyn.",
+        mat: true,
+      },
     },
     {
       type: "pair",
@@ -141,12 +178,12 @@ export const dataslope: Project = {
         },
       ],
     },
-    { type: "embed", name: "riso-lessons" },
+    { type: "embed", name: "riso-lessons", bleed: true },
     {
       type: "text",
       label: "Challenges",
       paragraphs: [
-        "300 graded challenges, and six interview tracks from data analyst and data engineer to ML and backend engineer.",
+        "300+ graded challenges, and interview tracks from data analyst and data engineer to ML and backend engineer.",
       ],
     },
     {
@@ -156,6 +193,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Group Anagrams: a solution submitted against six checks.",
+        mat: true,
       },
     },
     {
@@ -165,14 +203,15 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The six interview-prep tracks, each with its illustration.",
+        mat: true,
       },
     },
-    { type: "embed", name: "riso-challenges" },
+    { type: "embed", name: "riso-challenges", bleed: true },
     {
       type: "text",
       label: "Playgrounds",
       paragraphs: [
-        "16 playgrounds: code editors in nine languages, web and React sandboxes, Bash, Git, and a SQL workbench for PostgreSQL, SQLite and DuckDB.",
+        "Playgrounds for code editors in nine languages, web and React sandboxes, Bash, Git, and a SQL workbench for PostgreSQL, SQLite and DuckDB.",
       ],
     },
     {
@@ -181,16 +220,24 @@ export const dataslope: Project = {
       caption: "The playgrounds’ illustration: a marmot on the slide, a fox and penguin on the seesaw.",
     },
     {
-      type: "pair",
-      figures: [
-        { file: "playgrounds", kind: "still", shape: "tall", caption: "The playground index." },
-        {
-          file: "pg-postgres",
-          kind: "loop",
-          shape: "tall",
-          caption: "The PostgreSQL workbench: schema tree, a query and its result grid.",
-        },
-      ],
+      type: "aside",
+      figure: {
+        file: "playgrounds",
+        kind: "still",
+        shape: "tall",
+        caption: "The playground index.",
+        mat: true,
+      },
+    },
+    {
+      type: "full",
+      figure: {
+        file: "pg-postgres",
+        kind: "loop",
+        shape: "tall",
+        caption: "The PostgreSQL workbench: schema tree, a query and its result grid.",
+        mat: true,
+      },
     },
     {
       type: "pair",
@@ -216,6 +263,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The DuckDB workbench: a query, then its ER diagram.",
+        mat: true,
       },
     },
     {
@@ -225,6 +273,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The Git playground: stage, commit and read the log as the graph updates.",
+        mat: true,
       },
     },
     { type: "embed", name: "riso-strip", bleed: true },
@@ -235,6 +284,7 @@ export const dataslope: Project = {
         kind: "video",
         shape: "wide",
         caption: "The home page, the catalog, interview prep, a Python lesson and a Postgres query.",
+        mat: true,
       },
     },
     {
@@ -244,6 +294,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Ctrl+K search, an FTS5 index on D1, opening a lesson with the word highlighted.",
+        mat: true,
       },
     },
     {
@@ -253,6 +304,7 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Light and dark: the chart switches palette in place.",
+        mat: true,
       },
     },
     {
@@ -262,13 +314,14 @@ export const dataslope: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The header’s theme switch turns the whole home page dark, then light again.",
+        mat: true,
       },
     },
     {
       type: "embed",
       name: "riso-closing",
       bleed: true,
-      caption: "About 1,870 lesson illustrations, across 32 courses, are drawn in this style.",
+      caption: "1,800+ lesson illustrations, across 30+ courses, are drawn in this style.",
     },
   ],
   ogImage: "catalog",

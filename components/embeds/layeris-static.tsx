@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { data } from "./layeris-data";
+import { portraits } from "./layeris-portraits";
 import styles from "./layeris.module.css";
 
 type Img = { readonly src: string; readonly width: number; readonly height: number };
@@ -126,6 +127,33 @@ export function Opacity() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/** Ten portraits, one to a row: the recipe on the left, then the original and its look side by side, each in full. */
+export function PortraitPairs() {
+  return (
+    <div className={styles.pairs}>
+      {portraits.map((p, i) => (
+        <figure key={p.slug} className={styles.grid}>
+          <figcaption className={`${styles.meta} ${styles.first}`}>
+            <span className={styles.name}>
+              <span className={styles.num}>{num(i + 1)}</span>&ensp;{p.look}
+            </span>
+            <span>{p.style}</span>
+            <pre className={`${styles.code} ${styles.wrap} ${styles.pairCode}`}>{breakable(body(p.code).replace(/^\s+/gm, "  "))}</pre>
+          </figcaption>
+          <div className={`${styles.rest} ${styles.pair}`}>
+            {(["before", "after"] as const).map((side) => (
+              <div key={side} className={`${styles.tile} ${styles.portrait}`}>
+                <Photo img={p[side]} alt={side === "before" ? `${p.alt}, the original` : `${p.alt}, in ${p.look}`} />
+                <span className={`${styles.tag} ${styles.tagStart}`}>{side === "before" ? "Before" : "After"}</span>
+              </div>
+            ))}
+          </div>
+        </figure>
+      ))}
     </div>
   );
 }
