@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { data } from "./layeris-data";
+import { portraits } from "./layeris-portraits";
 import styles from "./layeris.module.css";
 
 type Img = { readonly src: string; readonly width: number; readonly height: number };
@@ -126,6 +127,30 @@ export function Opacity() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+/** Ten portraits, each split down the middle: the original on the left half and one recipe on the right. Static, not a slider. */
+export function PortraitSplits() {
+  return (
+    <div className={styles.splits}>
+      {portraits.map((p, i) => (
+        <figure key={p.slug} className={styles.splitItem}>
+          <div className={`${styles.tile} ${styles.portrait}`} style={{ "--pos": "50%" } as CSSProperties}>
+            <Photo img={p.img} alt={p.alt} />
+            <span className={styles.divider} />
+            <span className={`${styles.tag} ${styles.tagStart}`}>Before</span>
+            <span className={`${styles.tag} ${styles.tagEnd}`}>After</span>
+          </div>
+          <figcaption className={styles.under}>
+            <span>
+              <span className={styles.num}>{num(i + 1)}</span>&ensp;{p.look}
+            </span>
+            <span>{p.style}</span>
+          </figcaption>
+        </figure>
+      ))}
     </div>
   );
 }

@@ -200,6 +200,19 @@ export const layeris: Project = {
     },
     {
       type: "text",
+      label: "Portraits",
+      paragraphs: [
+        "Ten studio portraits, from a minimal magazine shoot and a Korean wedding studio to uniforms and close-ups, each through one of the recipes in the docs.",
+      ],
+    },
+    {
+      type: "embed",
+      name: "portraits",
+      bleed: true,
+      caption: "Each portrait split down the middle: the original on the left half, the recipe on the right.",
+    },
+    {
+      type: "text",
       label: "Lookup table",
       paragraphs: [
         "Per-channel edits on an 8-bit photo run on a 256-entry table instead of every pixel. A 12-megapixel edit takes about 0.2 s instead of 4.1 s, with identical output.",
