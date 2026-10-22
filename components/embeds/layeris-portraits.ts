@@ -106,18 +106,18 @@ export const portraits = [
     }
   },
   {
-    "slug": "cabin-crew",
+    "slug": "site-worker",
     "style": "Uniform",
     "look": "Soft Contrast",
-    "alt": "A flight attendant in a navy uniform and scarf on pale blue",
-    "code": "image = LayerImage.from_file(\"cabin-crew.jpg\")\n(image.curve(\"rgb\", [0, 0.21, 0.5, 0.79, 1])\n      .saturation(-0.12)\n      .soft_light(\"#ffe2c4\", opacity=0.25))",
+    "alt": "A construction worker in a hard hat and an orange safety vest",
+    "code": "image = LayerImage.from_file(\"site-worker.jpg\")\n(image.curve(\"rgb\", [0, 0.21, 0.5, 0.79, 1])\n      .saturation(-0.12)\n      .soft_light(\"#ffe2c4\", opacity=0.25))",
     "before": {
-      "src": "/media/layeris/portraits/cabin-crew-before.webp",
+      "src": "/media/layeris/portraits/site-worker-before.webp",
       "width": 720,
       "height": 1080
     },
     "after": {
-      "src": "/media/layeris/portraits/cabin-crew-after.webp",
+      "src": "/media/layeris/portraits/site-worker-after.webp",
       "width": 720,
       "height": 1080
     }
