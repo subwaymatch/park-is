@@ -7,6 +7,7 @@ import {
   bothcut,
   cairo,
   chamfer,
+  drypoint,
   duotonetruchet,
   halftone,
   kawung,
@@ -82,6 +83,9 @@ type PatternDrawing = Pick<TabbiedPatternProps, "pattern" | "palette" | "redrawI
 
 /** The page's neutral inks: warm greys a step off its surface colour, palest first. */
 const GREYS = ["#E9E8E3", "#DCDAD4", "#CDCAC3", "#BCB9B1", "#F0EFEB"];
+
+/** A paler set of the same greys, for a band that should barely be there. */
+const FAINT_GREYS = ["#EFEEEA", "#E8E7E2", "#E1DFDA", "#D8D6CF", "#F3F2EF"];
 
 /** A full-width band of Radius, the pattern from Tabbied's first homepage, three rows tall. */
 export function PatternBand() {
@@ -177,6 +181,19 @@ export function PatternPalettes() {
         </figure>
       ))}
     </div>
+  );
+}
+
+/** A full-width band of Drypoint's graded bars under the gallery, four rows tall, in the faintest greys on the page. */
+export function PatternDrypoint() {
+  return (
+    <WholeCellBand
+      className={styles.drypoint}
+      rows={4}
+      pattern={drypoint}
+      palette={["transparent", ...FAINT_GREYS]}
+      redrawInterval={5000}
+    />
   );
 }
 

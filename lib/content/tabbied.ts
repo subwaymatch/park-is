@@ -49,6 +49,7 @@ export const tabbied: Project = {
         caption: "The template gallery filtered by trade: Food & drink, Health, then Studio.",
       },
     },
+    { type: "embed", name: "drypoint", bleed: true },
     {
       type: "text",
       label: "Whole sites",
