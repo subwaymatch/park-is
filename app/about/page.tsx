@@ -13,7 +13,16 @@ export const metadata: Metadata = {
 // the header and the text above. `end` sets a photo on its row's baseline.
 type Photo = { file: string; caption: string; alt: string; w: number; h: number; column: string; end?: boolean };
 
-const PHOTOS: Photo[] = [];
+const PHOTOS: Photo[] = [
+  {
+    file: "japan-2007",
+    caption: "Japan, 2007",
+    alt: "A lit shop window of hanging roast meats at night, a cook in a head towel and white boots standing in the doorway beside it",
+    w: 1600,
+    h: 1050,
+    column: "1 / span 9",
+  },
+];
 
 export default function About() {
   return (
