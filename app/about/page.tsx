@@ -57,6 +57,14 @@ const PHOTOS: Photo[] = [
     h: 1062,
     column: "4 / span 9",
   },
+  {
+    file: "uijeongbu-2009",
+    caption: "Camp Red Cloud, Uijeongbu, 2009",
+    alt: "A soldier in a cap and camouflage with a Korean flag patch, seated in profile by a curtained window, hands clasped",
+    w: 1080,
+    h: 1080,
+    column: "7 / span 6",
+  },
 ];
 
 export default function About() {
