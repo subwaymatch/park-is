@@ -95,11 +95,6 @@
   font-weight: 500;
 }
 
-/* The chart hues are a footnote: three single steps, not a ramp. */
-.charts li {
-  height: 28px;
-}
-
 /* Phones: each label sits over its band. */
 
 @media (max-width: 640px) {
