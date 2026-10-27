@@ -15,6 +15,14 @@ type Photo = { file: string; caption: string; alt: string; w: number; h: number;
 
 const PHOTOS: Photo[] = [
   {
+    file: "chicago-2006",
+    caption: "Chicago, 2006",
+    alt: "A woman in headphones reaching for a pair on a lit wall of headphones in a shop, warm lights blurred behind",
+    w: 1080,
+    h: 1080,
+    column: "10 / span 3",
+  },
+  {
     file: "hong-kong-2007-bus",
     caption: "Hong Kong, 2007",
     alt: "Passengers seen through a bus window in black and white, a uniformed young man in a beret shouting toward the front",
