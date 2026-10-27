@@ -103,13 +103,18 @@ button:focus-visible {
   display: contents;
 }
 
-.site-nav-about {
+.site-nav-projects {
   grid-column: 4 / span 3;
   justify-self: start;
 }
 
-.site-nav-github {
+.site-nav-about {
   grid-column: 7 / span 3;
+  justify-self: start;
+}
+
+.site-nav-github {
+  grid-column: 10 / span 3;
   justify-self: start;
   display: flex;
   align-items: center;
@@ -193,7 +198,12 @@ button:focus-visible {
   overflow: hidden;
 }
 
-.hero > .media-fill {
+.hero-media {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-media > .media-fill {
   inset: 0 auto auto 50%;
   width: auto;
   aspect-ratio: 16 / 9;
@@ -449,6 +459,13 @@ figcaption {
 
 .links a:hover {
   color: var(--ink-3);
+}
+
+/* A link with a note after it, such as "Archive" on an old profile. */
+.link-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .icon-arrow {
@@ -769,14 +786,56 @@ figcaption {
     display: flex;
   }
 
-  /* The loop is cropped to the middle of the frame here; a taller hero and a
-     higher header keep the logo clear of the screen inset in the clip. */
+  /* The header sits on the page, as it does elsewhere, and the loop below it
+     is cropped to the middle of its browser card: 400px tall, as wide as that
+     makes it, with the frame's top 185px (the clip's grey margin, of 1080)
+     cut away. Its grey sides fall outside the crop at any phone width. The
+     crop keeps the page gutters and corners, so it reads as a picture of a
+     site rather than more of this one. */
   .hero {
-    height: max(400px, min(100vw * 9 / 16, 88vh, 900px));
+    --clip-h: 400px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background: none;
   }
 
-  .hero-bar .site-header {
-    padding: 26px 0;
+  .hero-bar {
+    order: -1;
+  }
+
+  .hero-media {
+    position: relative;
+    inset: auto;
+    height: calc(var(--clip-h) * 895 / 1080);
+    margin: 0 var(--gutter);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .hero-media > .media-fill {
+    top: calc(var(--clip-h) * -185 / 1080);
+    height: var(--clip-h);
+  }
+
+  /* The figures' hairline edge, so a white site keeps its shape on the page. */
+  .hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(27 27 25 / 0.07);
+    pointer-events: none;
+  }
+
+  /* On the white page the header always takes the dark ink. */
+  .hero-bar .site-header.is-inverted,
+  .hero-bar .site-header.is-inverted a {
+    color: var(--ink);
+  }
+
+  .hero-bar .site-header.is-inverted .site-logo-img {
+    filter: none;
   }
 
   .col-label,
