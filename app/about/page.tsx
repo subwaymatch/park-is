@@ -22,6 +22,15 @@ const PHOTOS: Photo[] = [
     h: 1050,
     column: "1 / span 9",
   },
+  {
+    file: "yokohama-2007",
+    caption: "Yokohama, 2007",
+    alt: "A man leaning on a harbour railing at dusk under a wide blue sky, Yokohama Bay Bridge beyond the pier",
+    w: 1312,
+    h: 2000,
+    column: "10 / span 3",
+    end: true,
+  },
 ];
 
 export default function About() {
