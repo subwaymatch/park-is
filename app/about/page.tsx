@@ -31,6 +31,14 @@ const PHOTOS: Photo[] = [
     column: "10 / span 3",
     end: true,
   },
+  {
+    file: "uijeongbu-2008",
+    caption: "Camp Red Cloud, Uijeongbu, 2008",
+    alt: "Heavy snow falling over a parking lot and low buildings at Camp Red Cloud, one orange lamp lit",
+    w: 1600,
+    h: 1062,
+    column: "4 / span 9",
+  },
 ];
 
 export default function About() {
