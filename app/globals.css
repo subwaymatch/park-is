@@ -456,6 +456,13 @@ figcaption {
   color: var(--ink-3);
 }
 
+/* A link with a note after it, such as "Archive" on an old profile. */
+.link-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .icon-arrow {
   flex-shrink: 0;
 }

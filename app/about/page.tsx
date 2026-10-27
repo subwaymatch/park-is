@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import { ArrowUpRightIcon } from "@/components/icons";
 import { Shell } from "@/components/shell";
 
 export const metadata: Metadata = {
@@ -14,6 +15,14 @@ export const metadata: Metadata = {
 type Photo = { file: string; caption: string; alt: string; w: number; h: number };
 
 const column = ({ w, h }: Photo) => (w > h ? "1 / -1" : "4 / -1");
+
+// Profiles elsewhere; `archive` marks one that is no longer updated.
+const ELSEWHERE = [
+  { label: "GitHub", url: "https://github.com/subwaymatch" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/ye-joo-park" },
+  { label: "Behance", url: "https://www.behance.net/yejoopark", archive: true },
+  { label: "Medium", url: "https://medium.com/@subwaymatch/", archive: true },
+];
 
 const PHOTOS: Photo[] = [
   {
@@ -210,6 +219,23 @@ export default function About() {
             This site holds a few projects I enjoyed building. The photos below are old ones I took, mostly while
             traveling.
           </p>
+        </div>
+
+        <div className="rows">
+          <div className="row">
+            <span className="col-label muted">Elsewhere</span>
+            <div className="col-rest links">
+              {ELSEWHERE.map((l) => (
+                <span key={l.url} className="link-line">
+                  <a href={l.url} target="_blank" rel="noopener">
+                    {l.label}
+                    <ArrowUpRightIcon />
+                  </a>
+                  {l.archive && <span className="muted">Archive</span>}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
         {PHOTOS.length > 0 && (
