@@ -497,10 +497,14 @@ figcaption {
   align-self: end;
 }
 
+/* The site's hairline edge, so a photo with white in it keeps its shape on
+   the white page. */
 .photo img {
   display: block;
   width: 100%;
   height: auto;
+  outline: 1px solid rgb(27 27 25 / 0.07);
+  outline-offset: -1px;
 }
 
 .photo-caption {

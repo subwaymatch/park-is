@@ -15,12 +15,22 @@ type Photo = { file: string; caption: string; alt: string; w: number; h: number;
 
 const PHOTOS: Photo[] = [
   {
+    file: "hong-kong-2007-bus",
+    caption: "Hong Kong, 2007",
+    alt: "Passengers seen through a bus window in black and white, a uniformed young man in a beret shouting toward the front",
+    w: 1080,
+    h: 1080,
+    column: "1 / span 3",
+    end: true,
+  },
+  {
     file: "japan-2007",
     caption: "Japan, 2007",
     alt: "A lit shop window of hanging roast meats at night, a cook in a head towel and white boots standing in the doorway beside it",
     w: 1600,
     h: 1050,
-    column: "1 / span 9",
+    column: "4 / span 6",
+    end: true,
   },
   {
     file: "yokohama-2007",
