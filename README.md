@@ -42,7 +42,8 @@ screen, and not at all when the visitor prefers reduced motion. Their posters lo
 project page holds many of them.
 
 `heroTone` in `lib/content/<slug>.ts` is the tone of the top band of a project's loop, where the header sits: `"dark"`
-switches the header to white.
+switches the header to white. On phones the header sits on the page above the loop instead, and the loop is cropped
+below its grey top margin, so `heroTone` applies on wider screens only.
 
 Workers Static Assets answer a `Range` request with the whole file, and Safari won't play a video without partial
 responses. So `worker/index.ts` sends `/media/*.mp4` through `worker/media.ts`, which reads the file from the assets

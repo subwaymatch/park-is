@@ -157,7 +157,9 @@ export default async function ProjectPage({ params }: Props) {
   return (
     <>
       <section className="hero">
-        <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager />
+        <div className="hero-media">
+          <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager />
+        </div>
         <div className="hero-bar">
           <SiteHeader inverted={p.heroTone === "dark"} />
         </div>
