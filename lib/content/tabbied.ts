@@ -242,6 +242,12 @@ export const tabbied: Project = {
       },
     },
     {
+      type: "embed",
+      name: "carousel",
+      bleed: true,
+      caption: "Eighteen more designs, every one in the library’s Seventies palette, drawn live by the tabbied package.",
+    },
+    {
       type: "text",
       label: "Patterns",
       paragraphs: [

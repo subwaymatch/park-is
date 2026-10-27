@@ -30,6 +30,62 @@
   height: 360px;
 }
 
+/* The carousel, full bleed: one row of plates at one height, 4px apart with
+   2px corners like the template wall, moving left by half its length (the row
+   is there twice) over a long, even period. */
+
+.carousel {
+  --ch: clamp(150px, 17vw, 240px);
+  overflow: hidden;
+}
+
+.carouselTrack {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: carousel-drift calc(var(--count) * 8s) linear infinite;
+  animation-play-state: paused;
+}
+
+.carousel[data-playing] .carouselTrack {
+  animation-play-state: running;
+}
+
+/* Spacing by padding, not gap, so half the track is exactly one copy. */
+.carouselTrack li {
+  flex: none;
+  padding-right: 4px;
+}
+
+.carouselPlate {
+  height: var(--ch);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@keyframes carousel-drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel {
+    overflow-x: auto;
+  }
+
+  .carouselTrack {
+    animation: none;
+    padding-left: 4px;
+  }
+
+  .carouselTrack li[data-copy] {
+    display: none;
+  }
+}
+
 /* Labels under plates and panels. */
 
 .label {

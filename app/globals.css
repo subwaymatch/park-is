@@ -282,10 +282,6 @@ button:focus-visible {
   aspect-ratio: 4 / 3;
 }
 
-.ratio-portrait {
-  aspect-ratio: 700 / 320;
-}
-
 .media-fill {
   position: absolute;
   inset: 0;
@@ -466,10 +462,11 @@ figcaption {
   margin: 0;
 }
 
-.stack-tight {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+/* The About portrait: a cut-out on the white page, so no frame or edge. */
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .figures {

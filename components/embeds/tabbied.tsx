@@ -1,5 +1,6 @@
 import {
   PatternBand,
+  PatternCarousel,
   PatternClosing,
   PatternCode,
   PatternDrypoint,
@@ -14,6 +15,7 @@ export const embeds: Record<string, () => React.ReactNode> = {
   band: () => <PatternBand />,
   specimens: () => <PatternSpecimens />,
   palettes: () => <PatternPalettes />,
+  carousel: () => <PatternCarousel />,
   strip: () => <PatternStrip />,
   drypoint: () => <PatternDrypoint />,
   code: () => <PatternCode />,

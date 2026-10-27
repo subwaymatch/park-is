@@ -1,23 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import type { PatternDefinition } from "tabbied";
 import {
+  anabranch,
+  annulus,
   bauhaus,
   bothcut,
   cairo,
+  cavetto,
   chamfer,
+  circusposter,
+  cornerbite,
+  curl,
   drypoint,
   duotonetruchet,
+  frieze,
   halftone,
+  hempleaf,
+  isometricblocks,
+  ivy,
+  karst,
   kawung,
   lintel,
   mitre,
   ogee,
+  parity,
   pentomino,
   petalcut,
+  piechart,
   radius,
+  roundpair,
+  scotia,
+  sunray,
   truchetrings,
+  wavefans,
+  yabane,
 } from "tabbied/patterns";
 import { TabbiedPattern, type TabbiedPatternHandle, type TabbiedPatternProps } from "tabbied/react";
 import styles from "./tabbied.module.css";
@@ -180,6 +198,72 @@ export function PatternPalettes() {
           </figcaption>
         </figure>
       ))}
+    </div>
+  );
+}
+
+// Seventies, from the same library, ground and all: every plate in the carousel shares it.
+const SEVENTIES = ["#f5e6c8", "#d1495b", "#edae49", "#00798c", "#30638e"];
+
+/** The carousel's plates in order, each with its width over the row's height. */
+const CAROUSEL = [
+  { pattern: wavefans, name: "Wavefans", ratio: 3 / 2 },
+  { pattern: annulus, name: "Annulus", ratio: 1 },
+  { pattern: isometricblocks, name: "Isometric Blocks", ratio: 3 / 2 },
+  { pattern: curl, name: "Curl", ratio: 1 },
+  { pattern: yabane, name: "Yabane", ratio: 3 / 2 },
+  { pattern: cavetto, name: "Cavetto", ratio: 1 },
+  { pattern: hempleaf, name: "Hempleaf", ratio: 3 / 2 },
+  { pattern: piechart, name: "Piechart", ratio: 1 },
+  { pattern: anabranch, name: "Anabranch", ratio: 3 / 2 },
+  { pattern: circusposter, name: "Circus Poster", ratio: 1 },
+  { pattern: scotia, name: "Scotia", ratio: 3 / 2 },
+  { pattern: karst, name: "Karst", ratio: 1 },
+  { pattern: parity, name: "Parity", ratio: 3 / 2 },
+  { pattern: roundpair, name: "Roundpair", ratio: 1 },
+  { pattern: frieze, name: "Frieze", ratio: 3 / 2 },
+  { pattern: sunray, name: "Sunray", ratio: 1 },
+  { pattern: cornerbite, name: "Cornerbite", ratio: 3 / 2 },
+  { pattern: ivy, name: "Ivy", ratio: 1 },
+];
+
+/**
+ * A full-width row of plates, one design each and all in Seventies, drifting slowly to the left. The row is drawn
+ * twice from the same seeds so the loop has no seam; the copy is hidden from assistive tech. It moves only while on
+ * screen, and not at all for people who ask for reduced motion (the row then scrolls by hand).
+ */
+export function PatternCarousel() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: "120px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={styles.carousel} data-playing={visible || undefined}>
+      <ul className={styles.carouselTrack} style={{ "--count": CAROUSEL.length } as CSSProperties}>
+        {[0, 1].flatMap((copy) =>
+          CAROUSEL.map((p) => (
+            <li key={`${copy}-${p.name}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
+              <div className={styles.carouselPlate} style={{ aspectRatio: p.ratio, background: SEVENTIES[0] }}>
+                <TabbiedPattern
+                  pattern={p.pattern}
+                  palette={SEVENTIES}
+                  seed="park"
+                  density={0.5}
+                  decorative={copy === 1}
+                  ariaLabel={p.name}
+                />
+              </div>
+            </li>
+          )),
+        )}
+      </ul>
     </div>
   );
 }
