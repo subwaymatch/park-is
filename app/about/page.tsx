@@ -32,6 +32,14 @@ const PHOTOS: Photo[] = [
     end: true,
   },
   {
+    file: "seoul-2008",
+    caption: "Seoul, 2008",
+    alt: "Two people walking past a white metal wall, blurred above the knee, one in a green sneaker and one in a heeled boot",
+    w: 1080,
+    h: 1080,
+    column: "1 / span 3",
+  },
+  {
     file: "uijeongbu-2008",
     caption: "Camp Red Cloud, Uijeongbu, 2008",
     alt: "Heavy snow falling over a parking lot and low buildings at Camp Red Cloud, one orange lamp lit",
