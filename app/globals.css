@@ -282,10 +282,6 @@ button:focus-visible {
   aspect-ratio: 4 / 3;
 }
 
-.ratio-portrait {
-  aspect-ratio: 700 / 320;
-}
-
 .media-fill {
   position: absolute;
   inset: 0;
@@ -466,10 +462,40 @@ figcaption {
   margin: 0;
 }
 
-.stack-tight {
+/* The About photos: a Swiss grid of 12 columns on the page's 24px gutters,
+   one photo to a row, each placed by its column span (app/about/page.tsx),
+   unframed, with a small grey caption under it. */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 72px 24px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo {
+  grid-column: var(--column);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* The site's hairline edge, so a photo with white in it keeps its shape on
+   the white page. */
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  outline: 1px solid rgb(27 27 25 / 0.07);
+  outline-offset: -1px;
+}
+
+.photo-caption {
+  color: var(--ink-3);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .figures {
@@ -770,6 +796,15 @@ figcaption {
 
   .figure-aside figcaption {
     grid-row: 2;
+  }
+
+  /* On a phone every About photo runs the full column. */
+  .photo-grid {
+    gap: 32px 16px;
+  }
+
+  .photo {
+    grid-column: 1 / -1;
   }
 }
 

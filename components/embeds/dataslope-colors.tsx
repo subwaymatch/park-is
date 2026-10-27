@@ -32,13 +32,6 @@ const INKS = [
   },
 ];
 
-/** The three hues that carry no meaning, for telling chart series apart. */
-const CHARTS = [
-  { name: "Teal", hex: "#00AEAA" },
-  { name: "Purple", hex: "#AB77FA" },
-  { name: "Orange", hex: "#E47600" },
-];
-
 const hex = (name: string) => INKS.find((i) => i.name === name)!.ramp[5];
 
 /**
@@ -97,8 +90,8 @@ export function InkOverprint() {
 }
 
 /**
- * Each ink's 50–900 ramp as one band: the brand step stands taller, and the ink step used for text on white carries
- * an "Aa". Its name is set in that ink. The chart hues close the set.
+ * Each ink's 50–900 ramp as one even band, all set in Inter; the ink step used for text on white carries an "Aa".
+ * Its name is set in that ink.
  */
 export function InkRamps() {
   return (
@@ -117,18 +110,10 @@ export function InkRamps() {
                 {ink.name}
               </span>
               <span>{ink.job}</span>
-              <span className={styles.hex}>
-                {ink.ramp[5]} · ink {ink.ramp[inkIndex]}
-              </span>
             </p>
             <ol className={styles.band} aria-label={`${ink.name}, steps 50 to 900`}>
               {ink.ramp.map((c, i) => (
-                <li
-                  key={c}
-                  className={i === 5 ? styles.brand : undefined}
-                  style={{ background: c }}
-                  title={`${ink.name} ${STEPS[i]} ${c}`}
-                >
+                <li key={c} style={{ background: c }} title={`${ink.name} ${STEPS[i]} ${c}`}>
                   {i === inkIndex && <span className={styles.aa}>Aa</span>}
                 </li>
               ))}
@@ -136,17 +121,6 @@ export function InkRamps() {
           </div>
         );
       })}
-      <div className={styles.row}>
-        <p className={styles.label}>
-          <span className={styles.name}>Charts</span>
-          <span>Teal, purple and orange carry no meaning; they tell series apart.</span>
-        </p>
-        <ol className={`${styles.band} ${styles.charts}`} aria-label="Teal, purple and orange">
-          {CHARTS.map((c) => (
-            <li key={c.name} style={{ background: c.hex }} title={`${c.name} ${c.hex}`} />
-          ))}
-        </ol>
-      </div>
     </div>
   );
 }

@@ -202,7 +202,7 @@ export const layeris: Project = {
       type: "text",
       label: "Portraits",
       paragraphs: [
-        "Ten studio portraits, from a minimal magazine shoot and a Korean wedding studio to uniforms and close-ups, each given a light look in a few layeris calls.",
+        "Ten studio portraits in Joseon dress, from a young King Sejong and his queen to a yangban, a bride and a market peddler, each given a light look in a few layeris calls.",
       ],
     },
     {
