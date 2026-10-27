@@ -462,15 +462,6 @@ figcaption {
   margin: 0;
 }
 
-/* The About portrait: a cut-out on the white page, so no frame or edge, one
-   column wide. */
-.portrait {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin-top: 12px;
-}
-
 /* The About photos: a Swiss grid of 12 columns on the page's 24px gutters,
    one photo to a row, each placed by its column span (app/about/page.tsx),
    unframed, with a small grey caption under it. */
@@ -807,12 +798,7 @@ figcaption {
     grid-row: 2;
   }
 
-  /* On a phone the portrait keeps to half the width, and every photo runs the
-     full column. */
-  .portrait {
-    width: 50%;
-  }
-
+  /* On a phone every About photo runs the full column. */
   .photo-grid {
     gap: 32px 16px;
   }

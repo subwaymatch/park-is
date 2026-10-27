@@ -4,7 +4,7 @@ import { Shell } from "@/components/shell";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Hi, I’m Park from Seoul, South Korea.",
+  description: "Hi, I’m Park from Seoul, South Korea. This site holds a few hand-picked projects I enjoyed building.",
 };
 
 // Photos from my travels, oldest first, in public/images/travel/ (landscapes at
@@ -219,13 +219,7 @@ export default function About() {
       <article className="article">
         <div className="cols">
           <h1 className="col-all title">Hi, I’m Park from Seoul, South Korea.</h1>
-          <img
-            src="/images/ye-joo-park.webp"
-            alt="Ye Joo Park in a navy shirt, arms crossed"
-            width={1100}
-            height={1378}
-            className="col-label portrait"
-          />
+          <p className="col-all tagline">This site holds a few hand-picked projects I enjoyed building.</p>
         </div>
 
         {PHOTOS.length > 0 && (
