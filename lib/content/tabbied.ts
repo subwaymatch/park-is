@@ -245,7 +245,7 @@ export const tabbied: Project = {
       type: "embed",
       name: "carousel",
       bleed: true,
-      caption: "Eighteen more designs, every one in the library’s Seventies palette, drawn live by the tabbied package.",
+      caption: "Eighteen more designs, all in the page’s warm greys on a clear ground, drawn live by the tabbied package.",
     },
     {
       type: "text",

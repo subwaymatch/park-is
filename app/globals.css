@@ -462,11 +462,51 @@ figcaption {
   margin: 0;
 }
 
-/* The About portrait: a cut-out on the white page, so no frame or edge. */
+/* The About portrait: a cut-out on the white page, so no frame or edge, one
+   column wide. */
 .portrait {
   display: block;
   width: 100%;
   height: auto;
+  margin-top: 12px;
+}
+
+/* The About photos: a Swiss grid of 12 columns on the page's 24px gutters,
+   each photo placed by its own column span, flush left and unframed, with a
+   small grey caption under it. Rows top-align unless a photo asks for the
+   row's baseline. */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: start;
+  gap: 56px 24px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.photo {
+  grid-column: var(--column);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.photo[data-end] {
+  align-self: end;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.photo-caption {
+  color: var(--ink-3);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .figures {
@@ -767,6 +807,20 @@ figcaption {
 
   .figure-aside figcaption {
     grid-row: 2;
+  }
+
+  /* On a phone the portrait keeps to half the width, and every photo runs the
+     full column. */
+  .portrait {
+    width: 50%;
+  }
+
+  .photo-grid {
+    gap: 32px 16px;
+  }
+
+  .photo {
+    grid-column: 1 / -1;
   }
 }
 

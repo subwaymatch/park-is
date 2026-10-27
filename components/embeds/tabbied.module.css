@@ -30,8 +30,8 @@
   height: 360px;
 }
 
-/* The carousel, full bleed: one row of plates at one height, 4px apart with
-   2px corners like the template wall, moving left by half its length (the row
+/* The carousel, full bleed: one row of plates on a clear ground at one height,
+   4px apart like the template wall, moving left by half its length (the row
    is there twice) over a long, even period. */
 
 .carousel {

@@ -202,8 +202,8 @@ export function PatternPalettes() {
   );
 }
 
-// Seventies, from the same library, ground and all: every plate in the carousel shares it.
-const SEVENTIES = ["#f5e6c8", "#d1495b", "#edae49", "#00798c", "#30638e"];
+/** The carousel's inks: the page's greys, a step deeper than the bands', so line designs still read. */
+const NEUTRALS = ["transparent", "#D3D1CA", "#BDBAB2", "#A5A29A", "#E2E0DA"];
 
 /** The carousel's plates in order, each with its width over the row's height. */
 const CAROUSEL = [
@@ -228,7 +228,7 @@ const CAROUSEL = [
 ];
 
 /**
- * A full-width row of plates, one design each and all in Seventies, drifting slowly to the left. The row is drawn
+ * A full-width row of plates, one design each and all in the same greys, drifting slowly to the left. The row is drawn
  * twice from the same seeds so the loop has no seam; the copy is hidden from assistive tech. It moves only while on
  * screen, and not at all for people who ask for reduced motion (the row then scrolls by hand).
  */
@@ -250,10 +250,10 @@ export function PatternCarousel() {
         {[0, 1].flatMap((copy) =>
           CAROUSEL.map((p) => (
             <li key={`${copy}-${p.name}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
-              <div className={styles.carouselPlate} style={{ aspectRatio: p.ratio, background: SEVENTIES[0] }}>
+              <div className={styles.carouselPlate} style={{ aspectRatio: p.ratio }}>
                 <TabbiedPattern
                   pattern={p.pattern}
-                  palette={SEVENTIES}
+                  palette={NEUTRALS}
                   seed="park"
                   density={0.5}
                   decorative={copy === 1}
