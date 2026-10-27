@@ -103,6 +103,17 @@ button:focus-visible {
   display: contents;
 }
 
+/* The link for the page's own section: a thin underline in its ink at
+   reduced strength, so it marks the place without shouting. */
+.site-nav a[data-active],
+.mobile-menu-nav a[data-active] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  text-decoration-color: currentColor;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+}
+
 .site-nav-projects {
   grid-column: 4 / span 3;
   justify-self: start;

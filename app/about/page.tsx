@@ -211,7 +211,7 @@ const PHOTOS: Photo[] = [
 
 export default function About() {
   return (
-    <Shell>
+    <Shell section="about">
       <article className="article">
         <div className="cols">
           <h1 className="col-all title">Hi, I’m Ye Joo Park from Seoul, South Korea.</h1>

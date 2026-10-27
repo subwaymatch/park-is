@@ -7,16 +7,32 @@ import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "./icons";
 
 const GITHUB = "https://github.com/subwaymatch";
 
+export type Section = "projects" | "about";
+
+const SECTIONS = [
+  { id: "projects", href: "/", label: "Projects" },
+  { id: "about", href: "/about", label: "About" },
+] as const;
+
 function Logo() {
   return <img src="/images/park-logo.png" alt="Park" width={200} height={61} className="site-logo-img" />;
 }
 
-/** The site header. `inverted` switches to white ink, for heroes with a dark top band. */
-export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
+/**
+ * The site header. `section` marks the link for the part of the site the page belongs to (a project page is under
+ * Projects); `inverted` switches to white ink, for heroes with a dark top band.
+ */
+export function SiteHeader({ section, inverted = false }: { section?: Section; inverted?: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => setOpen(false), [pathname]);
+
+  // The section's link is styled as current; only the page it points to is announced as the current page.
+  const current = (s: (typeof SECTIONS)[number]) => ({
+    "data-active": s.id === section || undefined,
+    "aria-current": pathname === s.href ? ("page" as const) : undefined,
+  });
 
   useEffect(() => {
     if (!open) return;
@@ -40,12 +56,11 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
           <Logo />
         </Link>
         <nav className="site-nav" aria-label="Main">
-          <Link href="/" className="site-nav-projects">
-            Projects
-          </Link>
-          <Link href="/about" className="site-nav-about">
-            About
-          </Link>
+          {SECTIONS.map((s) => (
+            <Link key={s.id} href={s.href} className={`site-nav-${s.id}`} {...current(s)}>
+              {s.label}
+            </Link>
+          ))}
           <a href={GITHUB} target="_blank" rel="noopener" className="site-nav-github">
             GitHub
             <ArrowUpRightIcon />
@@ -66,12 +81,11 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
             </button>
           </div>
           <nav className="mobile-menu-nav" aria-label="Main">
-            <Link href="/" onClick={() => setOpen(false)}>
-              Projects
-            </Link>
-            <Link href="/about" onClick={() => setOpen(false)}>
-              About
-            </Link>
+            {SECTIONS.map((s) => (
+              <Link key={s.id} href={s.href} onClick={() => setOpen(false)} {...current(s)}>
+                {s.label}
+              </Link>
+            ))}
             <a href={GITHUB} target="_blank" rel="noopener" onClick={() => setOpen(false)}>
               GitHub
               <ArrowUpRightIcon />

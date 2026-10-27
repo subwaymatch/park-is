@@ -5,7 +5,7 @@ import { media, projects } from "@/lib/projects";
 
 export default function Home() {
   return (
-    <Shell>
+    <Shell section="projects">
       <div className="project-grid">
         {projects.map((p, i) => {
           const m = media(p.slug);
