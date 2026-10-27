@@ -472,14 +472,12 @@ figcaption {
 }
 
 /* The About photos: a Swiss grid of 12 columns on the page's 24px gutters,
-   each photo placed by its own column span, flush left and unframed, with a
-   small grey caption under it. Rows top-align unless a photo asks for the
-   row's baseline. */
+   one photo to a row, each placed by its column span (app/about/page.tsx),
+   unframed, with a small grey caption under it. */
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  align-items: start;
-  gap: 56px 24px;
+  gap: 72px 24px;
   margin: 32px 0 0;
   padding: 0;
   list-style: none;
@@ -491,10 +489,6 @@ figcaption {
   flex-direction: column;
   gap: 8px;
   min-width: 0;
-}
-
-.photo[data-end] {
-  align-self: end;
 }
 
 /* The site's hairline edge, so a photo with white in it keeps its shape on
