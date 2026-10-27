@@ -11,7 +11,7 @@ export const tabbied: Project = {
     { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
-    "Tabbied is a free library of 377 one-page website templates for trades, 382 generated patterns and 437 color palettes. Every template is built around a pattern instead of stock photos.",
+    "Tabbied is a free library of 300+ one-page website templates for trades, 300+ generated patterns and 400+ color palettes. Every template is built around a pattern instead of stock photos.",
     "Recolor a template, swap its patterns and download it as HTML/CSS or React, with no account. The patterns are also an npm package for React, Vue, Svelte and plain JavaScript, with an MCP server for coding agents.",
   ],
   facts: [
@@ -22,18 +22,23 @@ export const tabbied: Project = {
     ],
     [
       "Credits",
-      "Built with [Sy Hong](https://www.syunghong.com/), who came up with the idea and designed Tabbied. Patterns are drawn with [css-doodle](https://css-doodle.com/) by Chuan Yuan.",
+      "Built with [Sy Hong](https://www.syunghong.com/)\nPatterns drawn with [css-doodle](https://css-doodle.com/) by Chuan Yuan",
     ],
   ],
   sections: [
     { type: "embed", name: "band", bleed: true },
-    { type: "embed", name: "numbers" },
     {
       type: "text",
       label: "Templates",
       paragraphs: [
-        "377 one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
+        "300+ one-page sites for real kinds of business, 48 to a gallery page under 12 category filters. Search matches words and their stems, so “plumber” finds plumbing templates.",
       ],
+    },
+    {
+      type: "embed",
+      name: "templates",
+      bleed: true,
+      caption: "Twelve templates at desktop width, from a golf club to a payroll consultant.",
     },
     {
       type: "full",
@@ -44,6 +49,7 @@ export const tabbied: Project = {
         caption: "The template gallery filtered by trade: Food & drink, Health, then Studio.",
       },
     },
+    { type: "embed", name: "drypoint", bleed: true },
     {
       type: "text",
       label: "Whole sites",
@@ -180,12 +186,6 @@ export const tabbied: Project = {
         },
       ],
     },
-    {
-      type: "embed",
-      name: "templates",
-      bleed: true,
-      caption: "Twelve more templates at desktop width, from a golf club to a payroll consultant.",
-    },
     { type: "embed", name: "strip", bleed: true },
     {
       type: "text",
@@ -201,6 +201,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "tall",
         caption: "The home page demo: Live Wire Electric recolored and given new patterns from a toolbar.",
+        mat: true,
       },
     },
     {
@@ -210,6 +211,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "High Pass Lodge recolored in the customizer; the mountains follow each palette.",
+        mat: true,
       },
     },
     {
@@ -219,6 +221,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "tall",
         caption: "Shuffle patterns redraws every pattern field on Understory Plant Care.",
+        mat: true,
       },
     },
     {
@@ -235,6 +238,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "Corner Pharmacy, an independent pharmacy, in the customizer’s Download menu: HTML & CSS or React.",
+        mat: true,
       },
     },
     {
@@ -247,7 +251,7 @@ export const tabbied: Project = {
     {
       type: "embed",
       name: "specimens",
-      caption: "Nine of the 382 designs, drawn live by the tabbied package; each reseeds on its own clock.",
+      caption: "Nine of the 300+ designs in the Limeade palette, drawn live by the tabbied package; each reseeds on its own clock.",
     },
     {
       type: "full",
@@ -256,6 +260,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The pattern library recolored from its sidebar, every card drawn live.",
+        mat: true,
       },
     },
     {
@@ -266,12 +271,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "tall",
           caption: "Shuffle in the editor: a new seed, and the cells ease into place.",
+          mat: true,
         },
         {
           file: "editor-layout",
           kind: "loop",
           shape: "tall",
           caption: "Aspect ratio from tall to wide, then grid density from fine to coarse.",
+          mat: true,
         },
       ],
     },
@@ -279,7 +286,7 @@ export const tabbied: Project = {
       type: "text",
       label: "Palettes",
       paragraphs: [
-        "437 curated palettes of 3 to 7 colors, searchable by name, color the library, the editor and the templates alike. A pattern exports as a 3000px PNG, a vector SVG or code.",
+        "400+ curated palettes of 3 to 7 colors, searchable by name, color the library, the editor and the templates alike. A pattern exports as a 3000px PNG, a vector SVG or code.",
       ],
     },
     {
@@ -295,12 +302,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "tall",
           caption: "Searching palettes for “berry” and “light”, and trying the results on Blossom.",
+          mat: true,
         },
         {
           file: "editor-export",
           kind: "still",
           shape: "tall",
           caption: "Export: PNG, SVG, a share link, or code for React, Vue, Svelte and more.",
+          mat: true,
         },
       ],
     },
@@ -332,6 +341,7 @@ export const tabbied: Project = {
         kind: "loop",
         shape: "wide",
         caption: "The For developers page: one package, six setups and tools for AI assistants.",
+        mat: true,
       },
     },
     {
@@ -349,12 +359,14 @@ export const tabbied: Project = {
           kind: "loop",
           shape: "wide",
           caption: "The MCP server’s page: one URL to add, with setup for each client.",
+          mat: true,
         },
         {
           file: "mcp-tools",
           kind: "loop",
           shape: "wide",
           caption: "The seven tools, from search_designs to render_design, and example prompts.",
+          mat: true,
         },
       ],
     },

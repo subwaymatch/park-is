@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import type { PatternDefinition } from "tabbied";
 import {
   bauhaus,
+  bothcut,
   cairo,
   chamfer,
-  diamondconfetti,
+  drypoint,
   duotonetruchet,
   halftone,
   kawung,
@@ -17,9 +18,8 @@ import {
   petalcut,
   radius,
   truchetrings,
-  windowpane,
 } from "tabbied/patterns";
-import { TabbiedPattern, type TabbiedPatternHandle } from "tabbied/react";
+import { TabbiedPattern, type TabbiedPatternHandle, type TabbiedPatternProps } from "tabbied/react";
 import styles from "./tabbied.module.css";
 
 // Live Tabbied patterns for the Tabbied page, drawn by the published `tabbied`
@@ -53,41 +53,50 @@ function useVisibleInterval(ref: React.RefObject<HTMLElement | null>, ms: number
   }, [ref, ms]);
 }
 
-/** A full-width band of Radius, the pattern from Tabbied's first homepage. Its pale cyan ink would vanish on white, so its blue ground takes that slot. */
-export function PatternBand() {
+/**
+ * A full-width band of whole cells, `rows` tall. The cell is the band's height over `rows`, rounded down to an even
+ * pixel, and the pattern draws on a box of whole cells centered in the band: no row is ever cut, and only the outer
+ * columns' overhang is cropped, at the window's edges. (Given the band's own box, the package squares and snaps its
+ * cells to the width too, which at most widths leaves the canvas a few pixels taller than the band.)
+ */
+function WholeCellBand({ className, rows, ...pattern }: { className: string; rows: number } & PatternDrawing) {
+  const box = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState<{ width: number; height: number }>();
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setSize({ width: entry.contentRect.width, height: entry.contentRect.height }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const cell = size ? 2 * Math.floor(size.height / rows / 2) : 0;
   return (
-    <div className={styles.band}>
-      <TabbiedPattern
-        pattern={radius}
-        palette={["transparent", "#3B3F45", "#3FFFB2", "#3EECFF", "#3E8BFF", "#FF3D8B"]}
-        density={0.55}
-        redrawInterval={4000}
-      />
+    <div ref={box} className={`${styles.wholeCells} ${className}`}>
+      {size && cell > 0 && (
+        <TabbiedPattern {...pattern} cellSize={cell} width={Math.ceil(size.width / cell) * cell} height={rows * cell} />
+      )}
     </div>
   );
 }
 
-/** The library's three numbers set large beside a pattern, Swiss poster style. */
-export function PatternNumbers() {
-  const rows = [
-    ["382", "patterns"],
-    ["437", "palettes"],
-    ["377", "templates"],
-  ];
+type PatternDrawing = Pick<TabbiedPatternProps, "pattern" | "palette" | "redrawInterval">;
+
+/** The page's neutral inks: warm greys a step off its surface colour, palest first. */
+const GREYS = ["#E9E8E3", "#DCDAD4", "#CDCAC3", "#BCB9B1", "#F0EFEB"];
+
+/** A paler set of the same greys, for a band that should barely be there. */
+const FAINT_GREYS = ["#EFEEEA", "#E8E7E2", "#E1DFDA", "#D8D6CF", "#F3F2EF"];
+
+/** A full-width band of Radius, the pattern from Tabbied's first homepage, three rows tall. */
+export function PatternBand() {
   return (
-    <div className={styles.numbers}>
-      <div className={styles.numbersArt}>
-        <TabbiedPattern pattern={windowpane} palette={clear(windowpane)} density={0.4} redrawInterval={6000} />
-      </div>
-      <dl className={styles.numbersList}>
-        {rows.map(([n, label]) => (
-          <div key={label} className={styles.numbersRow}>
-            <dt>{label}</dt>
-            <dd>{n}</dd>
-          </div>
-        ))}
-      </dl>
-    </div>
+    <WholeCellBand
+      className={styles.band}
+      rows={3}
+      pattern={radius}
+      palette={["transparent", ...GREYS]}
+      redrawInterval={4000}
+    />
   );
 }
 
@@ -103,6 +112,9 @@ const SPECIMENS = [
   { pattern: mitre, name: "Mitre" },
 ];
 
+// Limeade, from Tabbied's palette library, ground and all: one palette across the sheet.
+const LIMEADE = ["#f7ffe0", "#a1c349", "#4a7c2f", "#22333b"];
+
 /** A specimen sheet on a 12-column grid: one large plate, eight small, each reseeding on its own clock. */
 export function PatternSpecimens() {
   return (
@@ -112,7 +124,7 @@ export function PatternSpecimens() {
           <div className={styles.plate}>
             <TabbiedPattern
               pattern={s.pattern}
-              palette={clear(s.pattern)}
+              palette={LIMEADE}
               density={i === 0 ? 0.35 : 0.55}
               redrawInterval={5200 + i * 650}
             />
@@ -172,12 +184,29 @@ export function PatternPalettes() {
   );
 }
 
-/** A thin full-width divider. */
+/** A full-width band of Drypoint's graded bars under the gallery, four rows tall, in the faintest greys on the page. */
+export function PatternDrypoint() {
+  return (
+    <WholeCellBand
+      className={styles.drypoint}
+      rows={4}
+      pattern={drypoint}
+      palette={["transparent", ...FAINT_GREYS]}
+      redrawInterval={5000}
+    />
+  );
+}
+
+/** A full-width divider of Bothcut's lenses on the open page, four rows tall, in the opening band's greys. */
 export function PatternStrip() {
   return (
-    <div className={styles.strip}>
-      <TabbiedPattern pattern={diamondconfetti} palette={clear(diamondconfetti)} density={0.7} redrawInterval={4500} />
-    </div>
+    <WholeCellBand
+      className={styles.strip}
+      rows={4}
+      pattern={bothcut}
+      palette={["transparent", ...GREYS]}
+      redrawInterval={4500}
+    />
   );
 }
 
@@ -214,11 +243,15 @@ import { chamfer } from "tabbied/patterns";
   );
 }
 
-/** A tall band to close the page. */
+/** A tall band to close the page, six rows of rings in the opening band's greys a step deeper, so the 2px rings still read. */
 export function PatternClosing() {
   return (
-    <div className={styles.closing}>
-      <TabbiedPattern pattern={truchetrings} palette={clear(truchetrings)} density={0.45} redrawInterval={5000} />
-    </div>
+    <WholeCellBand
+      className={styles.closing}
+      rows={6}
+      pattern={truchetrings}
+      palette={["transparent", "#BDBAB2", "#A5A29A", "#D3D1CA"]}
+      redrawInterval={5000}
+    />
   );
 }

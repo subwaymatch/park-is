@@ -1,0 +1,148 @@
+/* Dataslope's brand colors (dataslope-colors.tsx): a risograph-style plate of
+   the four inks, then their ramps on the page's 4-column grid. */
+
+/* ---- The plate ---- */
+
+.plate {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Blend the inks with each other and the white page only. */
+.inks {
+  isolation: isolate;
+}
+
+.ink {
+  mix-blend-mode: multiply;
+}
+
+.marks {
+  fill: none;
+  stroke: var(--ink-3);
+  stroke-width: 1.5;
+}
+
+/* ---- The ramps ---- */
+
+.ramps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 28px 24px;
+}
+
+.row {
+  display: contents;
+}
+
+.label {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.name {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.hex {
+  font-family: var(--mono);
+  font-size: 11.5px;
+}
+
+.steps,
+.band {
+  grid-column: 2 / span 3;
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps {
+  color: var(--ink-3);
+  font-family: var(--mono);
+  font-size: 11px;
+  text-align: center;
+  margin-bottom: -16px;
+}
+
+.band {
+  align-items: center;
+  align-self: center;
+}
+
+.band li {
+  display: grid;
+  place-items: center;
+  height: 44px;
+}
+
+.band li:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.band li:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+/* The brand step stands proud of its ramp. */
+.band li.brand {
+  height: 64px;
+  border-radius: 3px;
+}
+
+.aa {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* The chart hues are a footnote: three single steps, not a ramp. */
+.charts li {
+  height: 28px;
+}
+
+/* Phones: each label sits over its band. */
+
+@media (max-width: 640px) {
+  .ramps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .steps,
+  .band,
+  .label {
+    grid-column: 1;
+  }
+
+  .steps {
+    margin-bottom: 0;
+  }
+
+  .label {
+    margin-top: 18px;
+  }
+
+  .band li {
+    height: 34px;
+  }
+
+  .band li.brand {
+    height: 48px;
+  }
+
+  .aa {
+    font-size: 11px;
+  }
+}

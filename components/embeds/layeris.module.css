@@ -271,6 +271,35 @@
   min-width: 0;
 }
 
+/* Portrait pairs: one portrait to a row, the recipe in the first column and
+   the original and its look side by side across the other three. */
+
+.pairs {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.pairs > figure {
+  margin: 0;
+}
+
+/* The two photos meet edge to edge, square-cornered, so they read as one
+   comparison. */
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pair .tile {
+  border-radius: 0;
+}
+
+.pairCode {
+  margin-top: 8px;
+  font-size: 12.5px;
+}
+
 /* Triptych */
 
 .trip {

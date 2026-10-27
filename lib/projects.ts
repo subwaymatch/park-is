@@ -20,6 +20,11 @@ export type Figure = {
   kind: "loop" | "video" | "still";
   shape: Shape;
   caption: string;
+  /**
+   * Set a desktop shot on the surface colour with a margin around it, the way the phone shots sit: for white pages
+   * that would otherwise dissolve into this one.
+   */
+  mat?: boolean;
 };
 
 /** Paragraphs may hold inline links written as [text](https://…). */
