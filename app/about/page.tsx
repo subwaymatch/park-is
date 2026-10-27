@@ -65,6 +65,14 @@ const PHOTOS: Photo[] = [
     h: 1080,
     column: "7 / span 6",
   },
+  {
+    file: "seoul-2010-arts-center",
+    caption: "Seoul Arts Center, Seoul, 2010",
+    alt: "A girl raising her arms before a lit fountain at night in black and white, people seated and blurred around her",
+    w: 1080,
+    h: 1080,
+    column: "1 / span 6",
+  },
 ];
 
 export default function About() {
