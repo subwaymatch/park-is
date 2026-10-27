@@ -4,20 +4,16 @@ import { Shell } from "@/components/shell";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Hi, I’m Park from Seoul, South Korea. This site holds a few hand-picked projects I enjoyed building.",
+  description: "Hi, I’m Ye Joo Park from Seoul, South Korea. This site holds a few projects I enjoyed building.",
 };
 
-// Photos from my travels, oldest first, in public/images/travel/ (landscapes at
-// 1600px wide, squares at 1080), one to a row on the about grid's 12 columns. A
-// landscape keeps the page's first column as a margin and fills the other three
-// (grid lines 4 to 13), or with `full` runs the whole width. A portrait or square
-// takes six columns at the left of that band, or with `right` at its right.
-type Photo = { file: string; caption: string; alt: string; w: number; h: number; full?: boolean; right?: boolean };
+// Old photos, oldest first, in public/images/travel/ (landscapes at 1600px wide,
+// squares at 1080), one to a row on the about grid's 12 columns. A landscape runs
+// the whole width; a portrait or square keeps the page's first column as a margin
+// and fills the other three (grid lines 4 to 13).
+type Photo = { file: string; caption: string; alt: string; w: number; h: number };
 
-function column({ w, h, full, right }: Photo) {
-  if (w > h) return full ? "1 / -1" : "4 / -1";
-  return right ? "7 / -1" : "4 / span 6";
-}
+const column = ({ w, h }: Photo) => (w > h ? "1 / -1" : "4 / -1");
 
 const PHOTOS: Photo[] = [
   {
@@ -26,7 +22,6 @@ const PHOTOS: Photo[] = [
     alt: "Two workers in hard hats repairing the glass wall of a blue footbridge, mirrored in the glass as commuters pass",
     w: 1600,
     h: 1064,
-    full: true,
   },
   {
     file: "hong-kong-2007-car",
@@ -48,7 +43,6 @@ const PHOTOS: Photo[] = [
     alt: "A man and a woman snacking on the street, he eating walnut cakes from a paper bag, she drinking from a cup",
     w: 1080,
     h: 1080,
-    right: true,
   },
   {
     file: "japan-2007",
@@ -70,7 +64,6 @@ const PHOTOS: Photo[] = [
     alt: "A man photographing in a station concourse while commuters blur past him",
     w: 1080,
     h: 1080,
-    right: true,
   },
   {
     file: "chicago-2007",
@@ -85,7 +78,6 @@ const PHOTOS: Photo[] = [
     alt: "The Main Quad at the University of Illinois under a summer sky, the Illini Union at its far end",
     w: 1600,
     h: 1064,
-    full: true,
   },
   {
     file: "seoul-2008-isu",
@@ -100,7 +92,6 @@ const PHOTOS: Photo[] = [
     alt: "Two people walking past a white metal wall, blurred above the knee, one in a green sneaker and one in a heeled boot",
     w: 1080,
     h: 1080,
-    right: true,
   },
   {
     file: "seoul-2008-headphones",
@@ -122,7 +113,6 @@ const PHOTOS: Photo[] = [
     alt: "A soldier in a cap and camouflage with a Korean flag patch, seated in profile by a curtained window, hands clasped",
     w: 1080,
     h: 1080,
-    right: true,
   },
   {
     file: "seoul-2009-stadium",
@@ -144,7 +134,6 @@ const PHOTOS: Photo[] = [
     alt: "Fish laid out on market stalls under orange and blue tarps, a woman tending her table",
     w: 1080,
     h: 1080,
-    right: true,
   },
   {
     file: "champaign-2011-quad",
@@ -166,7 +155,6 @@ const PHOTOS: Photo[] = [
     alt: "A face in near darkness, lit only along the cheek and nose",
     w: 1600,
     h: 1062,
-    full: true,
   },
   {
     file: "seoul-2011-banpo",
@@ -209,7 +197,6 @@ const PHOTOS: Photo[] = [
     alt: "Silhouettes at the water’s edge after sunset, the mountains running out along the coast",
     w: 1600,
     h: 1200,
-    full: true,
   },
 ];
 
@@ -218,8 +205,11 @@ export default function About() {
     <Shell>
       <article className="article">
         <div className="cols">
-          <h1 className="col-all title">Hi, I’m Park from Seoul, South Korea.</h1>
-          <p className="col-all tagline">This site holds a few hand-picked projects I enjoyed building.</p>
+          <h1 className="col-all title">Hi, I’m Ye Joo Park from Seoul, South Korea.</h1>
+          <p className="col-all tagline">
+            This site holds a few projects I enjoyed building. The photos below are old ones I took, mostly while
+            traveling.
+          </p>
         </div>
 
         {PHOTOS.length > 0 && (

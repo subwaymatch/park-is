@@ -40,6 +40,9 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
           <Logo />
         </Link>
         <nav className="site-nav" aria-label="Main">
+          <Link href="/" className="site-nav-projects">
+            Projects
+          </Link>
           <Link href="/about" className="site-nav-about">
             About
           </Link>
@@ -63,6 +66,9 @@ export function SiteHeader({ inverted = false }: { inverted?: boolean }) {
             </button>
           </div>
           <nav className="mobile-menu-nav" aria-label="Main">
+            <Link href="/" onClick={() => setOpen(false)}>
+              Projects
+            </Link>
             <Link href="/about" onClick={() => setOpen(false)}>
               About
             </Link>
