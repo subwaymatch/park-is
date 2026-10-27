@@ -97,8 +97,8 @@ export function InkOverprint() {
 }
 
 /**
- * Each ink's 50–900 ramp as one band: the brand step stands taller, and the ink step used for text on white carries
- * an "Aa". Its name is set in that ink. The chart hues close the set.
+ * Each ink's 50–900 ramp as one even band, all set in Inter; the ink step used for text on white carries an "Aa".
+ * Its name is set in that ink. The chart hues close the set.
  */
 export function InkRamps() {
   return (
@@ -117,18 +117,10 @@ export function InkRamps() {
                 {ink.name}
               </span>
               <span>{ink.job}</span>
-              <span className={styles.hex}>
-                {ink.ramp[5]} · ink {ink.ramp[inkIndex]}
-              </span>
             </p>
             <ol className={styles.band} aria-label={`${ink.name}, steps 50 to 900`}>
               {ink.ramp.map((c, i) => (
-                <li
-                  key={c}
-                  className={i === 5 ? styles.brand : undefined}
-                  style={{ background: c }}
-                  title={`${ink.name} ${STEPS[i]} ${c}`}
-                >
+                <li key={c} style={{ background: c }} title={`${ink.name} ${STEPS[i]} ${c}`}>
                   {i === inkIndex && <span className={styles.aa}>Aa</span>}
                 </li>
               ))}
