@@ -161,7 +161,7 @@ export default async function ProjectPage({ params }: Props) {
           <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager />
         </div>
         <div className="hero-bar">
-          <SiteHeader inverted={p.heroTone === "dark"} />
+          <SiteHeader section="projects" inverted={p.heroTone === "dark"} />
         </div>
       </section>
       <div className="wrap">
