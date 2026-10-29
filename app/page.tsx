@@ -11,8 +11,15 @@ export default function Home() {
           const m = media(p.slug);
           return (
             <Link key={p.slug} href={`/${p.slug}`} className="project-card">
-              <div className="frame ratio-16-10 is-bare">
-                <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager={i < 2} />
+              <div className="browser">
+                <div className="browser-bar" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="browser-screen">
+                  <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager={i === 0} />
+                </div>
               </div>
               <div className="project-card-text">
                 <span className="project-card-name">{p.name}</span>
