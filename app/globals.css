@@ -381,8 +381,8 @@ button:focus-visible {
   height: calc(100% * 1080 / 886);
 }
 
-/* Name and tagline on the header's 12 columns: the tagline starts under
-   the Projects link. */
+/* Name and tagline on the header's 12 columns, one above the other,
+   starting under the Projects link. */
 .project-card-text {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -391,7 +391,7 @@ button:focus-visible {
 }
 
 .project-card-name {
-  grid-column: 1 / span 3;
+  grid-column: 4 / -1;
   font-weight: 500;
 }
 
@@ -906,7 +906,7 @@ figcaption {
     grid-column: 1 / -1;
   }
 
-  /* A home card's tagline goes under its name. */
+  /* On a phone a home card's name and tagline run the full column. */
   .project-card-name,
   .project-card-tagline {
     grid-column: 1 / -1;
