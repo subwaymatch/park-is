@@ -387,5 +387,5 @@ export const tabbied: Project = {
   ],
   ogImage: "gallery",
   heroTone: "light",
-  color: "#ffd23e",
+  color: "#55554f",
 };
