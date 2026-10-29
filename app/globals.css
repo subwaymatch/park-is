@@ -327,7 +327,7 @@ button:focus-visible {
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
 }
 
 .project-card:hover {
@@ -335,18 +335,68 @@ button:focus-visible {
   opacity: 0.82;
 }
 
-.project-card-text {
+/* The hero loop's site, cut out of the clip's grey mat and set in a minimal
+   browser window, lifted on a soft shadow like the phone shots. */
+.browser {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow:
+    0 0 0 1px rgb(27 27 25 / 0.06),
+    0 12px 36px rgb(27 27 25 / 0.08);
+}
+
+.browser-bar {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgb(27 27 25 / 0.07);
+}
+
+.browser-bar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgb(27 27 25 / 0.12);
+}
+
+/* In the 1920 × 1080 clip the site starts at (162, 184), 1596px wide, with
+   rounded top corners, and runs off the bottom. The screen shows the
+   1580 × 886 from (168, 194), inside those corners, so none of the grey
+   shows. The clip overhangs the screen, so at most two thirds of it is ever
+   in view, which still passes the half that LoopVideo waits for to play. */
+.browser-screen {
+  position: relative;
+  aspect-ratio: 1580 / 886;
+  overflow: hidden;
+}
+
+.browser-screen > .media-fill {
+  inset: auto;
+  top: calc(100% * -194 / 886);
+  left: calc(100% * -168 / 1580);
+  width: calc(100% * 1920 / 1580);
+  height: calc(100% * 1080 / 886);
+}
+
+/* Name and tagline on the header's 12 columns: the tagline starts under
+   the Projects link. */
+.project-card-text {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 2px 24px;
   min-width: 0;
 }
 
 .project-card-name {
+  grid-column: 1 / span 3;
   font-weight: 500;
 }
 
 .project-card-tagline {
+  grid-column: 4 / -1;
   color: var(--ink-2);
   text-wrap: pretty;
 }
@@ -853,6 +903,12 @@ figcaption {
   .col-rest,
   .col-half-start,
   .col-half-end {
+    grid-column: 1 / -1;
+  }
+
+  /* A home card's tagline goes under its name. */
+  .project-card-name,
+  .project-card-tagline {
     grid-column: 1 / -1;
   }
 
