@@ -332,18 +332,33 @@ button:focus-visible {
 
 .project-card:hover {
   color: var(--ink);
+}
+
+/* On hover the text fades back a little; the frame has its glow instead. */
+.project-card:hover .project-card-text {
   opacity: 0.82;
 }
 
 /* The hero loop's site, cut out of the clip's grey mat and set in a minimal
-   browser window, lifted on a soft shadow like the phone shots. */
+   browser window, lifted on a soft shadow like the phone shots, with a
+   hairline firm enough to hold a white site's edge on the white page. On
+   hover the project's logo colour (--glow) spreads faintly behind it. */
 .browser {
   border-radius: 8px;
   overflow: hidden;
   background: var(--bg);
   box-shadow:
-    0 0 0 1px rgb(27 27 25 / 0.06),
-    0 12px 36px rgb(27 27 25 / 0.08);
+    0 0 0 1px rgb(27 27 25 / 0.12),
+    0 12px 36px rgb(27 27 25 / 0.1),
+    0 8px 80px 8px transparent;
+  transition: box-shadow 0.4s ease;
+}
+
+.project-card:hover .browser {
+  box-shadow:
+    0 0 0 1px rgb(27 27 25 / 0.12),
+    0 12px 36px rgb(27 27 25 / 0.1),
+    0 8px 80px 8px color-mix(in oklab, var(--glow) 24%, transparent);
 }
 
 .browser-bar {
@@ -360,18 +375,37 @@ button:focus-visible {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgb(27 27 25 / 0.16);
+}
+
+/* The window buttons in muted red, amber and green. */
+.browser-bar span:nth-child(1) {
+  background: #f0958e;
+}
+
+.browser-bar span:nth-child(2) {
+  background: #efc56f;
+}
+
+.browser-bar span:nth-child(3) {
+  background: #93cb8b;
 }
 
 /* In the 1920 × 1080 clip the site starts at (162, 184), 1596px wide, with
    rounded top corners, and runs off the bottom. The screen shows the
    1580 × 886 from (168, 194), inside those corners, so none of the grey
    shows. The clip overhangs the screen, so at most two thirds of it is ever
-   in view, which still passes the half that LoopVideo waits for to play. */
+   in view, which still passes the half that LoopVideo waits for to play.
+   Only the card in focus (components/project-grid.tsx) shows it in colour. */
 .browser-screen {
   position: relative;
   aspect-ratio: 1580 / 886;
   overflow: hidden;
+  filter: grayscale(1);
+  transition: filter 0.6s ease;
+}
+
+.project-card[data-focus] .browser-screen {
+  filter: none;
 }
 
 .browser-screen > .media-fill {

@@ -255,4 +255,5 @@ export const react3dMockups: Project = {
   ],
   ogImage: "landing-carousel",
   heroTone: "light",
+  color: "#2D9F4F",
 };

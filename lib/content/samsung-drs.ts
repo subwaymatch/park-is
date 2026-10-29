@@ -233,4 +233,5 @@ export const samsungDrs: Project = {
   ],
   ogImage: "insights-migration",
   heroTone: "light",
+  color: "oklch(0.66 0.16 293)",
 };

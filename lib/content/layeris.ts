@@ -306,4 +306,5 @@ export const layeris: Project = {
   ],
   ogImage: "looks",
   heroTone: "light",
+  color: "#00b9d4",
 };

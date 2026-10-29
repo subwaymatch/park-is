@@ -1,34 +1,15 @@
-import Link from "next/link";
-import { LoopVideo } from "@/components/loop-video";
+import { ProjectGrid } from "@/components/project-grid";
 import { Shell } from "@/components/shell";
 import { media, projects } from "@/lib/projects";
 
 export default function Home() {
+  const cards = projects.map((p) => {
+    const m = media(p.slug);
+    return { slug: p.slug, name: p.name, tagline: p.tagline, color: p.color, hero: m.hero, poster: m.heroPoster };
+  });
   return (
     <Shell section="projects">
-      <div className="project-grid">
-        {projects.map((p, i) => {
-          const m = media(p.slug);
-          return (
-            <Link key={p.slug} href={`/${p.slug}`} className="project-card">
-              <div className="browser">
-                <div className="browser-bar" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="browser-screen">
-                  <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager={i === 0} />
-                </div>
-              </div>
-              <div className="project-card-text">
-                <span className="project-card-name">{p.name}</span>
-                <span className="project-card-tagline">{p.tagline}</span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      <ProjectGrid cards={cards} />
     </Shell>
   );
 }
