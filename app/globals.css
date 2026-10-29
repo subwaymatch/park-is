@@ -342,7 +342,8 @@ button:focus-visible {
 /* The hero loop's site, cut out of the clip's grey mat and set in a minimal
    browser window, lifted on a soft shadow like the phone shots, with a
    hairline firm enough to hold a white site's edge on the white page. On
-   hover the project's logo colour (--glow) spreads faintly behind it. */
+   hover the project's logo colour (--glow) tints the hairline and glows
+   faintly just around the frame. */
 .browser {
   border-radius: 8px;
   overflow: hidden;
@@ -350,15 +351,15 @@ button:focus-visible {
   box-shadow:
     0 0 0 1px rgb(27 27 25 / 0.12),
     0 12px 36px rgb(27 27 25 / 0.1),
-    0 8px 80px 8px transparent;
+    0 4px 20px transparent;
   transition: box-shadow 0.4s ease;
 }
 
 .project-card:hover .browser {
   box-shadow:
-    0 0 0 1px rgb(27 27 25 / 0.12),
+    0 0 0 1px color-mix(in oklab, var(--glow) 35%, rgb(27 27 25 / 0.12)),
     0 12px 36px rgb(27 27 25 / 0.1),
-    0 8px 80px 8px color-mix(in oklab, var(--glow) 24%, transparent);
+    0 4px 20px color-mix(in oklab, var(--glow) 28%, transparent);
 }
 
 .browser-bar {
