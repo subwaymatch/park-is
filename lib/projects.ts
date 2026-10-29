@@ -61,8 +61,8 @@ export type Project = {
   /** Tone of the hero loop's top band, where the header sits: "dark" gets white ink. */
   heroTone: "light" | "dark";
   /**
-   * The logo's colour, as in the glow behind it on the project page: the home card's hover glow. Tabbied's mark is
-   * a plain outline, so it takes the yellow of its page's seed highlight.
+   * The logo's colour, as in the glow behind it on the project page: the home card's hover glow and hairline.
+   * Tabbied's mark is a plain outline, so it takes a neutral grey (--ink-2).
    */
   color: string;
 };
