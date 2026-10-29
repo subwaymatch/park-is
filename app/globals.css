@@ -352,6 +352,7 @@ button:focus-visible {
   gap: 6px;
   height: 28px;
   padding: 0 12px;
+  background: var(--surface);
   border-bottom: 1px solid rgb(27 27 25 / 0.07);
 }
 
@@ -359,7 +360,7 @@ button:focus-visible {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgb(27 27 25 / 0.12);
+  background: rgb(27 27 25 / 0.16);
 }
 
 /* In the 1920 × 1080 clip the site starts at (162, 184), 1596px wide, with
@@ -381,22 +382,18 @@ button:focus-visible {
   height: calc(100% * 1080 / 886);
 }
 
-/* Name and tagline on the header's 12 columns, one above the other,
-   starting under the Projects link. */
 .project-card-text {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 2px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   min-width: 0;
 }
 
 .project-card-name {
-  grid-column: 4 / -1;
   font-weight: 500;
 }
 
 .project-card-tagline {
-  grid-column: 4 / -1;
   color: var(--ink-2);
   text-wrap: pretty;
 }
@@ -903,12 +900,6 @@ figcaption {
   .col-rest,
   .col-half-start,
   .col-half-end {
-    grid-column: 1 / -1;
-  }
-
-  /* On a phone a home card's name and tagline run the full column. */
-  .project-card-name,
-  .project-card-tagline {
     grid-column: 1 / -1;
   }
 
