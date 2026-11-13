@@ -131,9 +131,80 @@ function React3dMockupsLogo() {
   );
 }
 
+/**
+ * Tabbied: the outline mark's silhouette, filled, so it sits with the other logos. Two solid halves in an ink
+ * gradient, lighter at the ears; the slits and the gap between them still spell the T. They slide in to meet, then
+ * lean apart and back.
+ */
+function TabbiedLogo() {
+  return (
+    <LogoStage color="#55554f">
+      <svg viewBox="103 87 399 400" className="logo-mark" role="img" aria-label="The Tabbied logo">
+        <defs>
+          <linearGradient id="tabbied-ink" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#757577" />
+            <stop offset="1" stopColor="#0e0e13" />
+          </linearGradient>
+        </defs>
+        <g fill="url(#tabbied-ink)">
+          <path
+            className="tabbied-half tabbied-left"
+            d="M103 87 H116 A174 174 0 0 1 290 261 V274 H191 L221 299 H290 V487 H277 A174 176 0 0 1 103 311 Z"
+          />
+          <path
+            className="tabbied-half tabbied-right"
+            d="M502 87 H489 A174 174 0 0 0 315 261 V274 H414 L384 299 H315 V487 H328 A174 176 0 0 0 502 311 Z"
+          />
+        </g>
+      </svg>
+    </LogoStage>
+  );
+}
+
+/** Eleven dots down the joined edge, between the notches (which end at y 5.5 and 22.5). */
+const PERFORATION = Array.from({ length: 11 }, (_, i) => +(6.3 + i * 1.54).toFixed(2));
+
+/**
+ * DashHour: the ticket lands and its stub clips on, then the stub tears off, its perforation dotting in down the
+ * joined edge, and snaps back.
+ */
+function DashhourLogo() {
+  return (
+    <LogoStage color="#b4a67a">
+      <svg viewBox="0 0 40 28" className="logo-mark" role="img" aria-label="The DashHour logo">
+        <path
+          className="dashhour-body"
+          d="M4 2h19.5a3.5 3.5 0 0 0 2.5 3.354v17.292A3.5 3.5 0 0 0 23.5 26H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"
+          fill="#151a4f"
+        />
+        {/* The perforation where the stub was joined, from notch to notch: shown while the stub is torn off. */}
+        <g fill="#b4a67a">
+          {PERFORATION.map((y, i) => (
+            <circle key={y} className="dashhour-dot" cx="27" cy={y} r="0.27" style={{ "--i": i } as React.CSSProperties} />
+          ))}
+        </g>
+        <path
+          className="dashhour-stub"
+          d="M28 5.354A3.5 3.5 0 0 0 30.5 2H36a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5.5a3.5 3.5 0 0 0-2.5-3.354Z"
+          fill="#b4a67a"
+        />
+        <path
+          className="dashhour-spark"
+          d="M39.5-6.5c.35 2.1.9 2.65 3 3-2.1.35-2.65.9-3 3-.35-2.1-.9-2.65-3-3 2.1-.35 2.65-.9 3-3Z"
+          fill="#b4a67a"
+        />
+      </svg>
+    </LogoStage>
+  );
+}
+
 /** A project's logo, drawn large and animated. Projects without one render nothing. */
 export function ProjectLogo({ slug }: { slug: string }) {
   switch (slug) {
+    case "tabbied":
+      return <TabbiedLogo />;
+    case "dashhour":
+      return <DashhourLogo />;
     case "samsung-drs":
       return <SamsungDrsLogo />;
     case "layeris":

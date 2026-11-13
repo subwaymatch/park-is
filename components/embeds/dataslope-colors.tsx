@@ -32,63 +32,6 @@ const INKS = [
   },
 ];
 
-const hex = (name: string) => INKS.find((i) => i.name === name)!.ramp[5];
-
-/**
- * The four inks printed like the risographs: discs multiplied over one another so each overlap prints a third color,
- * with halftone grain, each a few units off its line like a loose registration, and registration marks at the
- * corners.
- * Ordered so every overlap is a clean mix: green and blue, blue and yellow, yellow and red.
- */
-export function InkOverprint() {
-  const discs = [
-    { color: hex("Green"), cx: 362, cy: 346, seed: 2 },
-    { color: hex("Blue"), cx: 652, cy: 354, seed: 5 },
-    { color: hex("Yellow"), cx: 949, cy: 347, seed: 8 },
-    { color: hex("Red"), cx: 1238, cy: 352, seed: 11 },
-  ];
-  const marks = [
-    [56, 56],
-    [1544, 56],
-    [56, 644],
-    [1544, 644],
-  ];
-  return (
-    <svg className={styles.plate} viewBox="0 0 1600 700" role="img" aria-label="Green, blue, yellow and red discs overprinted in a row">
-      <defs>
-        {discs.map((d) => (
-          <filter key={d.seed} id={`ds-grain-${d.seed}`} x="0" y="0" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed={d.seed} result="noise" />
-            <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -7 0 0 0 5.3" result="grain" />
-            <feComposite in="SourceGraphic" in2="grain" operator="in" />
-          </filter>
-        ))}
-      </defs>
-      <g className={styles.inks}>
-        {discs.map((d) => (
-          <circle
-            key={d.seed}
-            className={styles.ink}
-            cx={d.cx}
-            cy={d.cy}
-            r={210}
-            fill={d.color}
-            filter={`url(#ds-grain-${d.seed})`}
-          />
-        ))}
-      </g>
-      <g className={styles.marks}>
-        {marks.map(([x, y]) => (
-          <g key={`${x}-${y}`}>
-            <circle cx={x} cy={y} r={12} />
-            <path d={`M${x - 22} ${y}h44M${x} ${y - 22}v44`} />
-          </g>
-        ))}
-      </g>
-    </svg>
-  );
-}
-
 /**
  * Each ink's 50–900 ramp as one even band, all set in Inter; the ink step used for text on white carries an "Aa".
  * Its name is set in that ink.

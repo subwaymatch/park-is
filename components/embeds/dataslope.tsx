@@ -1,4 +1,5 @@
-import { InkOverprint, InkRamps } from "./dataslope-colors";
+import { InkRamps } from "./dataslope-colors";
+import { InkOverprint } from "./dataslope-inks";
 import { PlaygroundArt, RisoGrid } from "./dataslope-riso";
 import { CHALLENGES, CLOSING, LESSONS, STRIP, WALL } from "./dataslope-riso-data";
 import { RisoStrip } from "./dataslope-strip";

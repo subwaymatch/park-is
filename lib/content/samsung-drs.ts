@@ -4,28 +4,17 @@ export const samsungDrs: Project = {
   slug: "samsung-drs",
   name: "Samsung DRS",
   year: "2016",
-  tagline: "A defect and code review tracker, recreated from Samsung’s printing division.",
+  tagline: "A defect and code review tracker.",
   links: [
     { label: "Live demo", url: "https://samsung-drs-demo.subwaymatch.workers.dev/" },
     { label: "Source", url: "https://github.com/subwaymatch/samsung-drs-demo" },
   ],
   summary: [
-    "A recreation of the defect and code review tracker built at Samsung Electronics’ printing division in 2016–2017. Firmware, QA and code review teams in Suwon and Bangalore used it while moving from IBM Rational and Review Board to Perforce, Helix Swarm, Jira and Confluence.",
-    "The demo runs on mock data generated in the browser: 812 defects and 631 code reviews across 44 printer and copier models.",
+    "A demo of the defect and code review tracker built at Samsung Electronics’ printing division in 2016–2017. Firmware, QA and code review teams in Suwon and Bangalore used it while moving from IBM Rational and Review Board to Perforce, Helix Swarm, Jira and Confluence.",
+    "This demo runs on mock data generated in the browser: 812 defects and 631 code reviews across 44 printer and copier models.",
   ],
-  facts: [
-    ["Original", "React and Node.js, styled with Bootstrap"],
-    ["Stack", "Vinext, React 19, Base UI, Tailwind CSS, React Flow, Cloudflare Workers"],
-    ["Note", "A recreation with mock data, not affiliated with or endorsed by Samsung Electronics"],
-  ],
+  facts: [["Note", "Mock data, not affiliated with or endorsed by Samsung Electronics"]],
   sections: [
-    {
-      type: "text",
-      label: "Seven systems",
-      paragraphs: [
-        "During the migration the same work was spread across seven systems. DRS synced with all of them, so every defect and review kept its records linked.",
-      ],
-    },
     {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
@@ -223,15 +212,7 @@ export const samsungDrs: Project = {
         { file: "phone-defects", kind: "loop", shape: "phone", caption: "The defect list and a defect on a phone." },
       ],
     },
-    {
-      type: "text",
-      label: "Mock data",
-      paragraphs: [
-        "Records are generated in the browser from a fixed seed, January 2016 to September 2017. Edits stay in localStorage, and the demo clock starts at 6 p.m. on 15 September 2017.",
-      ],
-    },
   ],
   ogImage: "insights-migration",
   heroTone: "light",
-  color: "oklch(0.66 0.16 293)",
 };

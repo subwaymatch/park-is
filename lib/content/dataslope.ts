@@ -326,5 +326,4 @@ export const dataslope: Project = {
   ],
   ogImage: "catalog",
   heroTone: "light",
-  color: "#148cff",
 };

@@ -1,3 +1,4 @@
+import { embeds as dashhour } from "./dashhour";
 import { embeds as dataslope } from "./dataslope";
 import { embeds as layeris } from "./layeris";
 import { embeds as react3dMockups } from "./react-3d-mockups";
@@ -11,6 +12,7 @@ const registry: Record<string, Record<string, () => React.ReactNode>> = {
   layeris,
   "react-3d-mockups": react3dMockups,
   "samsung-drs": samsungDrs,
+  dashhour,
 };
 
 export function Embed({ slug, name }: { slug: string; name: string }) {

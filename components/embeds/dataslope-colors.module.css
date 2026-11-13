@@ -1,28 +1,5 @@
-/* Dataslope's brand colors (dataslope-colors.tsx): a risograph-style plate of
-   the four inks, then their ramps on the page's 4-column grid. */
-
-/* ---- The plate ---- */
-
-.plate {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Blend the inks with each other and the white page only. */
-.inks {
-  isolation: isolate;
-}
-
-.ink {
-  mix-blend-mode: multiply;
-}
-
-.marks {
-  fill: none;
-  stroke: var(--ink-3);
-  stroke-width: 1.5;
-}
+/* Dataslope's brand colors (dataslope-colors.tsx): the four inks' ramps on
+   the page's 4-column grid. */
 
 /* ---- The ramps ---- */
 
