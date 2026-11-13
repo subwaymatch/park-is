@@ -161,7 +161,7 @@ function TabbiedLogo() {
   );
 }
 
-/** DashHour: the ticket lands and its stub clips on, then the stub tears along the perforation and snaps back. */
+/** DashHour: the ticket lands and its stub clips on, then the stub tears off at its notches and snaps back. */
 function DashhourLogo() {
   return (
     <LogoStage color="#b4a67a">
@@ -170,15 +170,6 @@ function DashhourLogo() {
           className="dashhour-body"
           d="M4 2h19.5a3.5 3.5 0 0 0 2.5 3.354v17.292A3.5 3.5 0 0 0 23.5 26H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"
           fill="#151a4f"
-        />
-        <path
-          className="dashhour-perforation"
-          d="M27 7.5v13"
-          fill="none"
-          stroke="#b4a67a"
-          strokeWidth="0.9"
-          strokeLinecap="round"
-          strokeDasharray="0.1 2.5"
         />
         <path
           className="dashhour-stub"

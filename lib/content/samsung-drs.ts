@@ -4,7 +4,7 @@ export const samsungDrs: Project = {
   slug: "samsung-drs",
   name: "Samsung DRS",
   year: "2016",
-  tagline: "A defect and code review tracker, recreated from Samsung’s printing division.",
+  tagline: "A defect and code review tracker.",
   links: [
     { label: "Live demo", url: "https://samsung-drs-demo.subwaymatch.workers.dev/" },
     { label: "Source", url: "https://github.com/subwaymatch/samsung-drs-demo" },

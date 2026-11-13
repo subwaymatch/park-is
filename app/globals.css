@@ -878,7 +878,7 @@ figcaption {
 }
 
 /* DashHour: the ticket lands and its gold stub clips on; every six seconds
-   the stub tears along the perforation, a spark flashes, and it snaps back. */
+   the stub tears off at its notches, a spark flashes, and it snaps back. */
 
 .dashhour-body,
 .dashhour-stub {
@@ -892,10 +892,6 @@ figcaption {
 /* The stub hinges at its lower notch. */
 .dashhour-stub {
   transform-origin: 28px 24px;
-}
-
-.dashhour-perforation {
-  opacity: 0;
 }
 
 .dashhour-spark {
@@ -912,10 +908,6 @@ figcaption {
   animation:
     dashhour-attach 1s cubic-bezier(0.3, 1.35, 0.5, 1) 0.5s backwards,
     dashhour-tear 6s cubic-bezier(0.4, 0, 0.2, 1) 2.6s infinite;
-}
-
-.logo-stage[data-seen] .dashhour-perforation {
-  animation: dashhour-perforation 6s linear 2.6s infinite;
 }
 
 .logo-stage[data-seen] .dashhour-spark {
@@ -962,19 +954,6 @@ figcaption {
   }
   100% {
     transform: none;
-  }
-}
-
-@keyframes dashhour-perforation {
-  0%,
-  58%,
-  88%,
-  100% {
-    opacity: 0;
-  }
-  64%,
-  80% {
-    opacity: 1;
   }
 }
 

@@ -46,7 +46,7 @@ export const dashhour: Project = {
     },
     {
       type: "logo",
-      caption: "The DashHour mark: a ticket whose gold stub tears along the perforation and snaps back.",
+      caption: "The DashHour mark: a ticket whose gold stub tears off and snaps back.",
     },
     {
       type: "text",
