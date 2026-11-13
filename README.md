@@ -16,7 +16,8 @@ Workers. Every page is prerendered at build time and served from Workers Static 
 
 Each project's page is written in `lib/content/<slug>.ts`: a summary, a few facts, then a list of sections (text,
 figures, an animated logo for some, and live embeds). The types are in `lib/projects.ts`. Styles are in
-`app/globals.css`, and the logos in `components/project-logo.tsx`.
+`app/globals.css`, and the logos in `components/project-logo.tsx`. The home page is a grid of those logos, two to a
+row on tablets and desktops and one on phones; every project needs one there, even if its page doesn't show it.
 
 An `embed` block renders a live component by name from `components/embeds/<slug>.tsx`, optionally full-bleed: Tabbied
 patterns drawn by the `tabbied` package, layeris before/after sliders and blend grids, and React 3D Mockups scenes
@@ -29,7 +30,7 @@ Each project has a folder in `public/media/<slug>/`:
 
 | File | Used for |
 | --- | --- |
-| `hero.mp4`, `hero.jpg` | Home card and project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
+| `hero.mp4`, `hero.jpg` | Project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
 | `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or the walkthrough, which has controls) and its poster |
 | `<name>.jpg` alone | A still figure |
 

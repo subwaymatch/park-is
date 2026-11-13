@@ -61,11 +61,6 @@ export type Project = {
   ogImage: string;
   /** Tone of the hero loop's top band, where the header sits: "dark" gets white ink. */
   heroTone: "light" | "dark";
-  /**
-   * The logo's colour, as in the glow behind it on the project page: the home card's hover glow and hairline.
-   * Tabbied's mark is a plain outline, so it takes a neutral grey (--ink-2).
-   */
-  color: string;
 };
 
 export const projects: Project[] = [tabbied, dataslope, react3dMockups, layeris, samsungDrs, dashhour];
@@ -88,7 +83,7 @@ export const SHAPES = {
 export function media(slug: string) {
   const base = `/media/${slug}/`;
   return {
-    /** The hero loop, also the home card: a desktop browser on the surface colour. */
+    /** The hero loop at the top of the project page: a desktop browser on the surface colour. */
     hero: base + "hero.mp4",
     heroPoster: base + "hero.jpg",
     clip: (file: string) => base + file + ".mp4",

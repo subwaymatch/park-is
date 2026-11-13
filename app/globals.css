@@ -264,8 +264,8 @@ button:focus-visible {
   margin-left: calc(50% - 50vw);
 }
 
-/* Media that already sits on the surface colour (phone shots, the hero cards)
-   needs no edge. */
+/* Media that already sits on the surface colour (phone shots, logos) needs no
+   edge. */
 .frame.is-bare::after {
   display: none;
 }
@@ -316,105 +316,60 @@ button:focus-visible {
   background: #000000;
 }
 
-/* Home: one project to a row, each across the full column. */
+/* Home: a grid of the projects' logos, two to a row on tablets and desktops
+   and one on phones. Each logo animates on a flat tile of the surface colour,
+   with no edge and no glow behind it. */
 
 .project-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 56px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px 24px;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
 .project-card:hover {
   color: var(--ink);
 }
 
-/* On hover the text fades back a little; the frame has its glow instead. */
-.project-card:hover .project-card-text {
-  opacity: 0.82;
-}
-
-/* The hero loop's site, cut out of the clip's grey mat and set in a minimal
-   browser window, lifted on a soft shadow like the phone shots, with a
-   hairline firm enough to hold a white site's edge on the white page. On
-   hover the project's logo colour (--glow) tints the hairline and glows
-   faintly just around the frame. */
-.browser {
+.project-card-logo {
   border-radius: 8px;
   overflow: hidden;
-  background: var(--bg);
-  box-shadow:
-    0 0 0 1px rgb(27 27 25 / 0.12),
-    0 12px 36px rgb(27 27 25 / 0.1),
-    0 4px 20px transparent;
-  transition: box-shadow 0.4s ease;
 }
 
-.project-card:hover .browser {
-  box-shadow:
-    0 0 0 1px color-mix(in oklab, var(--glow) 35%, rgb(27 27 25 / 0.12)),
-    0 12px 36px rgb(27 27 25 / 0.1),
-    0 4px 20px color-mix(in oklab, var(--glow) 28%, transparent);
+.project-card .logo-stage {
+  aspect-ratio: 3 / 2;
 }
 
-.browser-bar {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  height: 28px;
-  padding: 0 12px;
-  background: var(--surface);
-  border-bottom: 1px solid rgb(27 27 25 / 0.07);
+.project-card .logo-glow {
+  display: none;
 }
 
-.browser-bar span {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.project-card .logo-mark {
+  height: 40%;
+  transition: scale 0.4s ease;
 }
 
-/* The window buttons in muted red, amber and green. */
-.browser-bar span:nth-child(1) {
-  background: #f0958e;
+/* Tabbied and DashHour are solid, compact shapes, and Dataslope is wide, so
+   at the same height they read larger than the others: they sit a little
+   smaller. */
+.project-card-logo[data-slug="tabbied"] .logo-mark,
+.project-card-logo[data-slug="dataslope"] .logo-mark,
+.project-card-logo[data-slug="dashhour"] .logo-mark {
+  height: 34%;
 }
 
-.browser-bar span:nth-child(2) {
-  background: #efc56f;
+/* On hover the logo comes forward a little and the text fades back. */
+.project-card:hover .logo-mark {
+  scale: 1.05;
 }
 
-.browser-bar span:nth-child(3) {
-  background: #93cb8b;
-}
-
-/* In the 1920 × 1080 clip the site starts at (162, 184), 1596px wide, with
-   rounded top corners, and runs off the bottom. The screen shows the
-   1580 × 886 from (168, 194), inside those corners, so none of the grey
-   shows. The clip overhangs the screen, so at most two thirds of it is ever
-   in view, which still passes the half that LoopVideo waits for to play.
-   Only the card in focus (components/project-grid.tsx) shows it in colour. */
-.browser-screen {
-  position: relative;
-  aspect-ratio: 1580 / 886;
-  overflow: hidden;
-  filter: grayscale(1);
-  transition: filter 0.6s ease;
-}
-
-.project-card[data-focus] .browser-screen {
-  filter: none;
-}
-
-.browser-screen > .media-fill {
-  inset: auto;
-  top: calc(100% * -194 / 886);
-  left: calc(100% * -168 / 1580);
-  width: calc(100% * 1920 / 1580);
-  height: calc(100% * 1080 / 886);
+.project-card:hover .project-card-text {
+  opacity: 0.82;
 }
 
 .project-card-text {
@@ -864,6 +819,59 @@ figcaption {
   }
 }
 
+/* Tabbied: the two halves of the filled mark slide in to meet, then lean
+   apart about their feet and back. */
+
+.tabbied-half {
+  transform-box: view-box;
+}
+
+.tabbied-left {
+  transform-origin: 290px 487px;
+}
+
+.tabbied-right {
+  transform-origin: 315px 487px;
+}
+
+.logo-stage[data-seen] .tabbied-left {
+  animation:
+    tabbied-in-left 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s backwards,
+    tabbied-lean-left 7s ease-in-out 1.6s infinite;
+}
+
+.logo-stage[data-seen] .tabbied-right {
+  animation:
+    tabbied-in-right 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards,
+    tabbied-lean-right 7s ease-in-out 1.8s infinite;
+}
+
+@keyframes tabbied-in-left {
+  from {
+    transform: translate(-90px, 30px);
+    opacity: 0;
+  }
+}
+
+@keyframes tabbied-in-right {
+  from {
+    transform: translate(90px, 30px);
+    opacity: 0;
+  }
+}
+
+@keyframes tabbied-lean-left {
+  50% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes tabbied-lean-right {
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
 /* DashHour: the ticket lands and its gold stub clips on; every six seconds
    the stub tears along the perforation, a spark flashes, and it snaps back. */
 
@@ -1075,6 +1083,11 @@ figcaption {
 @media (max-width: 640px) {
   .logo-stage {
     aspect-ratio: 4 / 3;
+  }
+
+  .project-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
   }
 }
 

@@ -131,6 +131,36 @@ function React3dMockupsLogo() {
   );
 }
 
+/**
+ * Tabbied: the outline mark's silhouette, filled, so it sits with the other logos. Two solid halves in an ink
+ * gradient, lighter at the ears; the slits and the gap between them still spell the T. They slide in to meet, then
+ * lean apart and back.
+ */
+function TabbiedLogo() {
+  return (
+    <LogoStage color="#55554f">
+      <svg viewBox="103 87 399 400" className="logo-mark" role="img" aria-label="The Tabbied logo">
+        <defs>
+          <linearGradient id="tabbied-ink" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#757577" />
+            <stop offset="1" stopColor="#0e0e13" />
+          </linearGradient>
+        </defs>
+        <g fill="url(#tabbied-ink)">
+          <path
+            className="tabbied-half tabbied-left"
+            d="M103 87 H116 A174 174 0 0 1 290 261 V274 H191 L221 299 H290 V487 H277 A174 176 0 0 1 103 311 Z"
+          />
+          <path
+            className="tabbied-half tabbied-right"
+            d="M502 87 H489 A174 174 0 0 0 315 261 V274 H414 L384 299 H315 V487 H328 A174 176 0 0 0 502 311 Z"
+          />
+        </g>
+      </svg>
+    </LogoStage>
+  );
+}
+
 /** DashHour: the ticket lands and its stub clips on, then the stub tears along the perforation and snaps back. */
 function DashhourLogo() {
   return (
@@ -168,6 +198,8 @@ function DashhourLogo() {
 /** A project's logo, drawn large and animated. Projects without one render nothing. */
 export function ProjectLogo({ slug }: { slug: string }) {
   switch (slug) {
+    case "tabbied":
+      return <TabbiedLogo />;
     case "dashhour":
       return <DashhourLogo />;
     case "samsung-drs":

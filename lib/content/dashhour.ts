@@ -123,5 +123,4 @@ export const dashhour: Project = {
   ],
   ogImage: "branches",
   heroTone: "light",
-  color: "#b4a67a",
 };
