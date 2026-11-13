@@ -1,0 +1,102 @@
+/* DashHour's generated art (dashhour-art.tsx). The cut-outs sit straight on the
+   white page with no mats, rules or frames; the branch scenes are a grid of
+   prints with the slightest rounding. */
+
+.sketches,
+.story,
+.branches {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sketches img,
+.story img,
+.branches img,
+.single,
+.singleLarge {
+  display: block;
+  height: auto;
+}
+
+/* The six sketches, full bleed in the page's gutter: one row on one
+   baseline, the landscape page at two thirds of the others' height. Three to
+   a row on phones. */
+.sketches {
+  --sh: clamp(150px, 17vw, 260px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 24px clamp(16px, 3vw, 48px);
+  padding: 0 var(--gutter);
+}
+
+.sketches img {
+  width: auto;
+  height: var(--sh);
+}
+
+.sketches .landscape img {
+  height: calc(var(--sh) * 2 / 3);
+}
+
+@media (max-width: 640px) {
+  .sketches {
+    --sh: 30vw;
+    gap: 20px 16px;
+  }
+}
+
+/* A visit in five illustrations, each scaled to the same height and standing
+   on one baseline. */
+.story {
+  --ih: clamp(96px, 14vw, 168px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 16px;
+}
+
+.story img {
+  width: auto;
+  height: var(--ih);
+}
+
+@media (max-width: 640px) {
+  .story {
+    --ih: 26vw;
+    justify-content: center;
+  }
+}
+
+/* Branch scenes: four across, two on phones. */
+.branches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.branches img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  .branches {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.single {
+  width: min(100%, 280px);
+  margin: 0 auto;
+}
+
+.singleLarge {
+  width: min(100%, 560px);
+  margin: 0 auto;
+}

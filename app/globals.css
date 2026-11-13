@@ -363,6 +363,11 @@ button:focus-visible {
   height: 34%;
 }
 
+/* DashHour's ticket on its tile: a white body, as in the app's own header. */
+.project-card-logo[data-slug="dashhour"] .dashhour-body {
+  fill: #ffffff;
+}
+
 /* On hover the logo comes forward a little and the text fades back. */
 .project-card:hover .logo-mark {
   scale: 1.05;
