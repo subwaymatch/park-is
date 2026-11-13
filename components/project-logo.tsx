@@ -161,7 +161,13 @@ function TabbiedLogo() {
   );
 }
 
-/** DashHour: the ticket lands and its stub clips on, then the stub tears off at its notches and snaps back. */
+/** Eleven dots down the joined edge, between the notches (which end at y 5.5 and 22.5). */
+const PERFORATION = Array.from({ length: 11 }, (_, i) => +(6.3 + i * 1.54).toFixed(2));
+
+/**
+ * DashHour: the ticket lands and its stub clips on, then the stub tears off, its perforation dotting in down the
+ * joined edge, and snaps back.
+ */
 function DashhourLogo() {
   return (
     <LogoStage color="#b4a67a">
@@ -171,6 +177,12 @@ function DashhourLogo() {
           d="M4 2h19.5a3.5 3.5 0 0 0 2.5 3.354v17.292A3.5 3.5 0 0 0 23.5 26H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"
           fill="#151a4f"
         />
+        {/* The perforation where the stub was joined, from notch to notch: shown while the stub is torn off. */}
+        <g fill="#b4a67a">
+          {PERFORATION.map((y, i) => (
+            <circle key={y} className="dashhour-dot" cx="27" cy={y} r="0.27" style={{ "--i": i } as React.CSSProperties} />
+          ))}
+        </g>
         <path
           className="dashhour-stub"
           d="M28 5.354A3.5 3.5 0 0 0 30.5 2H36a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5.5a3.5 3.5 0 0 0-2.5-3.354Z"

@@ -1,3 +1,4 @@
+import sizes from "virtual:media-sizes";
 import { dashhour } from "./content/dashhour";
 import { dataslope } from "./content/dataslope";
 import { layeris } from "./content/layeris";
@@ -80,13 +81,21 @@ export const SHAPES = {
   phone: { width: 1200, height: 1500, ratio: "ratio-4-5" },
 } as const;
 
+/**
+ * A clip's URL, versioned by its size in bytes. Clips are cached for a day (worker/media.ts), so a re-recorded clip
+ * gets a new URL and replaces the old one at once. The Worker serves the path and ignores the query.
+ */
+function clipUrl(path: string) {
+  return `/media/${path}?v=${sizes[path] ?? 0}`;
+}
+
 export function media(slug: string) {
   const base = `/media/${slug}/`;
   return {
     /** The hero loop at the top of the project page: a desktop browser on the surface colour. */
-    hero: base + "hero.mp4",
+    hero: clipUrl(`${slug}/hero.mp4`),
     heroPoster: base + "hero.jpg",
-    clip: (file: string) => base + file + ".mp4",
+    clip: (file: string) => clipUrl(`${slug}/${file}.mp4`),
     image: (file: string) => base + file + ".jpg",
   };
 }

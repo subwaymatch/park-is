@@ -363,9 +363,14 @@ button:focus-visible {
   height: 34%;
 }
 
-/* DashHour's ticket on its tile: a white body, as in the app's own header. */
+/* DashHour's ticket on its tile: a white body, as in the app's own header,
+   held on the light tile by a hairline and the faintest shadow. */
 .project-card-logo[data-slug="dashhour"] .dashhour-body {
   fill: #ffffff;
+  stroke: rgb(27 27 25 / 0.14);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 2px 6px rgb(27 27 25 / 0.08));
 }
 
 /* On hover the logo comes forward a little and the text fades back. */
@@ -878,7 +883,8 @@ figcaption {
 }
 
 /* DashHour: the ticket lands and its gold stub clips on; every six seconds
-   the stub tears off at its notches, a spark flashes, and it snaps back. */
+   the stub tears off, the perforation dots in down the joined edge from top
+   to bottom, a spark flashes, and the stub snaps back as the dots go. */
 
 .dashhour-body,
 .dashhour-stub {
@@ -892,6 +898,12 @@ figcaption {
 /* The stub hinges at its lower notch. */
 .dashhour-stub {
   transform-origin: 28px 24px;
+}
+
+.dashhour-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .dashhour-spark {
@@ -908,6 +920,11 @@ figcaption {
   animation:
     dashhour-attach 1s cubic-bezier(0.3, 1.35, 0.5, 1) 0.5s backwards,
     dashhour-tear 6s cubic-bezier(0.4, 0, 0.2, 1) 2.6s infinite;
+}
+
+/* Each dot runs the stub's six-second loop, 35ms after the one above it. */
+.logo-stage[data-seen] .dashhour-dot {
+  animation: dashhour-dot 6s ease-out calc(2.6s + var(--i) * 35ms) infinite;
 }
 
 .logo-stage[data-seen] .dashhour-spark {
@@ -954,6 +971,29 @@ figcaption {
   }
   100% {
     transform: none;
+  }
+}
+
+/* In as the stub swings clear (56-64% of the tear), out as it snaps back (87%). */
+@keyframes dashhour-dot {
+  0%,
+  58% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  61% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+  64%,
+  79% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  84%,
+  100% {
+    opacity: 0;
+    transform: scale(0);
   }
 }
 

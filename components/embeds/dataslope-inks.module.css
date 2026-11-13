@@ -1,0 +1,70 @@
+/* Dataslope's four inks overprinted (dataslope-inks.tsx): flat discs that
+   multiply where they cross. Animations attach once the plate is seen and
+   pause off screen; without them the discs stand still in a row. */
+
+.plate {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+/* Blend the inks with each other and the white page only. */
+.inks {
+  isolation: isolate;
+}
+
+.ink {
+  mix-blend-mode: multiply;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.plate[data-ready]:not([data-seen]) .ink {
+  visibility: hidden;
+}
+
+/* In: each disc spreads from a dot, left to right, like ink taking to paper.
+   Then the drift: the even discs (green, yellow) lean right while the odd
+   ones (blue, red) lean left, and back, so the green-blue and yellow-red
+   overlaps widen as the blue-yellow one narrows. */
+.plate[data-seen] .even {
+  animation:
+    inks-in 1.1s cubic-bezier(0.2, 0.9, 0.3, 1.15) calc(0.1s + var(--i) * 0.14s) backwards,
+    inks-drift-right 7s ease-in-out 1.8s infinite;
+}
+
+.plate[data-seen] .odd {
+  animation:
+    inks-in 1.1s cubic-bezier(0.2, 0.9, 0.3, 1.15) calc(0.1s + var(--i) * 0.14s) backwards,
+    inks-drift-left 7s ease-in-out 1.8s infinite;
+}
+
+.plate:not([data-visible]) .ink {
+  animation-play-state: paused;
+}
+
+@keyframes inks-in {
+  from {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+}
+
+@keyframes inks-drift-right {
+  50% {
+    transform: translateX(26px);
+  }
+}
+
+@keyframes inks-drift-left {
+  50% {
+    transform: translateX(-26px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ink {
+    animation: none !important;
+  }
+}
