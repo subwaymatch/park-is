@@ -1,3 +1,4 @@
+import { dashhour } from "./content/dashhour";
 import { dataslope } from "./content/dataslope";
 import { layeris } from "./content/layeris";
 import { react3dMockups } from "./content/react-3d-mockups";
@@ -67,7 +68,7 @@ export type Project = {
   color: string;
 };
 
-export const projects: Project[] = [tabbied, dataslope, react3dMockups, layeris, samsungDrs];
+export const projects: Project[] = [tabbied, dataslope, react3dMockups, layeris, samsungDrs, dashhour];
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

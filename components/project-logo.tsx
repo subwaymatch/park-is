@@ -131,9 +131,45 @@ function React3dMockupsLogo() {
   );
 }
 
+/** DashHour: the ticket lands and its stub clips on, then the stub tears along the perforation and snaps back. */
+function DashhourLogo() {
+  return (
+    <LogoStage color="#b4a67a">
+      <svg viewBox="0 0 40 28" className="logo-mark" role="img" aria-label="The DashHour logo">
+        <path
+          className="dashhour-body"
+          d="M4 2h19.5a3.5 3.5 0 0 0 2.5 3.354v17.292A3.5 3.5 0 0 0 23.5 26H4a3 3 0 0 1-3-3V5a3 3 0 0 1 3-3Z"
+          fill="#151a4f"
+        />
+        <path
+          className="dashhour-perforation"
+          d="M27 7.5v13"
+          fill="none"
+          stroke="#b4a67a"
+          strokeWidth="0.9"
+          strokeLinecap="round"
+          strokeDasharray="0.1 2.5"
+        />
+        <path
+          className="dashhour-stub"
+          d="M28 5.354A3.5 3.5 0 0 0 30.5 2H36a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3h-5.5a3.5 3.5 0 0 0-2.5-3.354Z"
+          fill="#b4a67a"
+        />
+        <path
+          className="dashhour-spark"
+          d="M39.5-6.5c.35 2.1.9 2.65 3 3-2.1.35-2.65.9-3 3-.35-2.1-.9-2.65-3-3 2.1-.35 2.65-.9 3-3Z"
+          fill="#b4a67a"
+        />
+      </svg>
+    </LogoStage>
+  );
+}
+
 /** A project's logo, drawn large and animated. Projects without one render nothing. */
 export function ProjectLogo({ slug }: { slug: string }) {
   switch (slug) {
+    case "dashhour":
+      return <DashhourLogo />;
     case "samsung-drs":
       return <SamsungDrsLogo />;
     case "layeris":

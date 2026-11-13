@@ -864,6 +864,118 @@ figcaption {
   }
 }
 
+/* DashHour: the ticket lands and its gold stub clips on; every six seconds
+   the stub tears along the perforation, a spark flashes, and it snaps back. */
+
+.dashhour-body,
+.dashhour-stub {
+  transform-box: view-box;
+}
+
+.dashhour-body {
+  transform-origin: 14px 14px;
+}
+
+/* The stub hinges at its lower notch. */
+.dashhour-stub {
+  transform-origin: 28px 24px;
+}
+
+.dashhour-perforation {
+  opacity: 0;
+}
+
+.dashhour-spark {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+
+.logo-stage[data-seen] .dashhour-body {
+  animation: dashhour-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+}
+
+.logo-stage[data-seen] .dashhour-stub {
+  animation:
+    dashhour-attach 1s cubic-bezier(0.3, 1.35, 0.5, 1) 0.5s backwards,
+    dashhour-tear 6s cubic-bezier(0.4, 0, 0.2, 1) 2.6s infinite;
+}
+
+.logo-stage[data-seen] .dashhour-perforation {
+  animation: dashhour-perforation 6s linear 2.6s infinite;
+}
+
+.logo-stage[data-seen] .dashhour-spark {
+  animation: dashhour-spark 6s ease-out 2.6s infinite;
+}
+
+@keyframes dashhour-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.92);
+  }
+}
+
+@keyframes dashhour-attach {
+  0% {
+    opacity: 0;
+    transform: translate(8px, -5px) rotate(24deg);
+  }
+  45% {
+    opacity: 1;
+  }
+}
+
+@keyframes dashhour-tear {
+  0%,
+  50% {
+    transform: none;
+  }
+  56% {
+    transform: rotate(-4deg);
+  }
+  64%,
+  78% {
+    transform: translate(3.2px, -1.6px) rotate(16deg);
+  }
+  71% {
+    transform: translate(3.6px, -2.4px) rotate(14deg);
+  }
+  87% {
+    transform: translate(-0.4px, 0) rotate(-2.5deg);
+  }
+  93% {
+    transform: rotate(1.2deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes dashhour-perforation {
+  0%,
+  58%,
+  88%,
+  100% {
+    opacity: 0;
+  }
+  64%,
+  80% {
+    opacity: 1;
+  }
+}
+
+@keyframes dashhour-spark {
+  0%,
+  86%,
+  100% {
+    transform: scale(0) rotate(0deg);
+  }
+  92% {
+    transform: scale(1) rotate(45deg);
+  }
+}
+
 /* Phones: one column, labels above their content. */
 
 @media (max-width: 640px) {

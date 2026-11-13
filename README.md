@@ -1,6 +1,6 @@
 # park.is
 
-Ye Joo Park's portfolio: five projects, each with a looping hero clip, a walkthrough video and screenshots, plus an
+Ye Joo Park's portfolio: six projects, each with a looping hero clip, a walkthrough video and screenshots, plus an
 About page. Built from the Claude Design file `Portfolio.dc.html`.
 
 It's a [vinext](https://github.com/cloudflare/vinext) app (the Next.js App Router API on Vite) deployed to Cloudflare
