@@ -65,7 +65,7 @@ export const samsungDrs: Project = {
       paragraphs: [
         "The defect list filters by scope, status and search, keeps its state in the URL, and can be driven entirely from the keyboard.",
       ],
-      spot: { file: "products/ps-c3150fr.webp", width: 197, height: 215 },
+      spot: { file: "gen/copier.webp", width: 457, height: 640 },
     },
     {
       type: "full",
