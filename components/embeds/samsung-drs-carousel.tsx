@@ -5,12 +5,20 @@ import styles from "./samsung-drs.module.css";
 import { productAlt, productSrc, ROWS, scale } from "./samsung-drs-products";
 
 /**
- * One of the demo's two rows of printers drifting slowly on one baseline, roughly to scale, like Tabbied's carousel:
- * right to left, or left to right with `reverse`. The row is drawn three times and moves by one copy, so two copies
- * always cover even a 2560px window and the loop has no seam; it pauses off screen. With reduced motion it is a row to
- * scroll.
+ * One of the demo's two rows of machines drifting slowly on one baseline, roughly to scale, like Tabbied's carousel:
+ * right to left, or left to right with `reverse`; `tall` gives the copiers a taller row. The row is drawn three times
+ * and moves by one copy, so two copies always cover even a 2560px window and the loop has no seam; it pauses off
+ * screen. With reduced motion it is a row to scroll.
  */
-export function ProductCarousel({ row, reverse = false }: { row: 0 | 1; reverse?: boolean }) {
+export function ProductCarousel({
+  row,
+  reverse = false,
+  tall = false,
+}: {
+  row: 0 | 1;
+  reverse?: boolean;
+  tall?: boolean;
+}) {
   const items = ROWS[row];
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -33,7 +41,7 @@ export function ProductCarousel({ row, reverse = false }: { row: 0 | 1; reverse?
   }, []);
 
   return (
-    <div ref={ref} className={styles.drift} data-playing={visible || undefined}>
+    <div ref={ref} className={styles.drift} data-playing={visible || undefined} data-tall={tall || undefined}>
       <ul
         className={styles.driftTrack}
         data-reverse={reverse || undefined}

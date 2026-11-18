@@ -76,7 +76,7 @@
 /* ---- The demo's machines (samsung-drs-carousel.tsx) ----
    One baseline, each machine at its share of the tallest one's height
    (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel;
-   the second row drifts the other way. */
+   the second row, the copiers, stands taller and drifts the other way. */
 
 .drift {
   --ch: clamp(84px, 9vw, 120px);
@@ -96,6 +96,16 @@
   list-style: none;
   animation: products-drift calc(var(--count) * 9s) linear infinite;
   animation-play-state: paused;
+}
+
+/* The copiers stand in a taller row; they are wider too, so a longer cycle
+   keeps the row at the same pace. */
+.drift[data-tall] {
+  --ch: clamp(110px, 12vw, 160px);
+}
+
+.drift[data-tall] .driftTrack {
+  animation-duration: calc(var(--count) * 11s);
 }
 
 .drift[data-playing] .driftTrack {

@@ -1,9 +1,9 @@
-// The demo's 29 desktop printers and multifunction printers (its floor-standing MultiXpress copiers left out), from
-// the samsung-drs-demo repository's public/products: generated stand-ins for the product shots, under the demo's
-// made-up "PS-" model numbers, with no logos. Trimmed to the machine (public/media/samsung-drs/products/) and shuffled
-// once into this order; alternate machines go to the page's two carousels.
+// The demo's 44 printers and copiers, from the samsung-drs-demo repository's public/products: generated stand-ins for
+// the product shots, under the demo's made-up "PS-" model numbers, with no logos. Trimmed to the machine
+// (public/media/samsung-drs/products/) and shuffled once into this order. The 29 desktop printers and multifunction
+// printers fill the page's first carousel; the 15 floor-standing MultiXpress copiers fill the second, at the foot.
 
-type Series = "Xpress" | "ProXpress";
+type Series = "Xpress" | "ProXpress" | "MultiXpress";
 
 /** A model: its id, series and kind as the demo lists them, and its image's size in pixels. */
 export type Product = { id: string; series: Series; kind: string; width: number; height: number };
@@ -38,25 +38,48 @@ const LIST: [string, Series, string, number, number][] = [
   ["PS-M4160FR", "ProXpress", "Mono laser MFP", 230, 215],
   ["PS-C1900W", "Xpress", "Color laser printer", 245, 215],
   ["PS-C2770FX", "ProXpress", "Color laser MFP", 205, 215],
+  ["PS-K4390LX", "MultiXpress", "Mono A3 copier", 140, 215],
+  ["PS-X7690LX", "MultiXpress", "Color A3 copier", 318, 215],
+  ["PS-X4340LX", "MultiXpress", "Color A3 copier", 141, 215],
+  ["PS-K7490LX", "MultiXpress", "Mono A3 copier", 210, 215],
+  ["PS-K4340RX", "MultiXpress", "Mono A3 copier", 140, 215],
+  ["PS-X7590LX", "MultiXpress", "Color A3 copier", 253, 215],
+  ["PS-K2290ND", "MultiXpress", "Mono A3 copier", 321, 212],
+  ["PS-X4390LX", "MultiXpress", "Color A3 copier", 175, 215],
+  ["PS-K4440LX", "MultiXpress", "Mono A3 copier", 130, 215],
+  ["PS-K7690LX", "MultiXpress", "Mono A3 copier", 301, 215],
+  ["PS-K7590LX", "MultiXpress", "Mono A3 copier", 173, 215],
+  ["PS-X3310NR", "MultiXpress", "Color A3 copier", 132, 215],
+  ["PS-X7490LX", "MultiXpress", "Color A3 copier", 209, 215],
+  ["PS-X4310RX", "MultiXpress", "Color A3 copier", 130, 215],
+  ["PS-X3370NR", "MultiXpress", "Color A3 copier", 131, 215],
 ];
 
-export const PRODUCTS: Product[] = LIST.map(([id, series, kind, width, height]) => ({ id, series, kind, width, height }));
+export const PRODUCTS: Product[] = LIST.map(([id, series, kind, width, height]) => ({
+  id,
+  series,
+  kind,
+  width,
+  height,
+}));
 
 export const productSrc = (p: Product) => `/media/samsung-drs/products/${p.id.toLowerCase()}.webp`;
 
 export const productAlt = (p: Product) => `${p.id}, a ${p.series} ${p.kind.replace(/^\w/, (c) => c.toLowerCase())}`;
 
-/** The two carousels' machines: alternate ones from the list, so each row mixes sizes. */
+/** The two carousels' machines: the desktop printers, then the floor-standing copiers. */
 export const ROWS: [Product[], Product[]] = [
-  PRODUCTS.filter((_, i) => i % 2 === 0),
-  PRODUCTS.filter((_, i) => i % 2 === 1),
+  PRODUCTS.filter((p) => p.series !== "MultiXpress"),
+  PRODUCTS.filter((p) => p.series === "MultiXpress"),
 ];
 
 /**
- * Height as a share of the tallest machine's, roughly to scale: a ProXpress MFP is the tallest, and a compact Xpress
- * printer stands at about two thirds of it. Every image fills its own height, so this sets the size.
+ * Height as a share of its row's tallest machine, roughly to scale. Among the desktop machines a ProXpress MFP is the
+ * tallest and a compact Xpress printer stands at about two thirds of it; the copiers, in a taller row of their own,
+ * all stand full height. Every image fills its own height, so this sets the size.
  */
 export function scale(p: Product) {
+  if (p.series === "MultiXpress") return 1;
   const mfp = p.kind.includes("MFP");
   if (p.series === "ProXpress") return mfp ? 1 : 0.78;
   return mfp ? 0.81 : 0.66;

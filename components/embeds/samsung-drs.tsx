@@ -11,5 +11,5 @@ export const embeds: Record<string, () => React.ReactNode> = {
   "art-reviews": () => <ArtPair pair="reviews" />,
   "art-more": () => <ArtPair pair="more" />,
   "product-carousel": () => <ProductCarousel row={0} />,
-  "product-carousel-reverse": () => <ProductCarousel row={1} reverse />,
+  "product-carousel-reverse": () => <ProductCarousel row={1} reverse tall />,
 };
