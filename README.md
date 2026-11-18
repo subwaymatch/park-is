@@ -1,6 +1,6 @@
 # park.is
 
-Ye Joo Park's portfolio: six projects, each with a looping hero clip, a walkthrough video and screenshots, plus an
+Ye Joo Park's portfolio: seven projects, most with a looping hero clip, a walkthrough video and screenshots, plus an
 About page. Built from the Claude Design file `Portfolio.dc.html`.
 
 It's a [vinext](https://github.com/cloudflare/vinext) app (the Next.js App Router API on Vite) deployed to Cloudflare
@@ -17,12 +17,23 @@ Workers. Every page is prerendered at build time and served from Workers Static 
 Each project's page is written in `lib/content/<slug>.ts`: a summary, a few facts, then a list of sections (text,
 figures, an animated logo for some, and live embeds). The types are in `lib/projects.ts`. Styles are in
 `app/globals.css`, and the logos in `components/project-logo.tsx`. The home page is a grid of those logos, two to a
-row on tablets and desktops and one on phones; every project needs one there, even if its page doesn't show it.
+row on tablets and desktops and one on phones; every project needs one there, even if its page doesn't show it. With
+an odd number of projects the last card takes a whole row.
+
+On hover (or keyboard focus) each logo on the home page makes a move of its own: Tabbied's halves swing open,
+Dataslope's slopes steepen, the React 3D Mockups stack comes apart, layeris fans out, the Samsung DRS sheets part,
+DashHour's stub tears off along its perforation, and Park draws in the strokes it leaves out. These are transitions
+on `translate` and `rotate`, which add to the `transform` the idle loops animate; they are at the end of the Logos
+section of `app/globals.css`, and apply only to a pointer that can hover, without reduced motion.
+
+The Park wordmark is vector: `components/park-mark.tsx` holds each letter's outline and the single line it is drawn
+with, redrawn from the old 200 × 61 PNG. The header uses it inline, in the header's ink, and
+`public/images/park-logo.svg` is the same outline as a file.
 
 An `embed` block renders a live component by name from `components/embeds/<slug>.tsx`, optionally full-bleed: Tabbied
 patterns drawn by the `tabbied` package, layeris before/after sliders and blend grids, React 3D Mockups scenes
-rendered by `react-3d-mockups`, and DashHour's generated sketches, illustrations and branch scenes (in
-`public/media/dashhour/gen/`). Their styles are CSS modules beside them, imported by a module that exports the
+rendered by `react-3d-mockups`, DashHour's generated sketches, illustrations and branch scenes (in
+`public/media/dashhour/gen/`), and all of Park's figures, which are drawn from the wordmark's outlines. Their styles are CSS modules beside them, imported by a module that exports the
 components using them: the build links a page's CSS only through exported components. The 3D scenes load three.js
 lazily, only on that page and only as a scene nears the viewport.
 
@@ -39,6 +50,9 @@ Each project has a folder in `public/media/<slug>/`:
 A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920×1080), `tall` 4:3 (1920×1440),
 `phone` 4:5 (a phone screen on the page's surface colour, 1200×1500 or 1600×2000). Phone shots already sit on the
 surface colour, so their frames have no hairline edge.
+
+Park has no site to record, so it has no clips: `heroEmbed` in its content file names a live component that fills the
+hero instead, and its folder holds only `og.jpg`, the Open Graph image.
 
 The videos are H.264 with no audio track, recorded from the live sites with Playwright. Loops play only while on
 screen, and not at all when the visitor prefers reduced motion. Their posters load as they near the viewport, since a

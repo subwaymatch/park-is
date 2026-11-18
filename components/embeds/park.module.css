@@ -1,0 +1,447 @@
+/* Park's figures (park-art.tsx): everything is drawn from the wordmark's
+   outlines, white on the brand's black, apart from the construction sheet,
+   which is ink on the page's surface colour. Animations start when a figure
+   is first on screen (`data-seen`) and pause off it (`data-visible`); see
+   park-stage.tsx. With reduced motion, or without JavaScript, neither is set
+   and each figure shows its finished state. */
+
+.hero,
+.strokes,
+.studies li svg,
+.light {
+  background: #0c0c0c;
+}
+
+.hero :where(*),
+.strokes :where(*),
+.construction :where(*),
+.studies :where(*) {
+  animation-play-state: paused;
+}
+
+.hero[data-visible] *,
+.strokes[data-visible] *,
+.construction[data-visible] *,
+.studies[data-visible] * {
+  animation-play-state: running;
+}
+
+/* A letter's line: wide enough to cover its outline, which clips it. */
+.line,
+.trace {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 9;
+  stroke-miterlimit: 20;
+}
+
+@keyframes draw {
+  from {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Hero: fills the project page's hero in place of a clip. The mark sits in
+   the middle, drawn on once; behind it streaks of light cross from left to
+   right, each a blurred band that starts off one edge and leaves by the
+   other. */
+
+.hero {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.heroMark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(168px, 24vw, 340px);
+  height: auto;
+  translate: -50% -50%;
+}
+
+.hero[data-ready]:not([data-seen]) .heroMark {
+  visibility: hidden;
+}
+
+.hero[data-seen] .line {
+  animation: draw 1.3s cubic-bezier(0.65, 0, 0.2, 1) calc(0.3s + var(--i) * 0.26s) backwards;
+}
+
+.streaks {
+  position: absolute;
+  inset: 0;
+}
+
+/* Each streak is a row as wide as the hero with its band at the left end, so
+   sliding the row by its own width carries the band right across. */
+.streaks span {
+  position: absolute;
+  left: 0;
+  top: var(--top);
+  width: 100%;
+  height: max(1px, var(--height));
+  /* Short fades at each end: a long one at so low an opacity shows as steps. */
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / var(--opacity)) 12%, rgb(255 255 255 / var(--opacity)) 88%, transparent)
+    no-repeat left / var(--length) 100%;
+  filter: blur(var(--blur));
+  transform: translateX(var(--rest));
+}
+
+.hero[data-seen] .streaks span {
+  animation: streak var(--seconds) linear var(--start) infinite;
+}
+
+@keyframes streak {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Strokes: the letters faint, then each traced by its line in turn; the
+   omitted strokes dashed beside them. */
+
+.strokes,
+.construction,
+.light {
+  aspect-ratio: 16 / 7;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.strokes svg,
+.construction svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.faint {
+  fill: rgb(255 255 255 / 0.12);
+}
+
+.omitted path {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.38);
+  stroke-width: 0.45;
+  stroke-dasharray: 1.4 1.4;
+}
+
+.note,
+.labels text {
+  font-family: var(--mono);
+  font-size: 4.2px;
+  letter-spacing: 0;
+}
+
+.note {
+  fill: rgb(255 255 255 / 0.5);
+}
+
+/* Nine seconds a round: a letter is drawn, holds, and fades, each a little
+   after the one before it. */
+.strokes[data-seen] .trace {
+  animation: trace 9s cubic-bezier(0.65, 0, 0.2, 1) calc(var(--i) * 0.9s) infinite backwards;
+}
+
+@keyframes trace {
+  0% {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    opacity: 1;
+  }
+  16%,
+  72% {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  84%,
+  100% {
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+/* Construction: ink on the surface colour, like a drawing on paper. */
+
+.construction {
+  background: var(--surface);
+}
+
+.ink {
+  fill: var(--ink);
+}
+
+.guides :is(path, ellipse),
+.angles path {
+  fill: none;
+  stroke: rgb(27 27 25 / 0.3);
+  stroke-width: 0.25;
+}
+
+.angles path {
+  stroke: rgb(27 27 25 / 0.6);
+}
+
+.labels text {
+  fill: var(--ink-3);
+  font-size: 3.6px;
+}
+
+.construction[data-seen] .guides :is(path, ellipse) {
+  animation: draw 1.6s cubic-bezier(0.65, 0, 0.2, 1) calc(0.1s + var(--i) * 0.07s) backwards;
+}
+
+/* Studies: six plates, three across (two on phones), a name under each. */
+
+.defs {
+  position: absolute;
+}
+
+.studies ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plate {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.plate svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  fill: #ffffff;
+}
+
+.plate span {
+  color: var(--ink-3);
+}
+
+/* Echo: every copy sits further out than the last; the trails stretch and
+   draw back in. */
+.echo {
+  translate: calc(var(--i) * var(--dir) * 4px) 0;
+}
+
+.studies[data-seen] .echo {
+  animation: echo 6s ease-in-out infinite alternate;
+}
+
+@keyframes echo {
+  from {
+    translate: calc(var(--i) * var(--dir) * 0.6px) 0;
+  }
+  to {
+    translate: calc(var(--i) * var(--dir) * 5.2px) 0;
+  }
+}
+
+/* Monogram: outlines, each letter filling for a moment in turn. */
+.monogram {
+  fill: #ffffff;
+  fill-opacity: 0.07;
+  stroke: rgb(255 255 255 / 0.85);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.studies[data-seen] .monogram {
+  animation: monogram 8s ease-in-out calc(var(--i) * 2s) infinite;
+}
+
+@keyframes monogram {
+  0%,
+  30%,
+  100% {
+    fill-opacity: 0.04;
+  }
+  8%,
+  20% {
+    fill-opacity: 0.9;
+  }
+}
+
+.hair :is(path, ellipse) {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.4);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.ground {
+  fill: #0c0c0c;
+}
+
+.studies[data-seen] .weave {
+  animation: weave 5.6s ease-in-out calc(var(--i) * -0.7s) infinite;
+}
+
+@keyframes weave {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.16;
+  }
+}
+
+/* Unrolled: the bars rise from the baseline, one after another. */
+.bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+}
+
+.notch {
+  fill: #0c0c0c;
+}
+
+.studies[data-seen] .bar {
+  animation: rise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.2s + var(--i) * 0.12s) backwards;
+}
+
+@keyframes rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+/* Stationery: a flat lay drawn at 1600 × 900, the full width of the window. */
+
+.stationery {
+  background: #171717;
+}
+
+.stationery svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.white {
+  fill: rgb(255 255 255 / 0.88);
+}
+
+.dim {
+  fill: rgb(255 255 255 / 0.4);
+}
+
+.gloss {
+  fill: #080808;
+}
+
+/* Gloss: the mark is gloss black on matt black. A light falls on the panel
+   at (--park-lx, --park-ly): the paper barely takes it and the mark, cut out
+   with the wordmark as a mask, takes it brightly. The light drifts until a
+   pointer comes to carry it. The properties are registered so they animate. */
+
+@property --park-lx {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+@property --park-ly {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 50%;
+}
+
+.light {
+  --park-lx: 50%;
+  --park-ly: 50%;
+  position: relative;
+  background: radial-gradient(circle 52vw at var(--park-lx) var(--park-ly), #242424, #1c1c1c 22%, #151515 44%, #101010 66%, #0c0c0c);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.light[data-pointer] {
+  animation: none;
+}
+
+.lightMark {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 30vw at var(--park-lx) var(--park-ly), #9a9a9a, #3a3a3a 40%, #040404 78%);
+  -webkit-mask: url("/images/park-logo.svg") center / 34% auto no-repeat;
+  mask: url("/images/park-logo.svg") center / 34% auto no-repeat;
+}
+
+@keyframes drift {
+  0% {
+    --park-lx: 12%;
+    --park-ly: 30%;
+  }
+  50% {
+    --park-lx: 56%;
+    --park-ly: 72%;
+  }
+  100% {
+    --park-lx: 90%;
+    --park-ly: 34%;
+  }
+}
+
+@media (max-width: 640px) {
+  .strokes,
+  .construction,
+  .light {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* The drawings are wider than a phone's 4:3 frame, so they keep their
+     shape in the middle of it; their hairlines and notes are drawn heavier
+     to stay legible. */
+  .guides :is(path, ellipse),
+  .angles path {
+    stroke-width: 0.5;
+  }
+
+  .omitted path {
+    stroke-width: 0.7;
+  }
+
+  .note {
+    font-size: 7px;
+  }
+
+  .labels text {
+    font-size: 6.4px;
+  }
+
+  .studies ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+  }
+
+  .lightMark {
+    -webkit-mask-size: 56% auto;
+    mask-size: 56% auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light {
+    animation: none;
+  }
+}

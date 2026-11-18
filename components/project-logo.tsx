@@ -1,4 +1,5 @@
 import { LogoStage } from "./logo-stage";
+import { PARK_HEIGHT, PARK_LETTERS, PARK_LINES, PARK_OMITTED, PARK_OUTLINES, PARK_WIDTH } from "./park-mark";
 
 // Each mark is the project's own SVG, split into the parts that move. The
 // animations live in app/globals.css under "Logos".
@@ -198,6 +199,37 @@ function DashhourLogo() {
   );
 }
 
+/**
+ * Park: each letter is one line, and draws itself on in a single stroke: a wide stroke along the letter's middle,
+ * clipped to its outline. Hairlines stand ready for the strokes the mark leaves out (the close of P's bowl, A's
+ * crossbar, the stems of R and K); the home page draws them in on hover.
+ */
+function ParkLogo() {
+  return (
+    <LogoStage color="#ffffff">
+      <svg viewBox={`0 0 ${PARK_WIDTH} ${PARK_HEIGHT}`} className="logo-mark" role="img" aria-label="The Park logo">
+        <defs>
+          {PARK_LETTERS.map((l) => (
+            <clipPath key={l} id={`park-clip-${l}`}>
+              <path d={PARK_OUTLINES[l]} />
+            </clipPath>
+          ))}
+        </defs>
+        <g fill="none" stroke="#ffffff">
+          {PARK_OMITTED.map((o, i) => (
+            <path key={o.d} className="park-omitted" d={o.d} pathLength={1} style={{ "--i": i } as React.CSSProperties} />
+          ))}
+          {PARK_LETTERS.map((l, i) => (
+            <g key={l} clipPath={`url(#park-clip-${l})`}>
+              <path className="park-line" d={PARK_LINES[l]} pathLength={1} style={{ "--i": i } as React.CSSProperties} />
+            </g>
+          ))}
+        </g>
+      </svg>
+    </LogoStage>
+  );
+}
+
 /** A project's logo, drawn large and animated. Projects without one render nothing. */
 export function ProjectLogo({ slug }: { slug: string }) {
   switch (slug) {
@@ -213,6 +245,8 @@ export function ProjectLogo({ slug }: { slug: string }) {
       return <DataslopeLogo />;
     case "react-3d-mockups":
       return <React3dMockupsLogo />;
+    case "park":
+      return <ParkLogo />;
     default:
       return null;
   }

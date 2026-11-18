@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ArrowUpRightIcon, CloseIcon, MenuIcon } from "./icons";
+import { ParkWordmark } from "./park-mark";
 
 const GITHUB = "https://github.com/subwaymatch";
 
@@ -14,8 +15,9 @@ const SECTIONS = [
   { id: "about", href: "/about", label: "About" },
 ] as const;
 
+/** The wordmark, inline so it takes the header's ink: dark on the page, white over a dark hero. */
 function Logo() {
-  return <img src="/images/park-logo.png" alt="Park" width={200} height={61} className="site-logo-img" />;
+  return <ParkWordmark className="site-logo-img" label="Park" />;
 }
 
 /**
