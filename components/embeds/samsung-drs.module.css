@@ -80,7 +80,7 @@
 
 .drift {
   --ch: clamp(84px, 9vw, 120px);
-  --fade: clamp(48px, 10vw, 200px);
+  --fade: clamp(64px, 20vw, 360px);
   overflow: hidden;
   /* The row fades out at both ends of the window. */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
