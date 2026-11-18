@@ -1,0 +1,129 @@
+name: Preview comment
+
+# Comments a pull request's Cloudflare preview URLs, without relying on Cloudflare's own comment.
+#
+# Workers Builds deploys a Preview of every push to a branch other than main and reports it as a check run on the
+# commit ("Workers Builds: park-is"). This workflow waits for that check on the pull request's head commit, reads the
+# Preview's name from the check's dashboard link, and creates one comment with the Preview URLs and the build's
+# result, editing the same comment on later pushes. It uses only the workflow's GitHub token: no Cloudflare
+# credentials.
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  checks: read
+  pull-requests: write
+
+# A newer push replaces a run still waiting on an older commit's build.
+concurrency:
+  group: preview-comment-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  CHECK_NAME: "Workers Builds: park-is"
+  WORKER: park-is
+  CUSTOM_DOMAIN: park.is
+  WORKERS_DEV: subwaymatch.workers.dev
+  # The hidden line that marks this workflow's comment, so later runs edit it instead of adding another.
+  MARKER: "<!-- preview-comment -->"
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Wait for the Workers Build
+        id: build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          deadline=$(( $(date +%s) + 20 * 60 ))
+          run=""
+          while :; do
+            # The check appears once the build has finished; until then there is nothing to read.
+            run=$(gh api "repos/$REPO/commits/$SHA/check-runs?check_name=$(jq -rn --arg n "$CHECK_NAME" '$n|@uri')&filter=latest" \
+              --jq '[.check_runs[] | select(.status == "completed")][0] // empty' || true)
+            [ -n "$run" ] && break
+            if [ "$(date +%s)" -ge "$deadline" ]; then
+              echo "No completed \"$CHECK_NAME\" check on $SHA after 20 minutes."
+              break
+            fi
+            sleep 15
+          done
+
+          if [ -n "$run" ]; then
+            conclusion=$(jq -r '.conclusion // "unknown"' <<<"$run")
+            check_url=$(jq -r '.html_url // ""' <<<"$run")
+            # The dashboard link reads .../previews/<preview name>/builds/<id>. It comes from Cloudflare's app, so
+            # only a plain DNS label is taken from it.
+            name=$(jq -r '.details_url // ""' <<<"$run" | sed -n 's#.*/previews/\([a-z0-9-]\{1,63\}\)/builds/.*#\1#p')
+          else
+            conclusion="missing"
+            check_url=""
+            name=""
+          fi
+
+          # Without a link to read, derive the name the way Workers Builds does for short branch names.
+          if [ -z "$name" ]; then
+            name=$(printf '%s' "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g; s/--*/-/g; s/^-//; s/-$//' | cut -c1-63)
+          fi
+
+          {
+            echo "conclusion=$conclusion"
+            echo "check_url=$check_url"
+            echo "name=$name"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Post or update the comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          NAME: ${{ steps.build.outputs.name }}
+          CONCLUSION: ${{ steps.build.outputs.conclusion }}
+          CHECK_URL: ${{ steps.build.outputs.check_url }}
+        run: |
+          set -euo pipefail
+          short=${SHA:0:7}
+          preview="https://$NAME.$CUSTOM_DOMAIN"
+          workers_dev="https://$NAME-$WORKER.$WORKERS_DEV"
+
+          case "$CONCLUSION" in
+            success) build="Deployed" ;;
+            missing) build="No build reported after 20 minutes" ;;
+            failure) build="Failed: the Preview still serves the last successful deployment" ;;
+            *) build="Not deployed (${CONCLUSION//_/ }): the Preview still serves the last successful deployment" ;;
+          esac
+          [ -n "$CHECK_URL" ] && build="$build ([details]($CHECK_URL))"
+
+          body=$(cat <<EOF
+          $MARKER
+          ### Preview
+
+          | | |
+          | --- | --- |
+          | **Preview** | $preview |
+          | **workers.dev** | $workers_dev |
+          | **Commit** | \`$short\` |
+          | **Build** | $build |
+
+          The Preview URL always serves this branch's latest deployment. Updated $(date -u '+%Y-%m-%d %H:%M') UTC.
+          EOF
+          )
+
+          existing=$(gh api --paginate "repos/$REPO/issues/$PR/comments" \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | contains(\"$MARKER\"))) | .id" | head -n 1)
+          if [ -n "$existing" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$existing" -f body="$body" > /dev/null
+            echo "Updated comment $existing"
+          else
+            gh api "repos/$REPO/issues/$PR/comments" -f body="$body" > /dev/null
+            echo "Posted a new comment"
+          fi
