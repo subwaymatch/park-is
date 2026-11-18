@@ -15,7 +15,7 @@ export const dashhour: Project = {
   ],
   facts: [
     ["Award", "1st place, BlueHack, a hackathon hosted by Samsung Electronics (2016)"],
-    ["Team", "Bolim Lee, Team Lead\nYe Joo Park, Developer\nA product manager and a marketer"],
+    ["Team", "Bolim Lee, Team Lead & Designer\nYe Joo Park, Developer\nA product manager and a marketer"],
   ],
   sections: [
     { type: "embed", name: "origin" },
