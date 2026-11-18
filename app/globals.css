@@ -528,10 +528,14 @@ figcaption {
   gap: 12px;
 }
 
+/* A badge fits a 36 x 104px box at its own proportions: a square award
+   badge stands 36px tall, a wordmark lies 104px wide. */
 .fact-badge {
   flex: none;
   width: auto;
-  height: 36px;
+  height: auto;
+  max-width: 104px;
+  max-height: 36px;
   margin-block: calc((1lh - 36px) / 2);
 }
 

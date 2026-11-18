@@ -14,7 +14,11 @@ export const dashhour: Project = {
     "It began as six pages of pen sketches at a 2016 hackathon hosted by Samsung Electronics, and won first place.",
   ],
   facts: [
-    ["Award", "1st place, BlueHack, a hackathon hosted by Samsung Electronics (2016)"],
+    [
+      "Award",
+      "1st place, BlueHack, a hackathon hosted by Samsung Electronics (2016)",
+      { file: "samsung-wordmark.svg", width: 7051, height: 1080 },
+    ],
     ["Team", "Bolim Lee, Team Lead & Designer\nYe Joo Park, Developer\nA product manager and a marketer"],
   ],
   sections: [
