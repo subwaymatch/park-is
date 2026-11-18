@@ -183,7 +183,7 @@
   fill: var(--ink);
 }
 
-.guides :is(path, ellipse),
+.guides path,
 .angles path {
   fill: none;
   stroke: rgb(27 27 25 / 0.3);
@@ -199,7 +199,7 @@
   font-size: 3.6px;
 }
 
-.construction[data-seen] .guides :is(path, ellipse) {
+.construction[data-seen] .guides path {
   animation: draw 1.6s cubic-bezier(0.65, 0, 0.2, 1) calc(0.1s + var(--i) * 0.07s) backwards;
 }
 
@@ -281,7 +281,7 @@
   }
 }
 
-.hair :is(path, ellipse) {
+.hair path {
   fill: none;
   stroke: rgb(255 255 255 / 0.4);
   stroke-width: 1px;
@@ -412,7 +412,7 @@
   /* The drawings are wider than a phone's 4:3 frame, so they keep their
      shape in the middle of it; their hairlines and notes are drawn heavier
      to stay legible. */
-  .guides :is(path, ellipse),
+  .guides path,
   .angles path {
     stroke-width: 0.5;
   }

@@ -11,6 +11,7 @@ export const park: Project = {
     "It was published in January 2014 and featured in Behance’s Branding gallery that October.",
   ],
   facts: [
+    ["Typeface", "Cut from DIN"],
     ["Featured", "Behance, Branding gallery, 5 October 2014"],
     [
       "Note",
@@ -29,15 +30,16 @@ export const park: Project = {
       type: "text",
       label: "Mark",
       paragraphs: [
-        "Each letter keeps only what is needed to read it. P is a stem and the start of a bowl; A is two legs; R is a bar, a bowl and a leg with nothing to stand against; K is a single bend.",
-        "The lines look even, but they are not quite: the horizontals are a little lighter than the stems, the bowls are slightly oval, and A’s legs thin towards its apex.",
+        "The letters are cut from DIN, and each keeps only what is needed to read it. P is a stem and the start of a bowl; A is two legs; R is a bar, a bowl and a leg with nothing to stand against; K is a single bend.",
+        "R loses its stem to one straight cut: the outer edge of its leg, run on up through the end of the top bar.",
+        "The lines look even, but they are not quite. As in DIN, the horizontals are a little lighter than the stems, and a bowl is straight runs joined by round corners, not a circle.",
       ],
     },
     {
       type: "embed",
       name: "construction",
       caption:
-        "The construction: the lines each letter lies on, run out past it, and the ovals the two bowls are cut from. The mark is a little over three times as wide as it is tall.",
+        "The construction: the lines each letter lies on, run out past it, the curves of the two bowls carried all the way round, and the one cut that takes R’s stem. The mark is a little over three times as wide as it is tall.",
     },
     {
       type: "text",

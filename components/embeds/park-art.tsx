@@ -133,32 +133,47 @@ function through([ax, ay]: [number, number], [bx, by]: [number, number], y0: num
 }
 
 const APEX: [number, number] = [78.49, 0.15];
-const WAIST: [number, number] = [131.83, 30.82];
+/** R's one straight cut: the outer edge of its leg, which runs on up through the left end of the top bar. */
+const CUT: [[number, number], [number, number]] = [
+  [113.39, 0],
+  [144.58, 61],
+];
+/** The inner edge of R's leg. */
+const LEG: [[number, number], [number, number]] = [
+  [135.56, 32.87],
+  [149.88, 61],
+];
 const VERTEX: [number, number] = [176.13, 30.73];
 
 /** The lines the letters lie on, run out to the edges of the sheet. */
 const GUIDES = [
   "M-34 0H234",
   "M-34 61H234",
-  "M2.4 -30V91",
-  "M-34 2.25H234",
-  "M-34 30.82H234",
+  "M2.36 -30V91",
+  "M-34 2.1H234",
+  "M-34 30.78H234",
   through([56.59, 61], APEX, -30, 91),
   through([100.38, 61], APEX, -30, 91),
-  through(WAIST, [147.28, 61], -30, 91),
+  through(...CUT, -30, 91),
   through([197.23, 0], VERTEX, -30, 91),
   through(VERTEX, [197.21, 61], -30, 91),
 ];
 
-/** The ovals the two bowls are cut from: centre and radii of each one's outer and inner edge. */
-const BOWLS: [cx: number, cy: number, rx: number, ry: number][] = [
-  [24.92, 14, 15.43, 13.63],
-  [24.81, 14.85, 10.9, 10.73],
-  [133.63, 16.48, 15.95, 16.43],
-  [133.18, 16.5, 11.95, 12.25],
-];
+/** An oval as a path. */
+const oval = (cx: number, cy: number, rx: number, ry: number) => `M${n(cx - rx)} ${cy}a${rx} ${ry} 0 1 0 ${n(2 * rx)} 0a${rx} ${ry} 0 1 0 ${n(-2 * rx)} 0Z`;
 
-/** The construction: the mark in ink, the lines and ovals it is built on run out around it, and its three angles. */
+/** A round-cornered loop, as DIN draws a bowl: two half circles of radius r about x = cx, a straight between them. */
+const loop = (cx: number, r: number, top: number, bottom: number) =>
+  `M${cx} ${top}A${r} ${r} 0 0 1 ${n(cx + r)} ${n(top + r)}V${n(bottom - r)}A${r} ${r} 0 0 1 ${cx} ${bottom}` +
+  `A${r} ${r} 0 0 1 ${n(cx - r)} ${n(bottom - r)}V${n(top + r)}A${r} ${r} 0 0 1 ${cx} ${top}Z`;
+
+/** R's bowl carried all the way round: its outer and inner edge. */
+const R_BOWL = [loop(133.69, 15.68, 0, 32.87), loop(133.33, 11.67, 4.25, 28.69)];
+
+/** The curves of the two bowls carried all the way round: the ovals of P's corner, then R's loops. */
+const BOWLS = [oval(24.64, 14.13, 15.58, 14.13), oval(24.68, 14.86, 11.06, 10.73), ...R_BOWL];
+
+/** The construction: the mark in ink, the lines and curves it is built on run out around it, and its three angles. */
 export function Construction() {
   return (
     <Stage className={styles.construction}>
@@ -167,22 +182,22 @@ export function Construction() {
           {GUIDES.map((d, i) => (
             <path key={d} d={d} pathLength={1} style={vars({ "--i": i })} />
           ))}
-          {BOWLS.map(([cx, cy, rx, ry], i) => (
-            <ellipse key={i} cx={cx} cy={cy} rx={rx} ry={ry} pathLength={1} style={vars({ "--i": GUIDES.length + i })} />
+          {BOWLS.map((d, i) => (
+            <path key={d} d={d} pathLength={1} style={vars({ "--i": GUIDES.length + i })} />
           ))}
         </g>
         <path className={styles.ink} d={PARK_OUTLINE} />
         <g className={styles.angles}>
-          {/* A's apex, R's leg on the baseline, and the opening of K. */}
+          {/* A's apex, R's cut on the baseline, and the opening of K. */}
           <path d="M75.45 8.62A9 9 0 0 0 81.53 8.62" />
-          <path d="M139.28 61A8 8 0 0 1 143.64 53.88" />
+          <path d="M136.58 61A8 8 0 0 1 140.94 53.88" />
           <path d="M180.67 24.15A8 8 0 0 1 180.67 37.31" />
         </g>
         <g className={styles.labels}>
           <text x="78.49" y="27" textAnchor="middle">
             40°
           </text>
-          <text x="137.2" y="56.6" textAnchor="end">
+          <text x="134.6" y="56.6" textAnchor="end">
             63°
           </text>
           <text x="186.2" y="31.9">
@@ -259,17 +274,18 @@ function Monogram() {
   );
 }
 
-/** Extended: the R alone, with every line and oval it is made of run out to the edges of the sheet. */
+/** Extended: the R alone, with every line and curve it is made of run out to the edges of the sheet. */
 function Extended() {
   return (
-    <Plate name="Extended" label="The letter R with its lines and ovals run out to the edges">
+    <Plate name="Extended" label="The letter R with its lines and curves run out to the edges">
       <g transform={stand("R", 46, 96, 54)}>
         <g className={styles.hair}>
-          <path d="M-200 2.15H400M-200 30.82H400" />
-          <path d={through(WAIST, [147.28, 61], -200, 300)} />
-          <path d={through([113.4, 0], [115.38, 4.25], -200, 300)} />
-          <ellipse cx="133.63" cy="16.48" rx="15.95" ry="16.43" />
-          <ellipse cx="133.18" cy="16.5" rx="11.95" ry="12.25" />
+          <path d="M-200 2.12H400M-200 30.78H400" />
+          <path d={through(...CUT, -200, 300)} />
+          <path d={through(...LEG, -200, 300)} />
+          {R_BOWL.map((d) => (
+            <path key={d} d={d} />
+          ))}
         </g>
         <use href={use("R")} />
       </g>
@@ -326,9 +342,9 @@ function Weave() {
  * and leg for R; two arms for K. In the wordmark's units.
  */
 const LENGTHS: Record<ParkLetter, number[]> = {
-  P: [58.75, 22.47, 19.9, 3.64],
+  P: [58.94, 22.3, 20.23, 3.75],
   A: [64.67, 64.67],
-  R: [18.5, 44.44, 1.57, 33.9],
+  R: [19.04, 44.29, 1.69, 33.92],
   K: [37.28, 36.89],
 };
 
