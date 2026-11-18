@@ -4,7 +4,6 @@ export const layeris: Project = {
   slug: "layeris",
   name: "layeris",
   year: "2019",
-  revived: "2026",
   tagline: "Photoshop-style blend modes, adjustments and curves for Python.",
   links: [
     { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
