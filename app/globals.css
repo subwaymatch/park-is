@@ -528,15 +528,28 @@ figcaption {
   gap: 12px;
 }
 
-/* A badge fits a 36 x 104px box at its own proportions: a square award
-   badge stands 36px tall, a wordmark lies 104px wide. */
+/* A badge fits a 36 x 88px box at its own proportions: a square award
+   badge stands 36px tall, a wordmark lies 88px wide. */
 .fact-badge {
   flex: none;
   width: auto;
   height: auto;
-  max-width: 104px;
+  max-width: 88px;
   max-height: 36px;
   margin-block: calc((1lh - 36px) / 2);
+}
+
+/* Phones: the badge on a line of its own, over the text. */
+@media (max-width: 640px) {
+  .fact-badged {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .fact-badge {
+    margin-block: 0;
+  }
 }
 
 /* A link with a note after it, such as "Archive" on an old profile. */
