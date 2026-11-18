@@ -16,7 +16,11 @@ export const layeris: Project = {
   ],
   facts: [
     ["Stack", "Python 3.10+, NumPy, Pillow and Requests"],
-    ["Award", "2nd place (Gold Prize, NIPA President’s Award), 2019 Open Source Software Developer Competition"],
+    [
+      "Award",
+      "2nd place (Gold Prize, [NIPA](https://www.nipa.kr/eng/) President’s Award), 2019 Open Source Software Developer Competition",
+      { file: "nipa-logo.svg", width: 207, height: 107 },
+    ],
     ["License", "MIT"],
   ],
   sections: [

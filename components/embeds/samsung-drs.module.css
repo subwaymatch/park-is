@@ -120,3 +120,89 @@
   height: clamp(220px, 26vw, 320px);
   margin: 0 auto;
 }
+
+/* ---- Remembered things (samsung-drs-memories.ts) ----
+   Every drawing gets about the same area (fit()), standing on the row's
+   baseline. The carousel drifts like Tabbied's; the grid closes the page,
+   six across, three on phones. */
+
+.drift {
+  --ch: clamp(120px, 14vw, 190px);
+  overflow: hidden;
+}
+
+.driftTrack {
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: memories-drift calc(var(--count) * 7s) linear infinite;
+  animation-play-state: paused;
+}
+
+.drift[data-playing] .driftTrack {
+  animation-play-state: running;
+}
+
+/* Spacing by padding, not gap, so half the track is exactly one copy. */
+.driftTrack li {
+  flex: none;
+  padding-right: clamp(32px, 4vw, 56px);
+}
+
+.driftTrack img {
+  display: block;
+  width: auto;
+  height: calc(var(--ch) * var(--k));
+}
+
+@keyframes memories-drift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift {
+    overflow-x: auto;
+  }
+
+  .driftTrack {
+    animation: none;
+    padding-left: 24px;
+  }
+
+  .driftTrack li[data-copy] {
+    display: none;
+  }
+}
+
+.memories {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 32px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.memories li {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+.memories img {
+  display: block;
+  height: auto;
+}
+
+@media (max-width: 640px) {
+  .memories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 16px;
+  }
+}
