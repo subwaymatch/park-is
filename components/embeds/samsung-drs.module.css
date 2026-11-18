@@ -149,19 +149,19 @@
   }
 }
 
-/* ---- Illustrations on trial (samsung-drs-art.tsx) ----
-   Pairs on one baseline, centred, each at its share of a square box so the
-   two carry about the same weight. */
+/* ---- Isometric illustrations (samsung-drs-art.tsx) ----
+   Rows of three on one baseline, centred, each at its share of a square box
+   so the three carry about the same weight. Three across on phones too. */
 
-.artPair {
-  --box: clamp(140px, 22vw, 280px);
+.artRow {
+  --box: clamp(96px, 17vw, 230px);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: clamp(32px, 7vw, 112px);
+  gap: clamp(20px, 6vw, 96px);
 }
 
-.artPair img {
+.artRow img {
   display: block;
   width: calc(var(--box) * var(--w));
   height: auto;

@@ -101,6 +101,7 @@ export const samsungDrs: Project = {
       name: "details-regions",
       caption: "Engineering fields and three sales-region dot maps; Korea and Japan get a ring.",
     },
+    { type: "embed", name: "art-repairs" },
     {
       type: "full",
       figure: {
@@ -155,6 +156,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-roles" },
     {
       type: "full",
       figure: {
