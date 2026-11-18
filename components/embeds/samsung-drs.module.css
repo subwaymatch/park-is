@@ -80,6 +80,7 @@
 
 .drift {
   --ch: clamp(84px, 9vw, 120px);
+  padding-block: clamp(24px, 4vw, 56px);
   --fade: clamp(64px, 20vw, 360px);
   overflow: hidden;
   /* The row fades out at both ends of the window. */
@@ -150,19 +151,26 @@
 }
 
 /* ---- Isometric illustrations (samsung-drs-art.tsx) ----
-   Rows of three on one baseline, centred, each at its share of a square box
-   so the three carry about the same weight. Three across on phones too. */
+   Rows of five on one baseline, centred, each at its share of a square box
+   so they carry about the same weight. Five across on phones too. */
 
 .artRow {
-  --box: clamp(96px, 17vw, 230px);
+  --box: clamp(56px, 12vw, 176px);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: clamp(20px, 6vw, 96px);
+  gap: clamp(10px, 3.5vw, 56px);
 }
 
 .artRow img {
   display: block;
   width: calc(var(--box) * var(--w));
   height: auto;
+}
+
+@media (max-width: 640px) {
+  .artRow {
+    --box: 16vw;
+    gap: 3vw;
+  }
 }

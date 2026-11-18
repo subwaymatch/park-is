@@ -4,7 +4,7 @@ import styles from "./samsung-drs.module.css";
 // Isometric 3D illustrations of the printing division's world, generated at low quality on transparency
 // (public/media/samsung-drs/art/) in white, warm greys and a near-black for details. They were drawn with violet
 // accents, which were then turned into the warm greys by hue (keeping their light and shade), so the palette is white
-// throughout. They stand in rows of three, each row opening a part of the page.
+// throughout. They stand in rows of five, each row opening a part of the page.
 
 const ART: Record<string, { width: number; height: number; alt: string }> = {
   printer: {
@@ -40,16 +40,30 @@ const ART: Record<string, { width: number; height: number; alt: string }> = {
   envelope: { width: 520, height: 542, alt: "Isometric illustration of an envelope with a notification dot" },
   bell: { width: 421, height: 600, alt: "Isometric illustration of a notification bell" },
   rack: { width: 363, height: 600, alt: "Isometric illustration of a server rack" },
+  scanner: { width: 518, height: 600, alt: "Isometric illustration of a flatbed scanner with its lid raised" },
+  stapler: { width: 600, height: 548, alt: "Isometric illustration of an office stapler" },
+  pie: { width: 600, height: 510, alt: "Isometric illustration of a pie chart with one slice pulled out" },
+  calendar: { width: 580, height: 600, alt: "Isometric illustration of a desk calendar" },
+  warning: { width: 571, height: 600, alt: "Isometric illustration of a warning sign" },
+  notes: { width: 600, height: 501, alt: "Isometric illustration of a pad of sticky notes" },
+  gears: { width: 600, height: 527, alt: "Isometric illustration of two interlocking gears" },
+  truck: { width: 600, height: 590, alt: "Isometric illustration of a delivery truck" },
+  mug: { width: 420, height: 600, alt: "Isometric illustration of a coffee mug" },
+  headphones: { width: 469, height: 600, alt: "Isometric illustration of over-ear headphones" },
+  chair: { width: 380, height: 600, alt: "Isometric illustration of an office chair" },
+  keycard: { width: 382, height: 600, alt: "Isometric illustration of an office door with a keycard reader" },
+  phone: { width: 303, height: 600, alt: "Isometric illustration of a smartphone showing a notification" },
+  keycaps: { width: 600, height: 491, alt: "Isometric illustration of two keyboard keycaps" },
 };
 
 const ROWS = {
-  opening: ["printer", "toner", "paper"],
-  insights: ["dashboard", "globe", "hourglass"],
-  defects: ["test-page", "board", "clipboard"],
-  repairs: ["jam", "toolbox", "box"],
-  reviews: ["desk", "comments", "laptop"],
-  roles: ["lanyard", "padlock", "meeting"],
-  more: ["envelope", "bell", "rack"],
+  opening: ["scanner", "printer", "toner", "paper", "stapler"],
+  insights: ["pie", "dashboard", "globe", "hourglass", "calendar"],
+  defects: ["warning", "test-page", "board", "clipboard", "notes"],
+  repairs: ["gears", "jam", "toolbox", "box", "truck"],
+  reviews: ["mug", "desk", "comments", "laptop", "headphones"],
+  roles: ["chair", "lanyard", "padlock", "meeting", "keycard"],
+  more: ["phone", "envelope", "bell", "rack", "keycaps"],
 } as const;
 
 /** Width as a share of the row's box, giving every illustration about the same area. Neither side passes the box. */
@@ -61,7 +75,7 @@ function widthShare(name: string, area = 0.62) {
   return w * Math.min(1, 1 / w, 1 / h);
 }
 
-/** Three illustrations side by side on one baseline, centred. */
+/** Five illustrations side by side on one baseline, centred. */
 export function ArtRow({ row }: { row: keyof typeof ROWS }) {
   return (
     <div className={styles.artRow}>
