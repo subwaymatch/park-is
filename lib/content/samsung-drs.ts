@@ -19,6 +19,7 @@ export const samsungDrs: Project = {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
     },
+    { type: "embed", name: "machines" },
     {
       type: "full",
       figure: {
@@ -56,6 +57,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "test-page" },
     {
       type: "text",
       label: "Defects",
@@ -118,6 +120,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "developer" },
     {
       type: "text",
       label: "Code reviews",
@@ -160,6 +163,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "server-rack" },
     {
       type: "text",
       label: "And more",
