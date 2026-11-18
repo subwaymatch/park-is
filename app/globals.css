@@ -519,6 +519,22 @@ figcaption {
   color: var(--ink-3);
 }
 
+/* A fact with a badge before it, such as an award. The badge says nothing the
+   text doesn't, so it has no alt text. It takes one line's height and spills
+   evenly above and below, so the text stays level with its label. */
+.fact-badged {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fact-badge {
+  flex: none;
+  width: auto;
+  height: 36px;
+  margin-block: calc((1lh - 36px) / 2);
+}
+
 /* A link with a note after it, such as "Archive" on an old profile. */
 .link-line {
   display: flex;

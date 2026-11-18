@@ -46,6 +46,9 @@ export type Block =
    */
   | { type: "embed"; name: string; caption?: string; bleed?: boolean };
 
+/** A small image before a fact's value, such as an award badge: a file in the project's media folder. */
+export type FactBadge = { file: string; width: number; height: number };
+
 export type Project = {
   slug: string;
   name: string;
@@ -55,8 +58,8 @@ export type Project = {
   links: Link[];
   /** The About row: what the project is, in brief. */
   summary: string[];
-  /** Short facts listed under the summary, label first. */
-  facts: [string, string][];
+  /** Short facts listed under the summary, label first, some with a badge before the value. */
+  facts: [label: string, value: string, badge?: FactBadge][];
   sections: Block[];
   /** A wide figure's file whose .jpg is the Open Graph image. */
   ogImage: string;
@@ -97,5 +100,7 @@ export function media(slug: string) {
     heroPoster: base + "hero.jpg",
     clip: (file: string) => clipUrl(`${slug}/${file}.mp4`),
     image: (file: string) => base + file + ".jpg",
+    /** Any other file in the folder, by its full name. */
+    file: (name: string) => base + name,
   };
 }

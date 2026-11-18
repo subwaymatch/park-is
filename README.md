@@ -35,6 +35,7 @@ Each project has a folder in `public/media/<slug>/`:
 | `hero.mp4`, `hero.jpg` | Project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
 | `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or the walkthrough, which has controls) and its poster |
 | `<name>.jpg` alone | A still figure |
+| Any other file, such as `product-hunt-badge.avif` | A badge before a fact's value (`facts` in `lib/content/<slug>.ts`) |
 
 A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920×1080), `tall` 4:3 (1920×1440),
 `phone` 4:5 (a phone screen on the page's surface colour, 1200×1500 or 1600×2000). Phone shots already sit on the
