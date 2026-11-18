@@ -138,3 +138,21 @@
     display: none;
   }
 }
+
+/* ---- Illustrations on trial (samsung-drs-art.tsx) ----
+   Pairs on one baseline, centred, each at its share of a square box so the
+   two carry about the same weight. */
+
+.artPair {
+  --box: clamp(140px, 22vw, 280px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(32px, 7vw, 112px);
+}
+
+.artPair img {
+  display: block;
+  width: calc(var(--box) * var(--w));
+  height: auto;
+}
