@@ -40,6 +40,16 @@ export const tabbied: Project = {
       ],
     },
     {
+      type: "full",
+      figure: {
+        file: "home-carousel",
+        kind: "loop",
+        shape: "wide",
+        caption: "The home page carousel: one trade after another, each holding a template made for it.",
+        mat: true,
+      },
+    },
+    {
       type: "embed",
       name: "templates",
       bleed: true,
