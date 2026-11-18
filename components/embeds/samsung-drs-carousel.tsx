@@ -2,13 +2,16 @@
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./samsung-drs.module.css";
-import { PRODUCTS, productAlt, productSrc, scale } from "./samsung-drs-products";
+import { productAlt, productSrc, ROWS, scale } from "./samsung-drs-products";
 
 /**
- * The demo's 44 printers and copiers drifting slowly right to left on one baseline, roughly to scale, like Tabbied's
- * carousel: the row is drawn twice so it loops, and it pauses off screen. With reduced motion it is a row to scroll.
+ * One of the demo's two rows of printers drifting slowly on one baseline, roughly to scale, like Tabbied's carousel:
+ * right to left, or left to right with `reverse`. The row is drawn three times and moves by one copy, so two copies
+ * always cover even a 2560px window and the loop has no seam; it pauses off screen. With reduced motion it is a row to
+ * scroll.
  */
-export function ProductCarousel() {
+export function ProductCarousel({ row, reverse = false }: { row: 0 | 1; reverse?: boolean }) {
+  const items = ROWS[row];
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   // Off-screen machines in the track would wait for native lazy loading, which some browsers start only at the
@@ -31,13 +34,17 @@ export function ProductCarousel() {
 
   return (
     <div ref={ref} className={styles.drift} data-playing={visible || undefined}>
-      <ul className={styles.driftTrack} style={{ "--count": PRODUCTS.length } as CSSProperties}>
-        {[0, 1].flatMap((copy) =>
-          PRODUCTS.map((p) => (
-            <li key={`${copy}-${p.id}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
+      <ul
+        className={styles.driftTrack}
+        data-reverse={reverse || undefined}
+        style={{ "--count": items.length } as CSSProperties}
+      >
+        {[0, 1, 2].flatMap((copy) =>
+          items.map((p) => (
+            <li key={`${copy}-${p.id}`} aria-hidden={copy > 0 || undefined} data-copy={copy > 0 || undefined}>
               <img
                 src={productSrc(p)}
-                alt={copy === 1 ? "" : productAlt(p)}
+                alt={copy > 0 ? "" : productAlt(p)}
                 width={p.width}
                 height={p.height}
                 loading={seen ? "eager" : "lazy"}

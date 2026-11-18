@@ -75,10 +75,11 @@
 
 /* ---- The demo's machines (samsung-drs-carousel.tsx) ----
    One baseline, each machine at its share of the tallest one's height
-   (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel. */
+   (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel;
+   the second row drifts the other way. */
 
 .drift {
-  --ch: clamp(110px, 12vw, 160px);
+  --ch: clamp(84px, 9vw, 120px);
   overflow: hidden;
 }
 
@@ -97,10 +98,14 @@
   animation-play-state: running;
 }
 
-/* Spacing by padding, not gap, so half the track is exactly one copy. */
+.driftTrack[data-reverse] {
+  animation-direction: reverse;
+}
+
+/* Spacing by padding, not gap, so a third of the track is exactly one copy. */
 .driftTrack li {
   flex: none;
-  padding-right: clamp(24px, 3vw, 44px);
+  padding-right: clamp(28px, 3vw, 48px);
 }
 
 .driftTrack img {
@@ -111,7 +116,7 @@
 
 @keyframes products-drift {
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 3));
   }
 }
 
