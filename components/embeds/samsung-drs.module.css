@@ -155,11 +155,11 @@
    so they carry about the same weight. Five across on phones too. */
 
 .artRow {
-  --box: clamp(56px, 12vw, 176px);
+  --box: clamp(48px, 9vw, 132px);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: clamp(10px, 3.5vw, 56px);
+  gap: clamp(16px, 5.5vw, 88px);
 }
 
 .artRow img {
@@ -170,7 +170,7 @@
 
 @media (max-width: 640px) {
   .artRow {
-    --box: 16vw;
-    gap: 3vw;
+    --box: 13vw;
+    gap: 5vw;
   }
 }
