@@ -66,12 +66,54 @@ const ROWS = {
   more: ["phone", "envelope", "bell", "rack", "keycaps"],
 } as const;
 
-/** Width as a share of the row's box, giving every illustration about the same area. Neither side passes the box. */
+/**
+ * A nudge to each illustration's size for how big the thing is: a mug or a keycap a little smaller, a meeting table or
+ * a server rack a little larger. Anything not listed is 1.
+ */
+const SCALE: Record<string, number> = {
+  printer: 1.05,
+  toner: 0.92,
+  paper: 0.9,
+  stapler: 0.8,
+  pie: 0.9,
+  globe: 0.92,
+  hourglass: 0.82,
+  calendar: 0.85,
+  warning: 0.9,
+  "test-page": 0.95,
+  board: 0.9,
+  clipboard: 0.82,
+  notes: 0.78,
+  gears: 0.88,
+  toolbox: 0.95,
+  box: 0.95,
+  truck: 1.08,
+  mug: 0.76,
+  desk: 1.08,
+  comments: 0.9,
+  laptop: 0.95,
+  headphones: 0.76,
+  lanyard: 0.6,
+  padlock: 0.8,
+  meeting: 1.1,
+  keycard: 1.08,
+  phone: 0.7,
+  envelope: 0.85,
+  bell: 0.85,
+  rack: 1.1,
+  keycaps: 0.78,
+};
+
+/**
+ * Width as a share of the row's box: every illustration gets about the same area, nudged by its SCALE, and neither
+ * side passes the box.
+ */
 function widthShare(name: string, area = 0.62) {
   const { width, height } = ART[name];
   const r = width / height;
-  const w = Math.sqrt(area * r);
-  const h = Math.sqrt(area / r);
+  const s = SCALE[name] ?? 1;
+  const w = Math.sqrt(area * r) * s;
+  const h = Math.sqrt(area / r) * s;
   return w * Math.min(1, 1 / w, 1 / h);
 }
 
