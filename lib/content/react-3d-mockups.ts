@@ -15,7 +15,7 @@ export const react3dMockups: Project = {
   ],
   facts: [
     ["Stack", "TypeScript, React 19, three.js, react-three-fiber, three-bvh-csg"],
-    ["Package", "[react-3d-mockups](https://www.npmjs.com/package/react-3d-mockups) 0.2.0 on npm"],
+    ["Package", "react-3d-mockups 0.2.0 on npm"],
     ["License", "MIT"],
   ],
   sections: [
