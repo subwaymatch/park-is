@@ -1,4 +1,5 @@
 import styles from "./samsung-drs.module.css";
+import { fit, GRID, memorySrc } from "./samsung-drs-memories";
 
 // Pen-and-ink drawings of the printing division's world, generated in one etched style
 // (public/media/samsung-drs/gen/): the machines, a test page, a code review and a server rack. They are cut-outs on
@@ -52,4 +53,25 @@ export function Machines() {
 /** One drawing, centred. */
 export function Drawing({ art }: { art: "testPage" | "developer" | "serverRack" }) {
   return <Img art={ART[art]} className={styles[art]} />;
+}
+
+/** The rest of the remembered things in a grid that closes the page, each standing at the foot of its square. */
+export function MemoryGrid() {
+  return (
+    <ul className={styles.memories}>
+      {GRID.map((m) => (
+        <li key={m.name}>
+          <img
+            src={memorySrc(m)}
+            alt={m.alt}
+            width={m.width}
+            height={m.height}
+            loading="lazy"
+            decoding="async"
+            style={{ width: `${(fit(m, 0.6, 0.96).w * 100).toFixed(1)}%` }}
+          />
+        </li>
+      ))}
+    </ul>
+  );
 }

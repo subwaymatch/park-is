@@ -138,6 +138,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "memory-carousel", bleed: true },
     {
       type: "text",
       label: "Roles",
@@ -216,6 +217,7 @@ export const samsungDrs: Project = {
         { file: "phone-defects", kind: "loop", shape: "phone", caption: "The defect list and a defect on a phone." },
       ],
     },
+    { type: "embed", name: "memory-grid" },
   ],
   ogImage: "insights-migration",
   heroTone: "light",
