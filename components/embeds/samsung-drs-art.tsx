@@ -2,8 +2,9 @@ import type { CSSProperties } from "react";
 import styles from "./samsung-drs.module.css";
 
 // Isometric 3D illustrations of the printing division's world, generated at low quality on transparency
-// (public/media/samsung-drs/art/) in one small palette: white, two warm greys, one violet for accents and a near-black
-// for details. They stand in rows of three, each row opening a part of the page.
+// (public/media/samsung-drs/art/) in white, warm greys and a near-black for details. They were drawn with violet
+// accents, which were then turned into the warm greys by hue (keeping their light and shade), so the palette is white
+// throughout. They stand in rows of three, each row opening a part of the page.
 
 const ART: Record<string, { width: number; height: number; alt: string }> = {
   printer: {
