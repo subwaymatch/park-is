@@ -2,16 +2,16 @@
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./samsung-drs.module.css";
-import { CAROUSEL, fit, memorySrc } from "./samsung-drs-memories";
+import { PRODUCTS, productAlt, productSrc, scale } from "./samsung-drs-products";
 
 /**
- * Drawings of things remembered from Samsung, drifting slowly right to left on one baseline, like Tabbied's carousel:
- * the row is drawn twice so it loops, and it pauses off screen. With reduced motion it is a row to scroll instead.
+ * The demo's 44 printers and copiers drifting slowly right to left on one baseline, roughly to scale, like Tabbied's
+ * carousel: the row is drawn twice so it loops, and it pauses off screen. With reduced motion it is a row to scroll.
  */
-export function MemoryCarousel() {
+export function ProductCarousel() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  // Off-screen drawings in the track would wait for native lazy loading, which some browsers start only at the
+  // Off-screen machines in the track would wait for native lazy loading, which some browsers start only at the
   // viewport's edge; once the carousel is first near, all of them load.
   const [seen, setSeen] = useState(false);
 
@@ -31,18 +31,18 @@ export function MemoryCarousel() {
 
   return (
     <div ref={ref} className={styles.drift} data-playing={visible || undefined}>
-      <ul className={styles.driftTrack} style={{ "--count": CAROUSEL.length } as CSSProperties}>
+      <ul className={styles.driftTrack} style={{ "--count": PRODUCTS.length } as CSSProperties}>
         {[0, 1].flatMap((copy) =>
-          CAROUSEL.map((m) => (
-            <li key={`${copy}-${m.name}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
+          PRODUCTS.map((p) => (
+            <li key={`${copy}-${p.id}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
               <img
-                src={memorySrc(m)}
-                alt={copy === 1 ? "" : m.alt}
-                width={m.width}
-                height={m.height}
+                src={productSrc(p)}
+                alt={copy === 1 ? "" : productAlt(p)}
+                width={p.width}
+                height={p.height}
                 loading={seen ? "eager" : "lazy"}
                 decoding="async"
-                style={{ "--k": fit(m).h.toFixed(3) } as CSSProperties}
+                style={{ "--k": scale(p) } as CSSProperties}
               />
             </li>
           )),

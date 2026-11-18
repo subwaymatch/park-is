@@ -36,6 +36,7 @@ export const samsungDrs: Project = {
       paragraphs: [
         "Defects are measured against severity targets, and code reviews against a 48-hour turnaround, over 7 days to 6 months.",
       ],
+      spot: { file: "gen/monitors.webp", width: 240, height: 122 },
     },
     {
       type: "full",
@@ -64,6 +65,7 @@ export const samsungDrs: Project = {
       paragraphs: [
         "The defect list filters by scope, status and search, keeps its state in the URL, and can be driven entirely from the keyboard.",
       ],
+      spot: { file: "products/ps-c3150fr.webp", width: 197, height: 215 },
     },
     {
       type: "full",
@@ -127,6 +129,7 @@ export const samsungDrs: Project = {
       paragraphs: [
         "Every change goes to the Code Review Team. Diffs show side by side or unified, and any line takes a comment.",
       ],
+      spot: { file: "gen/conference-room.webp", width: 229, height: 192 },
     },
     {
       type: "aside",
@@ -138,11 +141,12 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "memory-carousel", bleed: true },
+    { type: "embed", name: "product-carousel", bleed: true },
     {
       type: "text",
       label: "Roles",
       paragraphs: ["There is no sign-in. Settings switches between the 34 people, and each role sees what it may do."],
+      spot: { file: "gen/lanyard.webp", width: 76, height: 192 },
     },
     {
       type: "full",
@@ -169,6 +173,7 @@ export const samsungDrs: Project = {
       type: "text",
       label: "And more",
       paragraphs: ["Daily and weekly email digests, team profiles, notifications, and Ctrl+K search across everything."],
+      spot: { file: "gen/matcha-latte.webp", width: 229, height: 192 },
     },
     {
       type: "full",
@@ -217,7 +222,6 @@ export const samsungDrs: Project = {
         { file: "phone-defects", kind: "loop", shape: "phone", caption: "The defect list and a defect on a phone." },
       ],
     },
-    { type: "embed", name: "memory-grid" },
   ],
   ogImage: "insights-migration",
   heroTone: "light",
