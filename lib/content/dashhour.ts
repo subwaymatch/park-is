@@ -4,7 +4,6 @@ export const dashhour: Project = {
   slug: "dashhour",
   name: "DashHour",
   year: "2016",
-  revived: "2026",
   tagline: "Take a bank’s queue number before you get there, and arrive as it’s called.",
   links: [
     { label: "Live demo", url: "https://dashhour.subwaymatch.workers.dev/" },
