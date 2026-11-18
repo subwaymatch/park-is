@@ -73,62 +73,19 @@
   }
 }
 
-/* ---- Drawings (samsung-drs-art.tsx) ----
-   Cut-outs straight on the white page, centred. The copier and the desktop
-   printer share a baseline, the printer at about two thirds of the copier's
-   height. On phones the wide drawings keep a margin either side. */
-
-.machines {
-  --mh: clamp(200px, 24vw, 320px);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(24px, 5vw, 64px);
-}
-
-.copier,
-.mfp,
-.testPage,
-.developer,
-.serverRack {
-  display: block;
-  height: auto;
-}
-
-.copier {
-  width: auto;
-  height: var(--mh);
-}
-
-.mfp {
-  width: auto;
-  height: calc(var(--mh) * 0.68);
-}
-
-.testPage {
-  width: min(84%, 420px);
-  margin: 0 auto;
-}
-
-.developer {
-  width: min(76%, 360px);
-  margin: 0 auto;
-}
-
-.serverRack {
-  width: auto;
-  height: clamp(220px, 26vw, 320px);
-  margin: 0 auto;
-}
-
-/* ---- Remembered things (samsung-drs-memories.ts) ----
-   Every drawing gets about the same area (fit()), standing on the row's
-   baseline. The carousel drifts like Tabbied's; the grid closes the page,
-   six across, three on phones. */
+/* ---- The demo's machines (samsung-drs-carousel.tsx) ----
+   One baseline, each machine at its share of the tallest one's height
+   (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel;
+   the second row, the copiers, stands taller and drifts the other way. */
 
 .drift {
-  --ch: clamp(120px, 14vw, 190px);
+  --ch: clamp(84px, 9vw, 120px);
+  padding-block: clamp(24px, 4vw, 56px);
+  --fade: clamp(64px, 20vw, 360px);
   overflow: hidden;
+  /* The row fades out at both ends of the window. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
 }
 
 .driftTrack {
@@ -138,18 +95,32 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: memories-drift calc(var(--count) * 7s) linear infinite;
+  animation: products-drift calc(var(--count) * 9s) linear infinite;
   animation-play-state: paused;
+}
+
+/* The copiers stand in a taller row; they are wider too, so a longer cycle
+   keeps the row at the same pace. */
+.drift[data-tall] {
+  --ch: clamp(110px, 12vw, 160px);
+}
+
+.drift[data-tall] .driftTrack {
+  animation-duration: calc(var(--count) * 11s);
 }
 
 .drift[data-playing] .driftTrack {
   animation-play-state: running;
 }
 
-/* Spacing by padding, not gap, so half the track is exactly one copy. */
+.driftTrack[data-reverse] {
+  animation-direction: reverse;
+}
+
+/* Spacing by padding, not gap, so a third of the track is exactly one copy. */
 .driftTrack li {
   flex: none;
-  padding-right: clamp(32px, 4vw, 56px);
+  padding-right: clamp(48px, 6vw, 96px);
 }
 
 .driftTrack img {
@@ -158,9 +129,9 @@
   height: calc(var(--ch) * var(--k));
 }
 
-@keyframes memories-drift {
+@keyframes products-drift {
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 3));
   }
 }
 
@@ -179,30 +150,27 @@
   }
 }
 
-.memories {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 32px 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+/* ---- Isometric illustrations (samsung-drs-art.tsx) ----
+   Rows of five on one baseline, centred, each at its share of a square box
+   so they carry about the same weight. Five across on phones too. */
 
-.memories li {
+.artRow {
+  --box: clamp(48px, 9vw, 132px);
   display: flex;
-  align-items: flex-end;
   justify-content: center;
-  aspect-ratio: 1;
+  align-items: flex-end;
+  gap: clamp(16px, 5.5vw, 88px);
 }
 
-.memories img {
+.artRow img {
   display: block;
+  width: calc(var(--box) * var(--w));
   height: auto;
 }
 
 @media (max-width: 640px) {
-  .memories {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px 16px;
+  .artRow {
+    --box: 13vw;
+    gap: 5vw;
   }
 }

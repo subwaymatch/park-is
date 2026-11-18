@@ -19,7 +19,7 @@ export const samsungDrs: Project = {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
     },
-    { type: "embed", name: "machines" },
+    { type: "embed", name: "art-opening" },
     {
       type: "full",
       figure: {
@@ -30,6 +30,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-insights" },
     {
       type: "text",
       label: "Insights",
@@ -57,7 +58,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "test-page" },
+    { type: "embed", name: "art-defects" },
     {
       type: "text",
       label: "Defects",
@@ -100,6 +101,7 @@ export const samsungDrs: Project = {
       name: "details-regions",
       caption: "Engineering fields and three sales-region dot maps; Korea and Japan get a ring.",
     },
+    { type: "embed", name: "art-repairs" },
     {
       type: "full",
       figure: {
@@ -120,7 +122,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "developer" },
+    { type: "embed", name: "art-reviews" },
     {
       type: "text",
       label: "Code reviews",
@@ -138,7 +140,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "memory-carousel", bleed: true },
+    { type: "embed", name: "product-carousel", bleed: true },
     {
       type: "text",
       label: "Roles",
@@ -154,6 +156,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-roles" },
     {
       type: "full",
       figure: {
@@ -164,7 +167,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "server-rack" },
+    { type: "embed", name: "art-more" },
     {
       type: "text",
       label: "And more",
@@ -217,7 +220,7 @@ export const samsungDrs: Project = {
         { file: "phone-defects", kind: "loop", shape: "phone", caption: "The defect list and a defect on a phone." },
       ],
     },
-    { type: "embed", name: "memory-grid" },
+    { type: "embed", name: "product-carousel-reverse", bleed: true },
   ],
   ogImage: "insights-migration",
   heroTone: "light",

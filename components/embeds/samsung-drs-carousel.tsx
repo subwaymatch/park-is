@@ -2,16 +2,27 @@
 
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./samsung-drs.module.css";
-import { CAROUSEL, fit, memorySrc } from "./samsung-drs-memories";
+import { productAlt, productSrc, ROWS, scale } from "./samsung-drs-products";
 
 /**
- * Drawings of things remembered from Samsung, drifting slowly right to left on one baseline, like Tabbied's carousel:
- * the row is drawn twice so it loops, and it pauses off screen. With reduced motion it is a row to scroll instead.
+ * One of the demo's two rows of machines drifting slowly on one baseline, roughly to scale, like Tabbied's carousel:
+ * right to left, or left to right with `reverse`; `tall` gives the copiers a taller row. The row is drawn three times
+ * and moves by one copy, so two copies always cover even a 2560px window and the loop has no seam; it pauses off
+ * screen. With reduced motion it is a row to scroll.
  */
-export function MemoryCarousel() {
+export function ProductCarousel({
+  row,
+  reverse = false,
+  tall = false,
+}: {
+  row: 0 | 1;
+  reverse?: boolean;
+  tall?: boolean;
+}) {
+  const items = ROWS[row];
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  // Off-screen drawings in the track would wait for native lazy loading, which some browsers start only at the
+  // Off-screen machines in the track would wait for native lazy loading, which some browsers start only at the
   // viewport's edge; once the carousel is first near, all of them load.
   const [seen, setSeen] = useState(false);
 
@@ -30,19 +41,23 @@ export function MemoryCarousel() {
   }, []);
 
   return (
-    <div ref={ref} className={styles.drift} data-playing={visible || undefined}>
-      <ul className={styles.driftTrack} style={{ "--count": CAROUSEL.length } as CSSProperties}>
-        {[0, 1].flatMap((copy) =>
-          CAROUSEL.map((m) => (
-            <li key={`${copy}-${m.name}`} aria-hidden={copy === 1 || undefined} data-copy={copy === 1 || undefined}>
+    <div ref={ref} className={styles.drift} data-playing={visible || undefined} data-tall={tall || undefined}>
+      <ul
+        className={styles.driftTrack}
+        data-reverse={reverse || undefined}
+        style={{ "--count": items.length } as CSSProperties}
+      >
+        {[0, 1, 2].flatMap((copy) =>
+          items.map((p) => (
+            <li key={`${copy}-${p.id}`} aria-hidden={copy > 0 || undefined} data-copy={copy > 0 || undefined}>
               <img
-                src={memorySrc(m)}
-                alt={copy === 1 ? "" : m.alt}
-                width={m.width}
-                height={m.height}
+                src={productSrc(p)}
+                alt={copy > 0 ? "" : productAlt(p)}
+                width={p.width}
+                height={p.height}
                 loading={seen ? "eager" : "lazy"}
                 decoding="async"
-                style={{ "--k": fit(m).h.toFixed(3) } as CSSProperties}
+                style={{ "--k": scale(p) } as CSSProperties}
               />
             </li>
           )),

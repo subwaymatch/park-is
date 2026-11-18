@@ -6,9 +6,8 @@ export const layeris: Project = {
   year: "2019",
   tagline: "Photoshop-style blend modes, adjustments and curves for Python.",
   links: [
-    { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
+    { label: "Documentation", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
     { label: "Source", url: "https://github.com/subwaymatch/layer-is-python" },
-    { label: "PyPI", url: "https://pypi.org/project/layeris/" },
   ],
   summary: [
     "A Python library for Photoshop-style image editing: 14 blend modes, tone and color adjustments, and curves on separate RGB channels. Every method returns the image, so an edit reads as one chained pipeline.",

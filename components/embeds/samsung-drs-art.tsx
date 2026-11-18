@@ -1,77 +1,138 @@
+import type { CSSProperties } from "react";
 import styles from "./samsung-drs.module.css";
-import { fit, GRID, memorySrc } from "./samsung-drs-memories";
 
-// Pen-and-ink drawings of the printing division's world, generated in one etched style
-// (public/media/samsung-drs/gen/): the machines, a test page, a code review and a server rack. They are cut-outs on
-// transparency, set straight on the white page as DashHour's are. The machines are drawn after Samsung's MultiXpress
-// and ProXpress lines, with every badge left blank.
+// Isometric 3D illustrations of the printing division's world, generated at low quality on transparency
+// (public/media/samsung-drs/art/) in white, warm greys and a near-black for details. They were drawn with violet
+// accents, which were then turned into the warm greys by hue (keeping their light and shade), so the palette is white
+// throughout. They stand in rows of five, each row opening a part of the page.
 
-type Art = { name: string; width: number; height: number; alt: string };
-
-const ART = {
-  copier: { name: "copier", width: 457, height: 640, alt: "Pen drawing of an A3 office copier with a tilting touchscreen" },
-  mfp: { name: "mfp", width: 406, height: 480, alt: "Pen drawing of a desktop laser multifunction printer" },
-  testPage: {
-    name: "test-page",
-    width: 840,
-    height: 598,
-    alt: "Pen drawing of a hand circling a streak on a printed test page",
+const ART: Record<string, { width: number; height: number; alt: string }> = {
+  printer: {
+    width: 541,
+    height: 600,
+    alt: "Isometric illustration of an office multifunction printer printing a page",
   },
-  developer: {
-    name: "developer",
-    width: 800,
-    height: 804,
-    alt: "Pen drawing of a developer pointing at a side-by-side code diff",
+  toner: { width: 600, height: 469, alt: "Isometric illustration of a laser toner cartridge" },
+  paper: { width: 600, height: 462, alt: "Isometric illustration of a ream of printer paper" },
+  dashboard: { width: 447, height: 600, alt: "Isometric illustration of a monitor showing charts" },
+  globe: { width: 406, height: 600, alt: "Isometric illustration of a desk globe pinned at Korea and India" },
+  hourglass: { width: 352, height: 600, alt: "Isometric illustration of an hourglass" },
+  "test-page": {
+    width: 600,
+    height: 469,
+    alt: "Isometric illustration of a magnifying glass over a streak on a printed test page",
   },
-  serverRack: { name: "server-rack", width: 320, height: 640, alt: "Pen drawing of a server rack" },
-} satisfies Record<string, Art>;
+  board: { width: 600, height: 421, alt: "Isometric illustration of a printer's circuit board" },
+  clipboard: { width: 366, height: 600, alt: "Isometric illustration of a QA checklist on a clipboard" },
+  jam: { width: 600, height: 591, alt: "Isometric illustration of a printer with a page jammed in its rollers" },
+  toolbox: {
+    width: 483,
+    height: 600,
+    alt: "Isometric illustration of an open toolbox with a screwdriver and a wrench",
+  },
+  box: { width: 563, height: 600, alt: "Isometric illustration of a taped shipping box" },
+  desk: { width: 566, height: 600, alt: "Isometric illustration of a developer's desk with a code diff on screen" },
+  comments: { width: 524, height: 600, alt: "Isometric illustration of two comment bubbles" },
+  laptop: { width: 514, height: 600, alt: "Isometric illustration of a laptop showing code" },
+  lanyard: { width: 178, height: 600, alt: "Isometric illustration of an ID card on a lanyard" },
+  padlock: { width: 484, height: 600, alt: "Isometric illustration of an open padlock and its key" },
+  meeting: { width: 537, height: 600, alt: "Isometric illustration of a meeting table facing a wall screen" },
+  envelope: { width: 520, height: 542, alt: "Isometric illustration of an envelope with a notification dot" },
+  bell: { width: 421, height: 600, alt: "Isometric illustration of a notification bell" },
+  rack: { width: 363, height: 600, alt: "Isometric illustration of a server rack" },
+  scanner: { width: 518, height: 600, alt: "Isometric illustration of a flatbed scanner with its lid raised" },
+  stapler: { width: 600, height: 548, alt: "Isometric illustration of an office stapler" },
+  pie: { width: 600, height: 510, alt: "Isometric illustration of a pie chart with one slice pulled out" },
+  calendar: { width: 580, height: 600, alt: "Isometric illustration of a desk calendar" },
+  warning: { width: 571, height: 600, alt: "Isometric illustration of a warning sign" },
+  notes: { width: 600, height: 501, alt: "Isometric illustration of a pad of sticky notes" },
+  gears: { width: 600, height: 527, alt: "Isometric illustration of two interlocking gears" },
+  truck: { width: 600, height: 590, alt: "Isometric illustration of a delivery truck" },
+  mug: { width: 420, height: 600, alt: "Isometric illustration of a coffee mug" },
+  headphones: { width: 469, height: 600, alt: "Isometric illustration of over-ear headphones" },
+  chair: { width: 380, height: 600, alt: "Isometric illustration of an office chair" },
+  keycard: { width: 382, height: 600, alt: "Isometric illustration of an office door with a keycard reader" },
+  phone: { width: 303, height: 600, alt: "Isometric illustration of a smartphone showing a notification" },
+  keycaps: { width: 600, height: 491, alt: "Isometric illustration of two keyboard keycaps" },
+};
 
-function Img({ art, className }: { art: Art; className: string }) {
-  return (
-    <img
-      className={className}
-      src={`/media/samsung-drs/gen/${art.name}.webp`}
-      alt={art.alt}
-      width={art.width}
-      height={art.height}
-      loading="lazy"
-      decoding="async"
-    />
-  );
+const ROWS = {
+  opening: ["scanner", "printer", "toner", "paper", "stapler"],
+  insights: ["pie", "dashboard", "globe", "hourglass", "calendar"],
+  defects: ["warning", "test-page", "board", "clipboard", "notes"],
+  repairs: ["gears", "jam", "toolbox", "box", "truck"],
+  reviews: ["mug", "desk", "comments", "laptop", "headphones"],
+  roles: ["chair", "lanyard", "padlock", "meeting", "keycard"],
+  more: ["phone", "envelope", "bell", "rack", "keycaps"],
+} as const;
+
+/**
+ * A nudge to each illustration's size for how big the thing is: a mug or a keycap a little smaller, a meeting table or
+ * a server rack a little larger. Anything not listed is 1.
+ */
+const SCALE: Record<string, number> = {
+  printer: 1.05,
+  toner: 0.92,
+  paper: 0.9,
+  stapler: 0.8,
+  pie: 0.9,
+  globe: 0.92,
+  hourglass: 0.82,
+  calendar: 0.85,
+  warning: 0.9,
+  "test-page": 0.95,
+  board: 0.9,
+  clipboard: 0.82,
+  notes: 0.78,
+  gears: 0.88,
+  toolbox: 0.95,
+  box: 0.95,
+  truck: 1.08,
+  mug: 0.76,
+  desk: 1.08,
+  comments: 0.9,
+  laptop: 0.95,
+  headphones: 0.76,
+  lanyard: 0.6,
+  padlock: 0.8,
+  meeting: 1.1,
+  keycard: 1.08,
+  phone: 0.7,
+  envelope: 0.85,
+  bell: 0.85,
+  rack: 1.1,
+  keycaps: 0.78,
+};
+
+/**
+ * Width as a share of the row's box: every illustration gets about the same area, nudged by its SCALE, and neither
+ * side passes the box.
+ */
+function widthShare(name: string, area = 0.62) {
+  const { width, height } = ART[name];
+  const r = width / height;
+  const s = SCALE[name] ?? 1;
+  const w = Math.sqrt(area * r) * s;
+  const h = Math.sqrt(area / r) * s;
+  return w * Math.min(1, 1 / w, 1 / h);
 }
 
-/** The copier and the desktop printer side by side, standing on one baseline. */
-export function Machines() {
+/** Five illustrations side by side on one baseline, centred. */
+export function ArtRow({ row }: { row: keyof typeof ROWS }) {
   return (
-    <div className={styles.machines}>
-      <Img art={ART.copier} className={styles.copier} />
-      <Img art={ART.mfp} className={styles.mfp} />
-    </div>
-  );
-}
-
-/** One drawing, centred. */
-export function Drawing({ art }: { art: "testPage" | "developer" | "serverRack" }) {
-  return <Img art={ART[art]} className={styles[art]} />;
-}
-
-/** The rest of the remembered things in a grid that closes the page, each standing at the foot of its square. */
-export function MemoryGrid() {
-  return (
-    <ul className={styles.memories}>
-      {GRID.map((m) => (
-        <li key={m.name}>
-          <img
-            src={memorySrc(m)}
-            alt={m.alt}
-            width={m.width}
-            height={m.height}
-            loading="lazy"
-            decoding="async"
-            style={{ width: `${(fit(m, 0.6, 0.96).w * 100).toFixed(1)}%` }}
-          />
-        </li>
+    <div className={styles.artRow}>
+      {ROWS[row].map((name) => (
+        <img
+          key={name}
+          src={`/media/samsung-drs/art/${name}.webp`}
+          alt={ART[name].alt}
+          width={ART[name].width}
+          height={ART[name].height}
+          loading="lazy"
+          decoding="async"
+          style={{ "--w": widthShare(name).toFixed(3) } as CSSProperties}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
