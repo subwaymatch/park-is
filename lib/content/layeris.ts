@@ -4,7 +4,6 @@ export const layeris: Project = {
   slug: "layeris",
   name: "layeris",
   year: "2019",
-  revived: "2026",
   tagline: "Photoshop-style blend modes, adjustments and curves for Python.",
   links: [
     { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
@@ -13,7 +12,7 @@ export const layeris: Project = {
   ],
   summary: [
     "A Python library for Photoshop-style image editing: 14 blend modes, tone and color adjustments, and curves on separate RGB channels. Every method returns the image, so an edit reads as one chained pipeline.",
-    "It began in 2019 as Layer.is and was rebuilt in 2026 with tests, a lookup table that makes edits about 20× faster, and a new documentation site.",
+    "It began in 2019 as Layer.is and was updated in 2026 with tests, a lookup table that makes edits about 20× faster, and a new documentation site.",
   ],
   facts: [
     ["Stack", "Python 3.10+, NumPy, Pillow and Requests"],

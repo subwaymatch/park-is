@@ -193,12 +193,27 @@ export default async function ProjectPage({ params }: Props) {
                   <Paragraphs items={p.summary} />
                 </div>
               </div>
-              {p.facts.map(([label, value]) => (
+              {p.facts.map(([label, value, badge]) => (
                 <div key={label} className="row">
                   <span className="col-label muted">{label}</span>
-                  <span className="col-rest">
-                    <RichText text={value} />
-                  </span>
+                  {badge ? (
+                    <span className="col-rest fact-badged">
+                      <img
+                        className="fact-badge"
+                        src={media(p.slug).file(badge.file)}
+                        width={badge.width}
+                        height={badge.height}
+                        alt=""
+                      />
+                      <span>
+                        <RichText text={value} />
+                      </span>
+                    </span>
+                  ) : (
+                    <span className="col-rest">
+                      <RichText text={value} />
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

@@ -10,15 +10,16 @@ export const samsungDrs: Project = {
     { label: "Source", url: "https://github.com/subwaymatch/samsung-drs-demo" },
   ],
   summary: [
-    "A demo of the defect and code review tracker built at Samsung Electronics’ printing division in 2016–2017. Firmware, QA and code review teams in Suwon and Bangalore used it while moving from IBM Rational and Review Board to Perforce, Helix Swarm, Jira and Confluence.",
+    "A demo of the defect and code review tracker I built at Samsung Electronics’ printing division in 2016–2017.",
     "This demo runs on mock data generated in the browser: 812 defects and 631 code reviews across 44 printer and copier models.",
   ],
-  facts: [["Note", "Mock data, not affiliated with or endorsed by Samsung Electronics"]],
+  facts: [],
   sections: [
     {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
     },
+    { type: "embed", name: "machines" },
     {
       type: "full",
       figure: {
@@ -56,6 +57,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "test-page" },
     {
       type: "text",
       label: "Defects",
@@ -118,6 +120,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "developer" },
     {
       type: "text",
       label: "Code reviews",
@@ -160,6 +163,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "server-rack" },
     {
       type: "text",
       label: "And more",

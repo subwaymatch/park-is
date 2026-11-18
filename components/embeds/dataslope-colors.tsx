@@ -8,25 +8,21 @@ const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const INKS = [
   {
     name: "Blue",
-    job: "Links, buttons and focus",
     ink: 700,
     ramp: ["#E8F2FF", "#D1E6FF", "#AED3FF", "#8ABFFF", "#5BA7FF", "#148CFF", "#0878DD", "#0064BD", "#00519C", "#00407F"],
   },
   {
     name: "Green",
-    job: "Run, passing tests, right answers",
     ink: 800,
     ramp: ["#E8F9E6", "#D4F3D1", "#B4EAAF", "#93E08E", "#66D361", "#20C621", "#0AA80F", "#008B03", "#006F01", "#005600"],
   },
   {
     name: "Red",
-    job: "Errors and wrong answers",
     ink: 700,
     ramp: ["#FFEDEC", "#FFDCDA", "#FFC2BF", "#FFA6A3", "#FF807F", "#FF4F59", "#DC3F49", "#BA303A", "#99212C", "#7C141F"],
   },
   {
     name: "Yellow",
-    job: "Highlights and warnings",
     ink: 800,
     ramp: ["#FDF8E8", "#FDF5D9", "#FEF0C3", "#FEEBAC", "#FFE48E", "#FFDD6C", "#D4B651", "#AB9137", "#836D1C", "#624F00"],
   },
@@ -48,11 +44,8 @@ export function InkRamps() {
         const inkIndex = STEPS.indexOf(ink.ink);
         return (
           <div key={ink.name} className={styles.row}>
-            <p className={styles.label}>
-              <span className={styles.name} style={{ color: ink.ramp[inkIndex] }}>
-                {ink.name}
-              </span>
-              <span>{ink.job}</span>
+            <p className={styles.name} style={{ color: ink.ramp[inkIndex] }}>
+              {ink.name}
             </p>
             <ol className={styles.band} aria-label={`${ink.name}, steps 50 to 900`}>
               {ink.ramp.map((c, i) => (
