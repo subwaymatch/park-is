@@ -23,7 +23,7 @@ export const dashhour: Project = {
       type: "text",
       label: "Sketches",
       paragraphs: [
-        "The six notepad pages were redrawn as clean line work. A story page sets each beside the screen it became, and a switch brings back the scanned page with its handwritten Korean notes.",
+        "Bolim Lee, the team lead and designer, drew the six notepad pages. They were redrawn as clean line work. A story page sets each beside the screen it became, and a switch brings back the scanned page with its handwritten Korean notes.",
       ],
     },
     {
