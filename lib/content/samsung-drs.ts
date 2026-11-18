@@ -19,7 +19,6 @@ export const samsungDrs: Project = {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
     },
-    { type: "embed", name: "machines" },
     {
       type: "full",
       figure: {
@@ -36,7 +35,6 @@ export const samsungDrs: Project = {
       paragraphs: [
         "Defects are measured against severity targets, and code reviews against a 48-hour turnaround, over 7 days to 6 months.",
       ],
-      spot: { file: "gen/monitors.webp", width: 240, height: 122 },
     },
     {
       type: "full",
@@ -58,14 +56,12 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "test-page" },
     {
       type: "text",
       label: "Defects",
       paragraphs: [
         "The defect list filters by scope, status and search, keeps its state in the URL, and can be driven entirely from the keyboard.",
       ],
-      spot: { file: "gen/copier.webp", width: 457, height: 640 },
     },
     {
       type: "full",
@@ -122,14 +118,12 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "developer" },
     {
       type: "text",
       label: "Code reviews",
       paragraphs: [
         "Every change goes to the Code Review Team. Diffs show side by side or unified, and any line takes a comment.",
       ],
-      spot: { file: "gen/conference-room.webp", width: 229, height: 192 },
     },
     {
       type: "aside",
@@ -146,7 +140,6 @@ export const samsungDrs: Project = {
       type: "text",
       label: "Roles",
       paragraphs: ["There is no sign-in. Settings switches between the 34 people, and each role sees what it may do."],
-      spot: { file: "gen/lanyard.webp", width: 76, height: 192 },
     },
     {
       type: "full",
@@ -168,12 +161,10 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
-    { type: "embed", name: "server-rack" },
     {
       type: "text",
       label: "And more",
       paragraphs: ["Daily and weekly email digests, team profiles, notifications, and Ctrl+K search across everything."],
-      spot: { file: "gen/matcha-latte.webp", width: 229, height: 192 },
     },
     {
       type: "full",

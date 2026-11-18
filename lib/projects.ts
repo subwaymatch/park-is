@@ -31,13 +31,7 @@ export type Figure = {
 
 /** Paragraphs may hold inline links written as [text](https://…). */
 export type Block =
-  | {
-      type: "text";
-      label?: string;
-      paragraphs: string[];
-      /** A small decorative drawing under the label, from the project's media folder. */
-      spot?: SmallImage;
-    }
+  | { type: "text"; label?: string; paragraphs: string[] }
   /** A figure across the full width, caption below. */
   | { type: "full"; figure: Figure }
   /** Two figures side by side, usually phones. */
@@ -52,11 +46,8 @@ export type Block =
    */
   | { type: "embed"; name: string; caption?: string; bleed?: boolean };
 
-/** A small image in the project's media folder, by its path there and its size in pixels. */
-export type SmallImage = { file: string; width: number; height: number };
-
-/** A small image before a fact's value, such as an award badge. */
-export type FactBadge = SmallImage;
+/** A small image before a fact's value, such as an award badge: a file in the project's media folder. */
+export type FactBadge = { file: string; width: number; height: number };
 
 export type Project = {
   slug: string;

@@ -97,22 +97,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
     case "text":
       return (
         <div className="cols">
-          {block.spot ? (
-            <div className="col-label section-head">
-              {block.label && <h2 className="section-label">{block.label}</h2>}
-              <img
-                className="section-spot"
-                src={media(slug).file(block.spot.file)}
-                width={block.spot.width}
-                height={block.spot.height}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          ) : (
-            block.label && <h2 className="col-label section-label">{block.label}</h2>
-          )}
+          {block.label && <h2 className="col-label section-label">{block.label}</h2>}
           <div className="col-rest prose">
             <Paragraphs items={block.paragraphs} />
           </div>

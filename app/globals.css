@@ -455,35 +455,6 @@ button:focus-visible {
   color: var(--ink-3);
 }
 
-/* A section label with a small decorative drawing in the label column's
-   empty space below it. On phones, where the label sits over the text, the
-   drawing stands at the far end of the label's line. */
-.section-head {
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.section-spot {
-  display: block;
-  width: auto;
-  height: auto;
-  max-width: 120px;
-  max-height: 96px;
-}
-
-@media (max-width: 640px) {
-  .section-head {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .section-spot {
-    max-width: 84px;
-    max-height: 56px;
-  }
-}
-
 .muted,
 figcaption {
   color: var(--ink-3);

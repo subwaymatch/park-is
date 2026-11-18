@@ -73,54 +73,6 @@
   }
 }
 
-/* ---- Drawings (samsung-drs-art.tsx) ----
-   Cut-outs straight on the white page, centred. The copier and the desktop
-   printer share a baseline, the printer at about two thirds of the copier's
-   height. On phones the wide drawings keep a margin either side. */
-
-.machines {
-  --mh: clamp(200px, 24vw, 320px);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: clamp(24px, 5vw, 64px);
-}
-
-.copier,
-.mfp,
-.testPage,
-.developer,
-.serverRack {
-  display: block;
-  height: auto;
-}
-
-.copier {
-  width: auto;
-  height: var(--mh);
-}
-
-.mfp {
-  width: auto;
-  height: calc(var(--mh) * 0.68);
-}
-
-.testPage {
-  width: min(84%, 420px);
-  margin: 0 auto;
-}
-
-.developer {
-  width: min(76%, 360px);
-  margin: 0 auto;
-}
-
-.serverRack {
-  width: auto;
-  height: clamp(220px, 26vw, 320px);
-  margin: 0 auto;
-}
-
 /* ---- The demo's machines (samsung-drs-carousel.tsx) ----
    One baseline, each machine at its share of the tallest one's height
    (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel. */
