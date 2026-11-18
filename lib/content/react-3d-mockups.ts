@@ -8,7 +8,6 @@ export const react3dMockups: Project = {
   links: [
     { label: "https://area.is/react-3d-mockups", url: "https://area.is/react-3d-mockups" },
     { label: "Source", url: "https://github.com/area-is/react-3d-mockups" },
-    { label: "npm", url: "https://www.npmjs.com/package/react-3d-mockups" },
   ],
   summary: [
     "React 3D Mockups is an open-source library of 3D device and object mockups for React, built on three.js. Whatever goes on a screen, a component, a video or an iframe, stays live DOM and stays sharp at any angle.",
