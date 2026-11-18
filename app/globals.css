@@ -606,11 +606,13 @@ figcaption {
   line-height: 1.4;
 }
 
+/* A project's figures, with room to scroll past the last one. */
 .figures {
   display: flex;
   flex-direction: column;
   gap: 64px;
   padding-top: 24px;
+  padding-bottom: clamp(120px, 22vh, 280px);
 }
 
 .figure-aside figcaption {
