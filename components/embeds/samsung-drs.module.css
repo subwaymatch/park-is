@@ -80,7 +80,11 @@
 
 .drift {
   --ch: clamp(84px, 9vw, 120px);
+  --fade: clamp(48px, 10vw, 200px);
   overflow: hidden;
+  /* The row fades out at both ends of the window. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
 }
 
 .driftTrack {
@@ -90,7 +94,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: products-drift calc(var(--count) * 7s) linear infinite;
+  animation: products-drift calc(var(--count) * 9s) linear infinite;
   animation-play-state: paused;
 }
 
@@ -105,7 +109,7 @@
 /* Spacing by padding, not gap, so a third of the track is exactly one copy. */
 .driftTrack li {
   flex: none;
-  padding-right: clamp(28px, 3vw, 48px);
+  padding-right: clamp(48px, 6vw, 96px);
 }
 
 .driftTrack img {
