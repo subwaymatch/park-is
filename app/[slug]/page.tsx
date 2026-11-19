@@ -113,7 +113,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
       return (
         <figure className="cols">
           <Frame slug={slug} f={block.figure} className="col-all" />
-          <figcaption className="col-rest">{block.figure.caption}</figcaption>
+          <figcaption className="col-rest caption">{block.figure.caption}</figcaption>
         </figure>
       );
     case "pair":
@@ -122,7 +122,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           {block.figures.map((f, i) => (
             <figure key={f.file} className={i === 0 ? "col-half-start stack" : "col-half-end stack"}>
               <Frame slug={slug} f={f} />
-              <figcaption>{f.caption}</figcaption>
+              <figcaption className="caption">{f.caption}</figcaption>
             </figure>
           ))}
         </div>
@@ -130,7 +130,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
     case "aside":
       return (
         <figure className="cols figure-aside">
-          <figcaption className="col-label">{block.figure.caption}</figcaption>
+          <figcaption className="col-label caption">{block.figure.caption}</figcaption>
           <Frame slug={slug} f={block.figure} className="col-rest" />
         </figure>
       );
@@ -140,7 +140,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           <div className={block.bleed ? "col-all bleed" : "col-all"}>
             <Embed slug={slug} name={block.name} />
           </div>
-          {block.caption && <figcaption className="col-rest">{block.caption}</figcaption>}
+          {block.caption && <figcaption className="col-rest caption">{block.caption}</figcaption>}
         </figure>
       );
     case "logo":
@@ -149,7 +149,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           <div className="col-all frame is-bare">
             <ProjectLogo slug={slug} />
           </div>
-          <figcaption className="col-rest">{block.caption}</figcaption>
+          <figcaption className="col-rest caption">{block.caption}</figcaption>
         </figure>
       );
   }

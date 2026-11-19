@@ -505,6 +505,12 @@ figcaption {
   text-wrap: pretty;
 }
 
+/* A figure's caption on a project page, a little further from its image
+   than the 12px between rows. */
+.caption {
+  margin-top: 8px;
+}
+
 .tagline {
   margin: 0;
   color: var(--ink-2);
