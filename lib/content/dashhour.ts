@@ -77,11 +77,7 @@ export const dashhour: Project = {
         mat: true,
       },
     },
-    {
-      type: "embed",
-      name: "branch-scenes",
-      caption: "The branch photos are generated scenes: street fronts, lobbies, counters and ATMs.",
-    },
+    { type: "embed", name: "branch-scenes" },
     {
       type: "pair",
       figures: [
@@ -142,11 +138,6 @@ export const dashhour: Project = {
         caption: "The account page on a desktop: recent visits, alerts, language and demo speed.",
         mat: true,
       },
-    },
-    {
-      type: "text",
-      label: "About",
-      paragraphs: ["An About page presents DashHour as if it had shipped, in Korean and English."],
     },
     {
       type: "full",
