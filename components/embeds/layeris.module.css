@@ -529,3 +529,57 @@
     margin-bottom: 12px;
   }
 }
+
+/* ---- Stills from the 2019 video (layeris-stills.tsx) ----
+   One row of stills edge to edge, with no gap, edge or rounding, drifting
+   to the left like Samsung DRS's carousel and pausing under the pointer. */
+
+.stills {
+  --h: clamp(120px, 16vw, 216px);
+  overflow: hidden;
+}
+
+.stillsTrack {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: stills-drift calc(var(--count) * 7s) linear infinite;
+  animation-play-state: paused;
+}
+
+.stills[data-playing]:not(:hover) .stillsTrack {
+  animation-play-state: running;
+}
+
+.stillsTrack li {
+  flex: none;
+}
+
+.stillsTrack img {
+  display: block;
+  width: auto;
+  height: var(--h);
+  aspect-ratio: 16 / 9;
+}
+
+@keyframes stills-drift {
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stills {
+    overflow-x: auto;
+  }
+
+  .stillsTrack {
+    animation: none;
+  }
+
+  .stillsTrack li[data-copy] {
+    display: none;
+  }
+}

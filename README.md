@@ -22,8 +22,9 @@ row on tablets and desktops and one on phones; every project needs one there, ev
 An `embed` block renders a live component by name from `components/embeds/<slug>.tsx`, optionally full-bleed: Tabbied
 patterns drawn by the `tabbied` package, layeris before/after sliders and blend grids, React 3D Mockups scenes
 rendered by `react-3d-mockups`, DashHour's generated sketches, illustrations and branch scenes (in
-`public/media/dashhour/gen/`), and a drifting carousel of the Samsung DRS demo's generated printers and copiers (in
-`public/media/samsung-drs/products/`). Their styles are CSS modules beside them, imported by a module that exports the
+`public/media/dashhour/gen/`), a drifting carousel of the Samsung DRS demo's generated printers and copiers (in
+`public/media/samsung-drs/products/`), and another of stills from layeris's 2019 video (in
+`public/media/layeris/2019/`). Their styles are CSS modules beside them, imported by a module that exports the
 components using them: the build links a page's CSS only through exported components. The 3D scenes load three.js
 lazily, only on that page and only as a scene nears the viewport.
 
