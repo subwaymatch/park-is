@@ -36,3 +36,11 @@ export function ArrowUpRightIcon() {
     </svg>
   );
 }
+
+export function PlayIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" {...base} fill="currentColor">
+      <polygon points="6 3 20 12 6 21 6 3" />
+    </svg>
+  );
+}

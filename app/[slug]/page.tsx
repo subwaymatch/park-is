@@ -6,6 +6,7 @@ import { LoopVideo } from "@/components/loop-video";
 import { ProjectLogo } from "@/components/project-logo";
 import { RichText } from "@/components/rich-text";
 import { SiteHeader } from "@/components/site-header";
+import { YouTube } from "@/components/youtube";
 import { type Block, type Figure, getProject, media, projects, SHAPES, yearText } from "@/lib/projects";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,16 +44,18 @@ function Paragraphs({ items }: { items: string[] }) {
  */
 function Frame({ slug, f, className = "" }: { slug: string; f: Figure; className?: string }) {
   const shape = SHAPES[f.shape];
+  // A player letterboxes on black.
+  const player = f.kind === "video" || f.kind === "youtube" ? "is-video" : "";
   if (f.mat) {
     return (
       <div className={["frame is-bare is-matted", className].filter(Boolean).join(" ")}>
-        <div className={["frame-screen", shape.ratio, f.kind === "video" ? "is-video" : ""].filter(Boolean).join(" ")}>
+        <div className={["frame-screen", shape.ratio, player].filter(Boolean).join(" ")}>
           <Media slug={slug} f={f} />
         </div>
       </div>
     );
   }
-  const classes = ["frame", shape.ratio, f.shape === "phone" ? "is-bare" : "", f.kind === "video" ? "is-video" : "", className];
+  const classes = ["frame", shape.ratio, f.shape === "phone" ? "is-bare" : "", player, className];
   return (
     <div className={classes.filter(Boolean).join(" ")}>
       <Media slug={slug} f={f} />
@@ -76,6 +79,9 @@ function Media({ slug, f }: { slug: string; f: Figure }) {
           aria-label={f.caption}
           className="media-fill"
         />
+      )}
+      {f.kind === "youtube" && (
+        <YouTube id={f.youtube} poster={m.image(f.file)} title={f.caption} width={shape.width} height={shape.height} />
       )}
       {f.kind === "still" && (
         <img

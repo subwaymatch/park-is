@@ -18,8 +18,6 @@ export type Shape = "wide" | "tall" | "phone";
 export type Figure = {
   /** File name in public/media/<slug>/, without extension. */
   file: string;
-  /** loop: a muted clip that plays while on screen; video: the walkthrough, with controls; still: a .jpg. */
-  kind: "loop" | "video" | "still";
   shape: Shape;
   caption: string;
   /**
@@ -27,7 +25,21 @@ export type Figure = {
    * that would otherwise dissolve into this one.
    */
   mat?: boolean;
-};
+} & (
+  | {
+      /** loop: a muted clip that plays while on screen; video: a walkthrough, with controls; still: a .jpg. */
+      kind: "loop" | "video" | "still";
+    }
+  | {
+      /**
+       * A YouTube video, played in place: `file` is its poster (a .jpg), and nothing loads from YouTube until it's
+       * played.
+       */
+      kind: "youtube";
+      /** The video's ID, the v= of its watch URL. */
+      youtube: string;
+    }
+);
 
 /** Paragraphs may hold inline links written as [text](https://…). */
 export type Block =

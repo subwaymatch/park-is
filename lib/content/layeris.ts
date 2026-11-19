@@ -24,6 +24,16 @@ export const layeris: Project = {
   ],
   sections: [
     {
+      type: "full",
+      figure: {
+        file: "intro",
+        kind: "video",
+        shape: "wide",
+        caption: "The video from the docs: chaining, the blend modes, curves and a few looks. Every edit in it is rendered by layeris.",
+        mat: true,
+      },
+    },
+    {
       type: "text",
       label: "Chained API",
       paragraphs: ["Load a photo, chain the edits, save. clone() branches an edit without reading the file again."],
@@ -304,6 +314,17 @@ export const layeris: Project = {
       paragraphs: [
         "Layer.is won 2nd place in the general division of the [2019 Open Source Software Developer Competition](https://www.nipa.kr/home/bsnsAll/1/nttDetail?tab=2&bbsNo=4&bsnsDtlsIemNo=58&nttNo=16815), among over 100 teams.",
       ],
+    },
+    {
+      type: "full",
+      figure: {
+        file: "submission-2019",
+        kind: "youtube",
+        youtube: "PU_tEd8JgCw",
+        shape: "wide",
+        caption: "The original Layer.is introduction and demo, submitted to the 2019 competition.",
+        mat: true,
+      },
     },
   ],
   ogImage: "looks",

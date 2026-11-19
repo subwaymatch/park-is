@@ -34,17 +34,20 @@ Each project has a folder in `public/media/<slug>/`:
 | File | Used for |
 | --- | --- |
 | `hero.mp4`, `hero.jpg` | Project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
-| `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or the walkthrough, which has controls) and its poster |
-| `<name>.jpg` alone | A still figure |
+| `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or a walkthrough, which has controls) and its poster |
+| `<name>.jpg` alone | A still figure, or the poster of a YouTube video |
 | Any other file, such as `product-hunt-badge.avif` | A badge before a fact's value (`facts` in `lib/content/<slug>.ts`) |
 
 A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920×1080), `tall` 4:3 (1920×1440),
 `phone` 4:5 (a phone screen on the page's surface colour, 1200×1500 or 1600×2000). Phone shots already sit on the
 surface colour, so their frames have no hairline edge.
 
-The videos are H.264 with no audio track, recorded from the live sites with Playwright. Loops play only while on
-screen, and not at all when the visitor prefers reduced motion. Their posters load as they near the viewport, since a
-project page holds many of them.
+The videos are H.264 with no audio track, recorded from the live sites with Playwright, except layeris's `intro.mp4`,
+the video from its docs site, which has sound. Loops play only while on screen, and not at all when the visitor
+prefers reduced motion. Their posters load as they near the viewport, since a project page holds many of them.
+
+A figure of kind `youtube` plays a YouTube video by its ID (`components/youtube.tsx`). The page shows the poster from
+the media folder and a play button, and loads YouTube's player, from youtube-nocookie.com, only once it's clicked.
 
 `heroTone` in `lib/content/<slug>.ts` is the tone of the top band of a project's loop, where the header sits: `"dark"`
 switches the header to white. On phones the header sits on the page above the loop instead, and the loop is cropped
