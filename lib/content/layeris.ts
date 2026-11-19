@@ -24,15 +24,6 @@ export const layeris: Project = {
   ],
   sections: [
     {
-      type: "full",
-      figure: {
-        file: "intro",
-        kind: "video",
-        shape: "wide",
-        caption: "The video from the docs: chaining, the blend modes, curves and a few looks. Every edit in it is rendered by layeris.",
-      },
-    },
-    {
       type: "text",
       label: "Chained API",
       paragraphs: ["Load a photo, chain the edits, save. clone() branches an edit without reading the file again."],
@@ -275,6 +266,16 @@ export const layeris: Project = {
       },
     },
     {
+      type: "full",
+      figure: {
+        file: "walkthrough",
+        kind: "video",
+        shape: "wide",
+        caption: "A tour of the docs: looks, sliders, blend modes and the API.",
+        mat: true,
+      },
+    },
+    {
       type: "pair",
       figures: [
         { file: "phone-looks", kind: "loop", shape: "phone", caption: "The look switcher on a phone." },
@@ -298,6 +299,15 @@ export const layeris: Project = {
       caption: "Golden glow on a lake pavilion at dawn: screen, overlay and an S-curve.",
     },
     {
+      type: "full",
+      figure: {
+        file: "intro",
+        kind: "video",
+        shape: "wide",
+        caption: "The video from the docs: chaining, the blend modes, curves and a few looks. Every edit in it is rendered by layeris.",
+      },
+    },
+    {
       type: "text",
       label: "History",
       paragraphs: [
@@ -307,12 +317,59 @@ export const layeris: Project = {
     {
       type: "full",
       figure: {
-        file: "submission-2019",
+        file: "2019/video",
         kind: "youtube",
         youtube: "PU_tEd8JgCw",
         shape: "wide",
         caption: "The original Layer.is introduction and demo, submitted to the 2019 competition.",
       },
+    },
+    {
+      type: "text",
+      label: "2019 stills",
+      paragraphs: ["Stills from the entry video, from install to JSON presets. Its subtitles are in Korean."],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/install", kind: "still", shape: "wide", caption: "Installing from PyPI with pip." },
+        { file: "2019/layerimage", kind: "still", shape: "wide", caption: "Loading a photo. Every call goes through the LayerImage class." },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/grayscale", kind: "still", shape: "wide", caption: "grayscale().save() in one line, over the photo it changed." },
+        { file: "2019/chain", kind: "still", shape: "wide", caption: "Chaining: grayscale, save, then a Vivid Light blend of #b4ff00 at 0.8 opacity." },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/curve-before", kind: "still", shape: "wide", caption: "Curves: the red channel’s points, typed over the photo." },
+        { file: "2019/curve-after", kind: "still", shape: "wide", caption: "After: an S-curve on the red channel, cooling the shadows." },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/blend-original", kind: "still", shape: "wide", caption: "Blend modes on a car in the snow: the original." },
+        { file: "2019/color-dodge", kind: "still", shape: "wide", caption: "Color Dodge with #BA00FF." },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/brightness", kind: "still", shape: "wide", caption: "Adjustments, one call each: brightness()." },
+        { file: "2019/hue", kind: "still", shape: "wide", caption: "hue(), on the same waterfront." },
+      ],
+    },
+    {
+      type: "pair",
+      figures: [
+        { file: "2019/json", kind: "still", shape: "wide", caption: "A look as JSON: saturation, then Pin Light and Soft Light blends." },
+        { file: "2019/api", kind: "still", shape: "wide", caption: "The whole API on one class: 14 blend modes, seven adjustments, loading and saving." },
+      ],
     },
   ],
   ogImage: "looks",
