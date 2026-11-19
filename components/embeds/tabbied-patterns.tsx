@@ -245,7 +245,7 @@ export function PatternCarousel() {
   }, []);
 
   return (
-    <div ref={ref} className={styles.carousel} data-playing={visible || undefined}>
+    <div ref={ref} className={styles.carousel} data-carousel data-playing={visible || undefined}>
       <ul className={styles.carouselTrack} style={{ "--count": CAROUSEL.length } as CSSProperties}>
         {[0, 1].flatMap((copy) =>
           CAROUSEL.map((p) => (

@@ -7,6 +7,9 @@
   --gutter: 24px;
   --max: 1120px;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Extra room above and below each drifting carousel on a project page
+     (with its caption, if any), on top of the gap between figures. */
+  --carousel-space: clamp(32px, 5vw, 64px);
   color-scheme: light;
 }
 
@@ -663,6 +666,12 @@ figcaption {
   gap: 64px;
   padding-top: 24px;
   padding-bottom: clamp(120px, 22vh, 280px);
+}
+
+/* A drifting carousel (an embed marked data-carousel) gets more room above
+   and below it and its caption. */
+.figures > figure:has([data-carousel]) {
+  margin-block: var(--carousel-space);
 }
 
 .figure-aside figcaption {

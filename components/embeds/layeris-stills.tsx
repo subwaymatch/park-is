@@ -45,7 +45,7 @@ export function StillsCarousel() {
   }, []);
 
   return (
-    <div ref={ref} className={styles.stills} data-playing={visible || undefined}>
+    <div ref={ref} className={styles.stills} data-carousel data-playing={visible || undefined}>
       <ul className={styles.stillsTrack} style={{ "--count": STILLS.length } as CSSProperties}>
         {[0, 1, 2].flatMap((copy) =>
           STILLS.map((s) => (

@@ -80,7 +80,6 @@
 
 .drift {
   --ch: clamp(84px, 9vw, 120px);
-  padding-block: clamp(24px, 4vw, 56px);
   --fade: clamp(64px, 20vw, 360px);
   overflow: hidden;
   /* The row fades out at both ends of the window. */

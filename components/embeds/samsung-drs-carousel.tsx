@@ -41,7 +41,7 @@ export function ProductCarousel({
   }, []);
 
   return (
-    <div ref={ref} className={styles.drift} data-playing={visible || undefined} data-tall={tall || undefined}>
+    <div ref={ref} className={styles.drift} data-carousel data-playing={visible || undefined} data-tall={tall || undefined}>
       <ul
         className={styles.driftTrack}
         data-reverse={reverse || undefined}
