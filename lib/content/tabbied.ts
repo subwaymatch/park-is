@@ -48,12 +48,7 @@ export const tabbied: Project = {
         mat: true,
       },
     },
-    {
-      type: "embed",
-      name: "templates",
-      bleed: true,
-      caption: "Twelve templates at desktop width, from a golf club to a payroll consultant.",
-    },
+    { type: "embed", name: "templates", bleed: true },
     {
       type: "full",
       figure: {
