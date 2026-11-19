@@ -5,36 +5,41 @@ import styles from "./layeris.module.css";
 
 type Still = { file: string; alt: string };
 
-/** Stills from the 2019 competition video in its order, each in public/media/layeris/2019/ at 640×360. */
+/**
+ * Stills from the 2019 competition video in its order, chosen by Ye Joo: the first fourteen in the first row and the
+ * other thirteen in the second, each in public/media/layeris/2019/ at 640×360, named for its frame and time.
+ */
 const ROW_1: Still[] = [
-  { file: "layerimage", alt: "Loading a photo with LayerImage.from_file, typed over a photo of an office." },
-  { file: "grayscale", alt: "grayscale().save() in one line, over the office photo it turned grey." },
-  { file: "autocomplete", alt: "The editor suggesting clone, color_burn and color_dodge over a photo of a balloon dog sculpture." },
-  { file: "chain", alt: "A chain: grayscale, save, then a Vivid Light blend of #b4ff00 at 0.8 opacity, the balloon dog yellow and green." },
-  { file: "curve-before", alt: "A curve on the red channel, typed over a portrait in a forest, before." },
-  { file: "curve-after", alt: "The portrait after an S-curve on the red channel." },
-  { file: "blend-original", alt: "A car in the snow, the original photo for the blend modes." },
-  { file: "color-dodge", alt: "The car with Color Dodge in #BA00FF." },
-  { file: "linear-burn", alt: "The car with Linear Burn in #49FFE3." },
-  { file: "brightness", alt: "brightness() on a waterfront." },
-  { file: "hue", alt: "hue() on the same waterfront." },
-  { file: "ending", alt: "The office photo in magenta, from the video's closing montage." },
+  { file: "layer-is_008_0m32.9s", alt: "LayerImage imported and a photo loaded, typed over a photo of an office." },
+  { file: "layer-is_013_0m40.0s", alt: "grayscale().save() typed over the office photo, now grey." },
+  { file: "layer-is_017_0m53.6s", alt: "A blue balloon dog sculpture in a gallery, the original photo." },
+  { file: "layer-is_019_0m58.2s", alt: "The chaining example: the balloon dog turned grayscale, with its code." },
+  { file: "layer-is_021_1m08.7s", alt: "A Vivid Light blend turning the balloon dog yellow and green, with its code." },
+  { file: "layer-is_025_1m27.2s", alt: "A portrait in a forest, the original photo for the curves." },
+  { file: "layer-is_028_1m34.1s", alt: "The portrait after an S-curve on the red channel, with its code." },
+  { file: "layer-is_032_1m48.2s", alt: "A car in the snow, the original photo for the blend modes." },
+  { file: "layer-is_033_1m50.8s", alt: "The car with Linear Dodge." },
+  { file: "layer-is_034_1m51.7s", alt: "The car with Color Dodge in #BA00FF." },
+  { file: "layer-is_035_1m54.7s", alt: "The car with Linear Burn in #49FFE3." },
+  { file: "layer-is_037_1m58.7s", alt: "The car in violet, from the blend modes." },
+  { file: "layer-is_038_2m02.0s", alt: "brightness() on a waterfront." },
+  { file: "layer-is_040_2m04.3s", alt: "contrast() on the waterfront." },
 ];
 
-/** Twelve more stills from the same video, mixed so no two alike stand together. */
 const ROW_2: Still[] = [
-  { file: "dog", alt: "A blue balloon dog sculpture in a gallery, the original photo." },
-  { file: "skyline-dark", alt: "The waterfront darkened by an adjustment." },
-  { file: "portrait", alt: "A portrait in a forest, the original photo for the curves." },
-  { file: "traffic-violet", alt: "Night traffic in violet, from the closing montage." },
-  { file: "linear-dodge", alt: "The car in the snow with Linear Dodge." },
-  { file: "traffic-mono", alt: "Night traffic in black and white under the video's closing line." },
-  { file: "saturation", alt: "saturation() on the waterfront." },
-  { file: "dog-pink", alt: "The balloon dog in pink, from the closing montage." },
-  { file: "multiply", alt: "The car with Multiply in #AF5DEF." },
-  { file: "traffic-night", alt: "Night traffic under the video's closing line." },
-  { file: "chain-grayscale", alt: "The balloon dog in grayscale, the first step of a chain, with its code." },
-  { file: "contrast", alt: "contrast() on the waterfront." },
+  { file: "layer-is_041_2m05.3s", alt: "hue() on the waterfront." },
+  { file: "layer-is_043_2m08.7s", alt: "The waterfront darkened by an adjustment." },
+  { file: "layer-is_053_2m27.8s", alt: "apply_from_json() typed in the editor, applying a look saved as JSON." },
+  { file: "layer-is_056_2m40.4s", alt: "A city bus passing, the original photo for the closing montage." },
+  { file: "layer-is_057_2m42.1s", alt: "The bus in violet under the video's closing line." },
+  { file: "layer-is_060_2m46.8s", alt: "Night traffic under the video's closing line." },
+  { file: "layer-is_061_2m47.0s", alt: "The night traffic in black and white." },
+  { file: "layer-is_062_2m48.5s", alt: "The night traffic in violet." },
+  { file: "layer-is_063_2m49.8s", alt: "The office photo, from the closing montage." },
+  { file: "layer-is_064_2m52.0s", alt: "The office photo in magenta." },
+  { file: "layer-is_065_2m53.0s", alt: "The balloon dog photo again, from the closing montage." },
+  { file: "layer-is_066_2m55.2s", alt: "The balloon dog in pink." },
+  { file: "layer-is_067_2m55.3s", alt: "The balloon dog in a cool blue." },
 ];
 
 /** One row, drawn three times and moved by one copy so the loop has no seam; `reverse` drifts it to the right. */
