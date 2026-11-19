@@ -30,7 +30,6 @@ export const layeris: Project = {
         kind: "video",
         shape: "wide",
         caption: "The video from the docs: chaining, the blend modes, curves and a few looks. Every edit in it is rendered by layeris.",
-        mat: true,
       },
     },
     {
@@ -276,16 +275,6 @@ export const layeris: Project = {
       },
     },
     {
-      type: "full",
-      figure: {
-        file: "walkthrough",
-        kind: "video",
-        shape: "wide",
-        caption: "A tour of the docs: looks, sliders, blend modes and the API.",
-        mat: true,
-      },
-    },
-    {
       type: "pair",
       figures: [
         { file: "phone-looks", kind: "loop", shape: "phone", caption: "The look switcher on a phone." },
@@ -323,7 +312,6 @@ export const layeris: Project = {
         youtube: "PU_tEd8JgCw",
         shape: "wide",
         caption: "The original Layer.is introduction and demo, submitted to the 2019 competition.",
-        mat: true,
       },
     },
   ],
