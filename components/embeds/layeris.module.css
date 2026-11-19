@@ -532,7 +532,7 @@
 
 /* ---- Stills from the 2019 video (layeris-stills.tsx) ----
    One row of stills edge to edge, with no gap, edge or rounding, drifting
-   to the left like Samsung DRS's carousel and pausing under the pointer. */
+   to the left like Samsung DRS's carousel. */
 
 .stills {
   --h: clamp(120px, 16vw, 216px);
@@ -549,7 +549,7 @@
   animation-play-state: paused;
 }
 
-.stills[data-playing]:not(:hover) .stillsTrack {
+.stills[data-playing] .stillsTrack {
   animation-play-state: running;
 }
 

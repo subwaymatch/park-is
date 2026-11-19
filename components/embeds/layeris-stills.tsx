@@ -20,9 +20,9 @@ const STILLS = [
 ];
 
 /**
- * The 2019 video's stills edge to edge in one row, drifting slowly to the left like Samsung DRS's carousel, and
- * pausing under the pointer. The row is drawn three times and moves by one copy, so the loop has no seam; it pauses
- * off screen. With reduced motion it is a row to scroll.
+ * The 2019 video's stills edge to edge in one row, drifting slowly to the left like Samsung DRS's carousel. The row
+ * is drawn three times and moves by one copy, so the loop has no seam; it pauses off screen. With reduced motion it
+ * is a row to scroll.
  */
 export function StillsCarousel() {
   const ref = useRef<HTMLDivElement>(null);
