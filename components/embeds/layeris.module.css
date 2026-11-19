@@ -531,11 +531,12 @@
 }
 
 /* ---- Stills from the 2019 video (layeris-stills.tsx) ----
-   One row of stills edge to edge, with no gap, edge or rounding, drifting
-   to the left like Samsung DRS's carousel. */
+   Two rows of stills edge to edge, with no gap, edge or rounding between
+   stills or rows, drifting slowly in opposite directions like Samsung DRS's
+   carousels. */
 
 .stills {
-  --h: clamp(120px, 16vw, 216px);
+  --h: clamp(88px, 11vw, 150px);
   overflow: hidden;
 }
 
@@ -545,8 +546,12 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  animation: stills-drift calc(var(--count) * 7s) linear infinite;
+  animation: stills-drift calc(var(--count) * 10s) linear infinite;
   animation-play-state: paused;
+}
+
+.stillsTrack[data-reverse] {
+  animation-direction: reverse;
 }
 
 .stills[data-playing] .stillsTrack {

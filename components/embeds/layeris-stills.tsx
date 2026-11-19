@@ -3,8 +3,10 @@
 import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./layeris.module.css";
 
-/** Stills from the 2019 competition video, in its order, each in public/media/layeris/2019/ at 960×540. */
-const STILLS = [
+type Still = { file: string; alt: string };
+
+/** Stills from the 2019 competition video in its order, each in public/media/layeris/2019/ at 640×360. */
+const ROW_1: Still[] = [
   { file: "layerimage", alt: "Loading a photo with LayerImage.from_file, typed over a photo of an office." },
   { file: "grayscale", alt: "grayscale().save() in one line, over the office photo it turned grey." },
   { file: "autocomplete", alt: "The editor suggesting clone, color_burn and color_dodge over a photo of a balloon dog sculpture." },
@@ -19,15 +21,56 @@ const STILLS = [
   { file: "ending", alt: "The office photo in magenta, from the video's closing montage." },
 ];
 
+/** Twelve more stills from the same video, mixed so no two alike stand together. */
+const ROW_2: Still[] = [
+  { file: "dog", alt: "A blue balloon dog sculpture in a gallery, the original photo." },
+  { file: "skyline-dark", alt: "The waterfront darkened by an adjustment." },
+  { file: "portrait", alt: "A portrait in a forest, the original photo for the curves." },
+  { file: "traffic-violet", alt: "Night traffic in violet, from the closing montage." },
+  { file: "linear-dodge", alt: "The car in the snow with Linear Dodge." },
+  { file: "traffic-mono", alt: "Night traffic in black and white under the video's closing line." },
+  { file: "saturation", alt: "saturation() on the waterfront." },
+  { file: "dog-pink", alt: "The balloon dog in pink, from the closing montage." },
+  { file: "multiply", alt: "The car with Multiply in #AF5DEF." },
+  { file: "traffic-night", alt: "Night traffic under the video's closing line." },
+  { file: "chain-grayscale", alt: "The balloon dog in grayscale, the first step of a chain, with its code." },
+  { file: "contrast", alt: "contrast() on the waterfront." },
+];
+
+/** One row, drawn three times and moved by one copy so the loop has no seam; `reverse` drifts it to the right. */
+function Row({ stills, reverse = false, seen }: { stills: Still[]; reverse?: boolean; seen: boolean }) {
+  return (
+    <ul
+      className={styles.stillsTrack}
+      data-reverse={reverse || undefined}
+      style={{ "--count": stills.length } as CSSProperties}
+    >
+      {[0, 1, 2].flatMap((copy) =>
+        stills.map((s) => (
+          <li key={`${copy}-${s.file}`} aria-hidden={copy > 0 || undefined} data-copy={copy > 0 || undefined}>
+            <img
+              src={`/media/layeris/2019/${s.file}.jpg`}
+              alt={copy > 0 ? "" : s.alt}
+              width={640}
+              height={360}
+              loading={seen ? "eager" : "lazy"}
+              decoding="async"
+            />
+          </li>
+        )),
+      )}
+    </ul>
+  );
+}
+
 /**
- * The 2019 video's stills edge to edge in one row, drifting slowly to the left like Samsung DRS's carousel. The row
- * is drawn three times and moves by one copy, so the loop has no seam; it pauses off screen. With reduced motion it
- * is a row to scroll.
+ * The 2019 video's stills in two rows edge to edge, with no gap between stills or rows, drifting slowly in opposite
+ * directions like Samsung DRS's carousels. Both pause off screen; with reduced motion each is a row to scroll.
  */
 export function StillsCarousel() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  // Off-screen stills in the track would wait for native lazy loading; once the carousel is first near, all load.
+  // Off-screen stills in the tracks would wait for native lazy loading; once the carousel is first near, all load.
   const [seen, setSeen] = useState(false);
 
   useEffect(() => {
@@ -46,22 +89,8 @@ export function StillsCarousel() {
 
   return (
     <div ref={ref} className={styles.stills} data-carousel data-playing={visible || undefined}>
-      <ul className={styles.stillsTrack} style={{ "--count": STILLS.length } as CSSProperties}>
-        {[0, 1, 2].flatMap((copy) =>
-          STILLS.map((s) => (
-            <li key={`${copy}-${s.file}`} aria-hidden={copy > 0 || undefined} data-copy={copy > 0 || undefined}>
-              <img
-                src={`/media/layeris/2019/${s.file}.jpg`}
-                alt={copy > 0 ? "" : s.alt}
-                width={960}
-                height={540}
-                loading={seen ? "eager" : "lazy"}
-                decoding="async"
-              />
-            </li>
-          )),
-        )}
-      </ul>
+      <Row stills={ROW_1} seen={seen} />
+      <Row stills={ROW_2} reverse seen={seen} />
     </div>
   );
 }
