@@ -57,6 +57,7 @@ export const dashhour: Project = {
         "Each branch shows its wait, the people ahead and the walk there. On a desktop the list, a street map of Gangnam Station and the branch panel sit side by side.",
       ],
     },
+    { type: "embed", name: "branch-moments" },
     {
       type: "full",
       figure: {
@@ -77,11 +78,7 @@ export const dashhour: Project = {
         mat: true,
       },
     },
-    {
-      type: "embed",
-      name: "branch-scenes",
-      caption: "The branch photos are generated scenes: street fronts, lobbies, counters and ATMs.",
-    },
+    { type: "embed", name: "branch-scenes" },
     {
       type: "pair",
       figures: [
@@ -133,6 +130,7 @@ export const dashhour: Project = {
         { file: "phone-ticket", kind: "loop", shape: "phone", caption: "The Ticket tab at 30×, until it’s your turn." },
       ],
     },
+    { type: "embed", name: "ticket-moments" },
     {
       type: "aside",
       figure: {
@@ -142,11 +140,6 @@ export const dashhour: Project = {
         caption: "The account page on a desktop: recent visits, alerts, language and demo speed.",
         mat: true,
       },
-    },
-    {
-      type: "text",
-      label: "About",
-      paragraphs: ["An About page presents DashHour as if it had shipped, in Korean and English."],
     },
     {
       type: "full",
@@ -175,6 +168,7 @@ export const dashhour: Project = {
         "Any address the app doesn’t have, an unknown branch included, gets a 404 inside the app: a torn ticket numbered 404 rolls its digits in like a queue display, beside someone lost at a signpost.",
       ],
     },
+    { type: "embed", name: "lost" },
     {
       type: "aside",
       figure: {

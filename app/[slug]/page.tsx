@@ -6,6 +6,7 @@ import { LoopVideo } from "@/components/loop-video";
 import { ProjectLogo } from "@/components/project-logo";
 import { RichText } from "@/components/rich-text";
 import { SiteHeader } from "@/components/site-header";
+import { YouTube } from "@/components/youtube";
 import { type Block, type Figure, getProject, media, projects, SHAPES, yearText } from "@/lib/projects";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,16 +44,18 @@ function Paragraphs({ items }: { items: string[] }) {
  */
 function Frame({ slug, f, className = "" }: { slug: string; f: Figure; className?: string }) {
   const shape = SHAPES[f.shape];
+  // A player letterboxes on black.
+  const player = f.kind === "video" || f.kind === "youtube" ? "is-video" : "";
   if (f.mat) {
     return (
       <div className={["frame is-bare is-matted", className].filter(Boolean).join(" ")}>
-        <div className={["frame-screen", shape.ratio, f.kind === "video" ? "is-video" : ""].filter(Boolean).join(" ")}>
+        <div className={["frame-screen", shape.ratio, player].filter(Boolean).join(" ")}>
           <Media slug={slug} f={f} />
         </div>
       </div>
     );
   }
-  const classes = ["frame", shape.ratio, f.shape === "phone" ? "is-bare" : "", f.kind === "video" ? "is-video" : "", className];
+  const classes = ["frame", shape.ratio, f.shape === "phone" ? "is-bare" : "", player, className];
   return (
     <div className={classes.filter(Boolean).join(" ")}>
       <Media slug={slug} f={f} />
@@ -76,6 +79,9 @@ function Media({ slug, f }: { slug: string; f: Figure }) {
           aria-label={f.caption}
           className="media-fill"
         />
+      )}
+      {f.kind === "youtube" && (
+        <YouTube id={f.youtube} poster={m.image(f.file)} title={f.caption} width={shape.width} height={shape.height} />
       )}
       {f.kind === "still" && (
         <img
@@ -107,7 +113,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
       return (
         <figure className="cols">
           <Frame slug={slug} f={block.figure} className="col-all" />
-          <figcaption className="col-rest">{block.figure.caption}</figcaption>
+          <figcaption className="col-rest caption">{block.figure.caption}</figcaption>
         </figure>
       );
     case "pair":
@@ -116,7 +122,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           {block.figures.map((f, i) => (
             <figure key={f.file} className={i === 0 ? "col-half-start stack" : "col-half-end stack"}>
               <Frame slug={slug} f={f} />
-              <figcaption>{f.caption}</figcaption>
+              <figcaption className="caption">{f.caption}</figcaption>
             </figure>
           ))}
         </div>
@@ -124,7 +130,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
     case "aside":
       return (
         <figure className="cols figure-aside">
-          <figcaption className="col-label">{block.figure.caption}</figcaption>
+          <figcaption className="col-label caption">{block.figure.caption}</figcaption>
           <Frame slug={slug} f={block.figure} className="col-rest" />
         </figure>
       );
@@ -134,7 +140,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           <div className={block.bleed ? "col-all bleed" : "col-all"}>
             <Embed slug={slug} name={block.name} />
           </div>
-          {block.caption && <figcaption className="col-rest">{block.caption}</figcaption>}
+          {block.caption && <figcaption className="col-rest caption">{block.caption}</figcaption>}
         </figure>
       );
     case "logo":
@@ -143,7 +149,7 @@ function Section({ slug, block }: { slug: string; block: Block }) {
           <div className="col-all frame is-bare">
             <ProjectLogo slug={slug} />
           </div>
-          <figcaption className="col-rest">{block.caption}</figcaption>
+          <figcaption className="col-rest caption">{block.caption}</figcaption>
         </figure>
       );
   }

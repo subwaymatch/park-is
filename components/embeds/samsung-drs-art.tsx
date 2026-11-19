@@ -1,4 +1,6 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { type CSSProperties, useEffect, useRef, useState } from "react";
 import styles from "./samsung-drs.module.css";
 
 // Isometric 3D illustrations of the printing division's world, generated at low quality on transparency
@@ -117,10 +119,21 @@ function widthShare(name: string, area = 0.62) {
   return w * Math.min(1, 1 / w, 1 / h);
 }
 
-/** Five illustrations side by side on one baseline, centred. */
+/** Five illustrations side by side on one baseline, centred, each bobbing very slightly while the row is on screen. */
 export function ArtRow({ row }: { row: keyof typeof ROWS }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: "120px 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <div className={styles.artRow}>
+    <div ref={ref} className={styles.artRow} data-playing={visible || undefined}>
       {ROWS[row].map((name) => (
         <img
           key={name}

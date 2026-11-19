@@ -23,7 +23,7 @@ export function RisoStrip({ items }: { items: Riso[] }) {
   }, []);
 
   return (
-    <div ref={ref} className={styles.strip} data-playing={visible || undefined}>
+    <div ref={ref} className={styles.strip} data-carousel data-playing={visible || undefined}>
       <ul className={styles.track} style={{ "--count": items.length } as CSSProperties}>
         {[0, 1].flatMap((copy) =>
           items.map((r) => (

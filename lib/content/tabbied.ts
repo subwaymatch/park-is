@@ -4,14 +4,13 @@ export const tabbied: Project = {
   slug: "tabbied",
   name: "Tabbied",
   year: "2019",
-  tagline: "Free website templates for every trade, with generated patterns in place of stock photos.",
+  tagline: "Free generated patterns, and pattern-based website templates for every trade.",
   links: [
     { label: "https://tabbied.com", url: "https://tabbied.com" },
     { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
-    "Tabbied is a free library of 300+ one-page website templates for trades, 300+ generated patterns and 400+ color palettes. Every template is built around a pattern instead of stock photos.",
-    "Recolor a template, swap its patterns and download it as HTML/CSS or React, with no account.",
+    "Tabbied is a free library of 300+ generated patterns and 400+ color palettes, plus 300+ one-page website templates for trades.",
     "Tabbied began in 2019 and was the #2 Launch of the Day on Product Hunt in 2021. In 2026 it was repackaged for React, Vue (Nuxt), Svelte (SvelteKit), web components, plain HTML and JavaScript, with an MCP server for coding agents, and gained 300+ free templates.",
   ],
   facts: [
@@ -49,12 +48,7 @@ export const tabbied: Project = {
         mat: true,
       },
     },
-    {
-      type: "embed",
-      name: "templates",
-      bleed: true,
-      caption: "Twelve templates at desktop width, from a golf club to a payroll consultant.",
-    },
+    { type: "embed", name: "templates", bleed: true },
     {
       type: "full",
       figure: {

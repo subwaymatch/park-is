@@ -7,6 +7,9 @@
   --gutter: 24px;
   --max: 1120px;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* Extra room above and below each drifting carousel on a project page
+     (with its caption, if any), on top of the gap between figures. */
+  --carousel-space: clamp(32px, 5vw, 64px);
   color-scheme: light;
 }
 
@@ -316,6 +319,50 @@ button:focus-visible {
   background: #000000;
 }
 
+iframe.media-fill {
+  border: 0;
+}
+
+/* A YouTube video before it's played (components/youtube.tsx): its poster
+   and a round play button, which darkens on hover. */
+.youtube {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: #ffffff;
+}
+
+.youtube:hover,
+.youtube:focus-visible {
+  color: #ffffff;
+  outline: none;
+}
+
+.youtube-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgb(27 27 25 / 0.72);
+  transition: background-color 0.2s ease;
+}
+
+.youtube:hover .youtube-play {
+  background: rgb(27 27 25 / 0.9);
+}
+
+/* White then ink, so the ring shows on any poster. */
+.youtube:focus-visible .youtube-play {
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 4px var(--ink);
+}
+
 /* Home: a grid of the projects' logos, two to a row on tablets and desktops
    and one on phones. Each logo animates on a flat tile of the surface colour,
    with no edge and no glow behind it. */
@@ -459,6 +506,12 @@ button:focus-visible {
 figcaption {
   color: var(--ink-3);
   text-wrap: pretty;
+}
+
+/* A figure's caption on a project page, a little further from its image
+   than the 12px between rows. */
+.caption {
+  margin-top: 8px;
 }
 
 .tagline {
@@ -613,6 +666,12 @@ figcaption {
   gap: 64px;
   padding-top: 24px;
   padding-bottom: clamp(120px, 22vh, 280px);
+}
+
+/* A drifting carousel (an embed marked data-carousel) gets more room above
+   and below it and its caption. */
+.figures > figure:has([data-carousel]) {
+  margin-block: var(--carousel-space);
 }
 
 .figure-aside figcaption {

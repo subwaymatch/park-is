@@ -1,5 +1,6 @@
 import { Compare, Pipeline, Preset } from "./layeris-live";
 import { Band, BlendGrid, Opacity, PortraitPairs, Triptych } from "./layeris-static";
+import { StillsCarousel } from "./layeris-stills";
 
 /** Live components for this project's page, by name. See components/embeds/index.tsx. */
 export const embeds: Record<string, () => React.ReactNode> = {
@@ -18,4 +19,5 @@ export const embeds: Record<string, () => React.ReactNode> = {
   opacity: () => <Opacity />,
   preset: () => <Preset />,
   portraits: () => <PortraitPairs />,
+  "stills-2019": () => <StillsCarousel />,
 };
