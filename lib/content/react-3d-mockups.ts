@@ -244,13 +244,6 @@ export const react3dMockups: Project = {
         },
       ],
     },
-    {
-      type: "text",
-      label: "Shipping",
-      paragraphs: [
-        "Since 0.1.1, releases go to npm from GitHub Actions with Trusted Publishing and signed SLSA provenance.",
-      ],
-    },
   ],
   ogImage: "landing-carousel",
   heroTone: "light",
