@@ -13,9 +13,10 @@ const DISCS = [
 
 /**
  * The four inks as flat discs multiplied over one another, so each overlap prints a third color. Ordered so every
- * overlap is a clean mix: green and blue, blue and yellow, yellow and red. When first seen they spread in one after
+ * overlap is a clean mix: green and blue, blue and yellow, yellow and red. When first seen they fade in one after
  * another, then drift: alternate discs lean together and apart, so the overlaps keep widening and narrowing. The
- * drift pauses off screen; with reduced motion, or without JavaScript, the discs stand still.
+ * drift pauses off screen; with reduced motion, or without JavaScript, the discs stand still. The plate sits under
+ * the text column, like the ramps below it.
  */
 export function InkOverprint() {
   const ref = useRef<SVGSVGElement>(null);
@@ -38,27 +39,30 @@ export function InkOverprint() {
     return () => io.disconnect();
   }, []);
 
+  // The view box is the row of discs: the drift only moves the outer two inward.
   return (
-    <svg
-      ref={ref}
-      className={styles.plate}
-      viewBox="112 120 1370 460"
-      role="img"
-      aria-label="Green, blue, yellow and red discs overprinted in a row"
-    >
-      <g className={styles.inks}>
-        {DISCS.map((d, i) => (
-          <circle
-            key={d.name}
-            className={`${styles.ink} ${i % 2 ? styles.odd : styles.even}`}
-            cx={d.cx}
-            cy={350}
-            r={210}
-            fill={d.color}
-            style={{ "--i": i } as React.CSSProperties}
-          />
-        ))}
-      </g>
-    </svg>
+    <div className={styles.stage}>
+      <svg
+        ref={ref}
+        className={styles.plate}
+        viewBox="152 140 1290 420"
+        role="img"
+        aria-label="Green, blue, yellow and red discs overprinted in a row"
+      >
+        <g className={styles.inks}>
+          {DISCS.map((d, i) => (
+            <circle
+              key={d.name}
+              className={`${styles.ink} ${i % 2 ? styles.odd : styles.even}`}
+              cx={d.cx}
+              cy={350}
+              r={210}
+              fill={d.color}
+              style={{ "--i": i } as React.CSSProperties}
+            />
+          ))}
+        </g>
+      </svg>
+    </div>
   );
 }

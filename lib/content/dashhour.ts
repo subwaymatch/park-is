@@ -4,7 +4,6 @@ export const dashhour: Project = {
   slug: "dashhour",
   name: "DashHour",
   year: "2016",
-  revived: "2026",
   tagline: "Take a bank’s queue number before you get there, and arrive as it’s called.",
   links: [
     { label: "Live demo", url: "https://dashhour.subwaymatch.workers.dev/" },
@@ -15,9 +14,12 @@ export const dashhour: Project = {
     "It began as six pages of pen sketches at a 2016 hackathon hosted by Samsung Electronics, and won first place.",
   ],
   facts: [
-    ["Award", "1st place, BlueHack, a hackathon hosted by Samsung Electronics (2016)"],
-    ["Team", "Bolim Lee, Team Lead\nYe Joo Park, Developer\nA product manager and a marketer"],
-    ["Note", "A prototype with simulated queues, not affiliated with or endorsed by any bank"],
+    [
+      "Award",
+      "1st place, BlueHack, a hackathon hosted by Samsung Electronics (2016)",
+      { file: "samsung-wordmark.svg", width: 7051, height: 1080 },
+    ],
+    ["Team", "Bolim Lee, Team Lead & Designer\nYe Joo Park, Developer\nA product manager and a marketer"],
   ],
   sections: [
     { type: "embed", name: "origin" },
@@ -25,7 +27,7 @@ export const dashhour: Project = {
       type: "text",
       label: "Sketches",
       paragraphs: [
-        "The six notepad pages were redrawn as clean line work. A story page sets each beside the screen it became, and a switch brings back the scanned page with its handwritten Korean notes.",
+        "Bolim Lee, the team lead and designer, drew the six notepad pages. They were redrawn as clean line work. A story page sets each beside the screen it became, and a switch brings back the scanned page with its handwritten Korean notes.",
       ],
     },
     {
@@ -55,6 +57,7 @@ export const dashhour: Project = {
         "Each branch shows its wait, the people ahead and the walk there. On a desktop the list, a street map of Gangnam Station and the branch panel sit side by side.",
       ],
     },
+    { type: "embed", name: "branch-moments" },
     {
       type: "full",
       figure: {
@@ -75,11 +78,7 @@ export const dashhour: Project = {
         mat: true,
       },
     },
-    {
-      type: "embed",
-      name: "branch-scenes",
-      caption: "The branch photos are generated scenes: street fronts, lobbies, counters and ATMs.",
-    },
+    { type: "embed", name: "branch-scenes" },
     {
       type: "pair",
       figures: [
@@ -131,6 +130,7 @@ export const dashhour: Project = {
         { file: "phone-ticket", kind: "loop", shape: "phone", caption: "The Ticket tab at 30×, until it’s your turn." },
       ],
     },
+    { type: "embed", name: "ticket-moments" },
     {
       type: "aside",
       figure: {
@@ -140,11 +140,6 @@ export const dashhour: Project = {
         caption: "The account page on a desktop: recent visits, alerts, language and demo speed.",
         mat: true,
       },
-    },
-    {
-      type: "text",
-      label: "About",
-      paragraphs: ["An About page presents DashHour as if it had shipped, in Korean and English."],
     },
     {
       type: "full",
@@ -173,6 +168,7 @@ export const dashhour: Project = {
         "Any address the app doesn’t have, an unknown branch included, gets a 404 inside the app: a torn ticket numbered 404 rolls its digits in like a queue display, beside someone lost at a signpost.",
       ],
     },
+    { type: "embed", name: "lost" },
     {
       type: "aside",
       figure: {

@@ -66,16 +66,8 @@ export const dataslope: Project = {
         "Four inks, each with one job: blue for anything you can press, green for runs that pass, red for errors and yellow for highlights. The illustrations are printed in the same four.",
       ],
     },
-    {
-      type: "embed",
-      name: "ink-overprint",
-      caption: "The four inks overprinted like the risographs: where two cross, they print a third.",
-    },
-    {
-      type: "embed",
-      name: "ink-ramps",
-      caption: "Each ink is step 500 of a ramp built in OKLCH. The palette is made for the dark theme, so text on white takes the deeper step marked Aa.",
-    },
+    { type: "embed", name: "ink-overprint" },
+    { type: "embed", name: "ink-ramps" },
     {
       type: "text",
       label: "Illustrations",

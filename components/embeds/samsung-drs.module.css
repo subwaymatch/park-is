@@ -72,3 +72,144 @@
     padding: 10px;
   }
 }
+
+/* ---- The demo's machines (samsung-drs-carousel.tsx) ----
+   One baseline, each machine at its share of the tallest one's height
+   (scale() in samsung-drs-products.ts), drifting like Tabbied's carousel;
+   the second row, the copiers, stands taller and drifts the other way. */
+
+.drift {
+  --ch: clamp(84px, 9vw, 120px);
+  --fade: clamp(64px, 20vw, 360px);
+  overflow: hidden;
+  /* The row fades out at both ends of the window. */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+}
+
+.driftTrack {
+  display: flex;
+  align-items: flex-end;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: products-drift calc(var(--count) * 9s) linear infinite;
+  animation-play-state: paused;
+}
+
+/* The copiers stand in a taller row; they are wider too, so a longer cycle
+   keeps the row at the same pace. */
+.drift[data-tall] {
+  --ch: clamp(110px, 12vw, 160px);
+}
+
+.drift[data-tall] .driftTrack {
+  animation-duration: calc(var(--count) * 11s);
+}
+
+.drift[data-playing] .driftTrack {
+  animation-play-state: running;
+}
+
+.driftTrack[data-reverse] {
+  animation-direction: reverse;
+}
+
+/* Spacing by padding, not gap, so a third of the track is exactly one copy. */
+.driftTrack li {
+  flex: none;
+  padding-right: clamp(48px, 6vw, 96px);
+}
+
+.driftTrack img {
+  display: block;
+  width: auto;
+  height: calc(var(--ch) * var(--k));
+}
+
+@keyframes products-drift {
+  to {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift {
+    overflow-x: auto;
+  }
+
+  .driftTrack {
+    animation: none;
+    padding-left: 24px;
+  }
+
+  .driftTrack li[data-copy] {
+    display: none;
+  }
+}
+
+/* ---- Isometric illustrations (samsung-drs-art.tsx) ----
+   Rows of five on one baseline, centred, each at its share of a square box
+   so they carry about the same weight. Five across on phones too. */
+
+.artRow {
+  --box: clamp(40px, 6.5vw, 96px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(16px, 5.5vw, 88px);
+}
+
+.artRow img {
+  display: block;
+  width: calc(var(--box) * var(--w));
+  height: auto;
+  animation: art-bob 6.4s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+/* Each illustration rises a little and settles, on its own clock so no two
+   move together, only while its row is on screen. */
+.artRow img:nth-child(2) {
+  animation-duration: 7.2s;
+  animation-delay: -2.1s;
+}
+
+.artRow img:nth-child(3) {
+  animation-duration: 5.8s;
+  animation-delay: -4.3s;
+}
+
+.artRow img:nth-child(4) {
+  animation-duration: 6.8s;
+  animation-delay: -1.2s;
+}
+
+.artRow img:nth-child(5) {
+  animation-duration: 6.1s;
+  animation-delay: -3.4s;
+}
+
+.artRow[data-playing] img {
+  animation-play-state: running;
+}
+
+@keyframes art-bob {
+  50% {
+    translate: 0 calc(var(--box) * -0.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artRow img {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .artRow {
+    --box: 10vw;
+    gap: 5vw;
+  }
+}

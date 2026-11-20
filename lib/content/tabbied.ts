@@ -4,18 +4,22 @@ export const tabbied: Project = {
   slug: "tabbied",
   name: "Tabbied",
   year: "2019",
-  revived: "2026",
-  tagline: "Free website templates for every trade, with generated patterns in place of stock photos.",
+  tagline: "Free generated patterns, and pattern-based website templates for every trade.",
   links: [
     { label: "https://tabbied.com", url: "https://tabbied.com" },
     { label: "Source", url: "https://github.com/tabbied-design/tabbied/" },
   ],
   summary: [
-    "Tabbied is a free library of 300+ one-page website templates for trades, 300+ generated patterns and 400+ color palettes. Every template is built around a pattern instead of stock photos.",
-    "Recolor a template, swap its patterns and download it as HTML/CSS or React, with no account. The patterns are also an npm package for React, Vue, Svelte and plain JavaScript, with an MCP server for coding agents.",
+    "Tabbied is a free library of 300+ generated patterns and 400+ color palettes, plus 300+ one-page website templates for trades.",
+    "Tabbied began in 2019 and was the #2 Launch of the Day on Product Hunt in 2021. In 2026 it was repackaged for React, Vue (Nuxt), Svelte (SvelteKit), web components, plain HTML and JavaScript, with an MCP server for coding agents, and gained 300+ free templates.",
   ],
   facts: [
     ["Stack", "Next.js static export on Cloudflare Workers, with a Hono Worker, D1 and R2"],
+    [
+      "Award",
+      "2nd place, Launch of the Day, [Product Hunt](https://www.producthunt.com/products/tabbied/launches/tabbied) (2021)",
+      { file: "product-hunt-badge.avif", width: 146, height: 160 },
+    ],
     [
       "Packages",
       "[tabbied](https://www.npmjs.com/package/tabbied) and [tabbied-mcp](https://www.npmjs.com/package/tabbied-mcp) on npm, MIT licensed",
@@ -35,11 +39,16 @@ export const tabbied: Project = {
       ],
     },
     {
-      type: "embed",
-      name: "templates",
-      bleed: true,
-      caption: "Twelve templates at desktop width, from a golf club to a payroll consultant.",
+      type: "full",
+      figure: {
+        file: "home-carousel",
+        kind: "loop",
+        shape: "wide",
+        caption: "The home page carousel: one trade after another, each holding a template made for it.",
+        mat: true,
+      },
     },
+    { type: "embed", name: "templates", bleed: true },
     {
       type: "full",
       figure: {

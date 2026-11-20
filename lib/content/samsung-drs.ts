@@ -10,15 +10,16 @@ export const samsungDrs: Project = {
     { label: "Source", url: "https://github.com/subwaymatch/samsung-drs-demo" },
   ],
   summary: [
-    "A demo of the defect and code review tracker built at Samsung Electronics’ printing division in 2016–2017. Firmware, QA and code review teams in Suwon and Bangalore used it while moving from IBM Rational and Review Board to Perforce, Helix Swarm, Jira and Confluence.",
+    "A demo of the defect and code review tracker I built at Samsung Electronics’ printing division in 2016–2017.",
     "This demo runs on mock data generated in the browser: 812 defects and 631 code reviews across 44 printer and copier models.",
   ],
-  facts: [["Note", "Mock data, not affiliated with or endorsed by Samsung Electronics"]],
+  facts: [],
   sections: [
     {
       type: "logo",
       caption: "The DRS mark: one shape drawn three times in three violets, like sheets leaving a printer.",
     },
+    { type: "embed", name: "art-opening" },
     {
       type: "full",
       figure: {
@@ -29,6 +30,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-insights" },
     {
       type: "text",
       label: "Insights",
@@ -56,6 +58,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-defects" },
     {
       type: "text",
       label: "Defects",
@@ -98,6 +101,7 @@ export const samsungDrs: Project = {
       name: "details-regions",
       caption: "Engineering fields and three sales-region dot maps; Korea and Japan get a ring.",
     },
+    { type: "embed", name: "art-repairs" },
     {
       type: "full",
       figure: {
@@ -118,6 +122,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-reviews" },
     {
       type: "text",
       label: "Code reviews",
@@ -135,6 +140,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "product-carousel", bleed: true },
     {
       type: "text",
       label: "Roles",
@@ -150,6 +156,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-roles" },
     {
       type: "full",
       figure: {
@@ -160,6 +167,7 @@ export const samsungDrs: Project = {
         mat: true,
       },
     },
+    { type: "embed", name: "art-more" },
     {
       type: "text",
       label: "And more",
@@ -212,6 +220,7 @@ export const samsungDrs: Project = {
         { file: "phone-defects", kind: "loop", shape: "phone", caption: "The defect list and a defect on a phone." },
       ],
     },
+    { type: "embed", name: "product-carousel-reverse", bleed: true },
   ],
   ogImage: "insights-migration",
   heroTone: "light",

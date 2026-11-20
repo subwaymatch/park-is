@@ -33,7 +33,10 @@ with, redrawn from the old 200 × 61 PNG. The header uses it inline, in the head
 An `embed` block renders a live component by name from `components/embeds/<slug>.tsx`, optionally full-bleed: Tabbied
 patterns drawn by the `tabbied` package, layeris before/after sliders and blend grids, React 3D Mockups scenes
 rendered by `react-3d-mockups`, DashHour's generated sketches, illustrations and branch scenes (in
-`public/media/dashhour/gen/`), and all of Park's figures, which are drawn from the wordmark's outlines. Their styles are CSS modules beside them, imported by a module that exports the
+`public/media/dashhour/gen/`), a drifting carousel of the Samsung DRS demo's generated printers and copiers (in
+`public/media/samsung-drs/products/`), another of stills from layeris's 2019 video (in
+`public/media/layeris/2019/`), and all of Park's figures, which are drawn from the wordmark's outlines. Their styles
+are CSS modules beside them, imported by a module that exports the
 components using them: the build links a page's CSS only through exported components. The 3D scenes load three.js
 lazily, only on that page and only as a scene nears the viewport.
 
@@ -44,8 +47,9 @@ Each project has a folder in `public/media/<slug>/`:
 | File | Used for |
 | --- | --- |
 | `hero.mp4`, `hero.jpg` | Project hero: a muted loop of the site in a browser card, and its poster (1920×1080) |
-| `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or the walkthrough, which has controls) and its poster |
-| `<name>.jpg` alone | A still figure |
+| `<name>.mp4`, `<name>.jpg` | A figure: a muted loop (or a walkthrough, which has controls) and its poster |
+| `<name>.jpg` alone | A still figure, or the poster of a YouTube video |
+| Any other file, such as `product-hunt-badge.avif` | A badge before a fact's value (`facts` in `lib/content/<slug>.ts`) |
 
 A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920×1080), `tall` 4:3 (1920×1440),
 `phone` 4:5 (a phone screen on the page's surface colour, 1200×1500 or 1600×2000). Phone shots already sit on the
@@ -54,9 +58,12 @@ surface colour, so their frames have no hairline edge.
 Park has no site to record, so it has no clips: `heroEmbed` in its content file names a live component that fills the
 hero instead, and its folder holds only `og.jpg`, the Open Graph image.
 
-The videos are H.264 with no audio track, recorded from the live sites with Playwright. Loops play only while on
-screen, and not at all when the visitor prefers reduced motion. Their posters load as they near the viewport, since a
-project page holds many of them.
+The videos are H.264 with no audio track, recorded from the live sites with Playwright, except layeris's `intro.mp4`,
+the video from its docs site, which has sound. Loops play only while on screen, and not at all when the visitor
+prefers reduced motion. Their posters load as they near the viewport, since a project page holds many of them.
+
+A figure of kind `youtube` plays a YouTube video by its ID (`components/youtube.tsx`). The page shows the poster from
+the media folder and a play button, and loads YouTube's player, from youtube-nocookie.com, only once it's clicked.
 
 `heroTone` in `lib/content/<slug>.ts` is the tone of the top band of a project's loop, where the header sits: `"dark"`
 switches the header to white. On phones the header sits on the page above the loop instead, and the loop is cropped

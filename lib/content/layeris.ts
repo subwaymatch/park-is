@@ -4,20 +4,22 @@ export const layeris: Project = {
   slug: "layeris",
   name: "layeris",
   year: "2019",
-  revived: "2026",
   tagline: "Photoshop-style blend modes, adjustments and curves for Python.",
   links: [
-    { label: "Website", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
+    { label: "Documentation", url: "https://subwaymatch.github.io/layer-is-python/index.html" },
     { label: "Source", url: "https://github.com/subwaymatch/layer-is-python" },
-    { label: "PyPI", url: "https://pypi.org/project/layeris/" },
   ],
   summary: [
     "A Python library for Photoshop-style image editing: 14 blend modes, tone and color adjustments, and curves on separate RGB channels. Every method returns the image, so an edit reads as one chained pipeline.",
-    "It began in 2019 as Layer.is and was rebuilt in 2026 with tests, a lookup table that makes edits about 20× faster, and a new documentation site.",
+    "It began in 2019 as Layer.is and was updated in 2026 with tests, a lookup table that makes edits about 20× faster, and a new documentation site.",
   ],
   facts: [
     ["Stack", "Python 3.10+, NumPy, Pillow and Requests"],
-    ["Award", "2nd place (Gold Prize, NIPA President’s Award), 2019 Open Source Software Developer Competition"],
+    [
+      "Award",
+      "2nd place (Gold Prize, [NIPA](https://www.nipa.kr/eng/) President’s Award), 2019 Open Source Software Developer Competition",
+      { file: "nipa-logo.svg", width: 207, height: 107 },
+    ],
     ["License", "MIT"],
   ],
   sections: [
@@ -297,12 +299,32 @@ export const layeris: Project = {
       caption: "Golden glow on a lake pavilion at dawn: screen, overlay and an S-curve.",
     },
     {
+      type: "full",
+      figure: {
+        file: "intro",
+        kind: "video",
+        shape: "wide",
+        caption: "The video from the docs: chaining, the blend modes, curves and a few looks. Every edit in it is rendered by layeris.",
+      },
+    },
+    {
       type: "text",
       label: "History",
       paragraphs: [
         "Layer.is won 2nd place in the general division of the [2019 Open Source Software Developer Competition](https://www.nipa.kr/home/bsnsAll/1/nttDetail?tab=2&bbsNo=4&bsnsDtlsIemNo=58&nttNo=16815), among over 100 teams.",
       ],
     },
+    {
+      type: "full",
+      figure: {
+        file: "2019/video",
+        kind: "youtube",
+        youtube: "PU_tEd8JgCw",
+        shape: "wide",
+        caption: "The original Layer.is introduction and demo, submitted to the 2019 competition.",
+      },
+    },
+    { type: "embed", name: "stills-2019", bleed: true },
   ],
   ogImage: "looks",
   heroTone: "light",

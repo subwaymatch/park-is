@@ -19,8 +19,6 @@ export type Shape = "wide" | "tall" | "phone";
 export type Figure = {
   /** File name in public/media/<slug>/, without extension. */
   file: string;
-  /** loop: a muted clip that plays while on screen; video: the walkthrough, with controls; still: a .jpg. */
-  kind: "loop" | "video" | "still";
   shape: Shape;
   caption: string;
   /**
@@ -28,7 +26,21 @@ export type Figure = {
    * that would otherwise dissolve into this one.
    */
   mat?: boolean;
-};
+} & (
+  | {
+      /** loop: a muted clip that plays while on screen; video: a walkthrough, with controls; still: a .jpg. */
+      kind: "loop" | "video" | "still";
+    }
+  | {
+      /**
+       * A YouTube video, played in place: `file` is its poster (a .jpg), and nothing loads from YouTube until it's
+       * played.
+       */
+      kind: "youtube";
+      /** The video's ID, the v= of its watch URL. */
+      youtube: string;
+    }
+);
 
 /** Paragraphs may hold inline links written as [text](https://…). */
 export type Block =
@@ -47,6 +59,9 @@ export type Block =
    */
   | { type: "embed"; name: string; caption?: string; bleed?: boolean };
 
+/** A small image before a fact's value, such as an award badge: a file in the project's media folder. */
+export type FactBadge = { file: string; width: number; height: number };
+
 export type Project = {
   slug: string;
   name: string;
@@ -56,8 +71,8 @@ export type Project = {
   links: Link[];
   /** The About row: what the project is, in brief. */
   summary: string[];
-  /** Short facts listed under the summary, label first. */
-  facts: [string, string][];
+  /** Short facts listed under the summary, label first, some with a badge before the value. */
+  facts: [label: string, value: string, badge?: FactBadge][];
   sections: Block[];
   /**
    * A live component (by name, as in an `embed` block) to fill the hero in place of the loop clip, for a project
@@ -103,5 +118,7 @@ export function media(slug: string) {
     heroPoster: base + "hero.jpg",
     clip: (file: string) => clipUrl(`${slug}/${file}.mp4`),
     image: (file: string) => base + file + ".jpg",
+    /** Any other file in the folder, by its full name. */
+    file: (name: string) => base + name,
   };
 }
