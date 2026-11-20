@@ -2,6 +2,7 @@ import sizes from "virtual:media-sizes";
 import { dashhour } from "./content/dashhour";
 import { dataslope } from "./content/dataslope";
 import { layeris } from "./content/layeris";
+import { park } from "./content/park";
 import { react3dMockups } from "./content/react-3d-mockups";
 import { samsungDrs } from "./content/samsung-drs";
 import { tabbied } from "./content/tabbied";
@@ -67,19 +68,25 @@ export type Project = {
   year: string;
   revived?: string;
   tagline: string;
+  /** Listed in a Links row at the top of the page; with none, the row is left out. */
   links: Link[];
   /** The About row: what the project is, in brief. */
   summary: string[];
   /** Short facts listed under the summary, label first, some with a badge before the value. */
   facts: [label: string, value: string, badge?: FactBadge][];
   sections: Block[];
+  /**
+   * A live component (by name, as in an `embed` block) to fill the hero in place of the loop clip, for a project
+   * with no site to record.
+   */
+  heroEmbed?: string;
   /** A wide figure's file whose .jpg is the Open Graph image. */
   ogImage: string;
   /** Tone of the hero loop's top band, where the header sits: "dark" gets white ink. */
   heroTone: "light" | "dark";
 };
 
-export const projects: Project[] = [tabbied, dataslope, react3dMockups, layeris, samsungDrs, dashhour];
+export const projects: Project[] = [tabbied, dataslope, react3dMockups, layeris, samsungDrs, dashhour, park];
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

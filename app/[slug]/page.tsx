@@ -164,7 +164,11 @@ export default async function ProjectPage({ params }: Props) {
     <>
       <section className="hero">
         <div className="hero-media">
-          <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager />
+          {p.heroEmbed ? (
+            <Embed slug={p.slug} name={p.heroEmbed} />
+          ) : (
+            <LoopVideo src={m.hero} poster={m.heroPoster} label={p.name} eager />
+          )}
         </div>
         <div className="hero-bar">
           <SiteHeader section="projects" inverted={p.heroTone === "dark"} />
@@ -182,17 +186,19 @@ export default async function ProjectPage({ params }: Props) {
             </div>
 
             <div className="rows">
-              <div className="row">
-                <span className="col-label muted">Links</span>
-                <div className="col-rest links">
-                  {p.links.map((l) => (
-                    <a key={l.url} href={l.url} target="_blank" rel="noopener">
-                      {l.label}
-                      <ArrowUpRightIcon />
-                    </a>
-                  ))}
+              {p.links.length > 0 && (
+                <div className="row">
+                  <span className="col-label muted">Links</span>
+                  <div className="col-rest links">
+                    {p.links.map((l) => (
+                      <a key={l.url} href={l.url} target="_blank" rel="noopener">
+                        {l.label}
+                        <ArrowUpRightIcon />
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="row">
                 <span className="col-label muted">About</span>
                 <div className="col-rest prose">
