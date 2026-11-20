@@ -1,6 +1,7 @@
-/* Park's figures (park-art.tsx): everything is drawn from the wordmark's
+/* Park's figures (park-art.tsx): the drawn ones come from the wordmark's
    outlines, white on the brand's black, apart from the construction sheet,
-   which is ink on the page's surface colour. Animations start when a figure
+   which is ink on the page's surface colour; two galleries of generated
+   pictures follow them. Animations start when a figure
    is first on screen (`data-seen`) and pause off it (`data-visible`); see
    park-stage.tsx. With reduced motion, or without JavaScript, neither is set
    and each figure shows its finished state. */
@@ -364,28 +365,34 @@
   }
 }
 
-/* Stationery: a flat lay drawn at 1600 × 900, the full width of the window. */
+/* Galleries of generated pictures, all 3:2: two to a row, a wide one taking
+   the whole row; one to a row on phones. A cut-out has no frame and stands on
+   the page's white. */
 
-.stationery {
-  background: #171717;
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.stationery svg {
+.gallery .wide {
+  grid-column: 1 / -1;
+}
+
+.gallery img {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 6px;
+  background: #0c0c0c;
 }
 
-.white {
-  fill: rgb(255 255 255 / 0.88);
-}
-
-.dim {
-  fill: rgb(255 255 255 / 0.4);
-}
-
-.gloss {
-  fill: #080808;
+.gallery .cutout {
+  border-radius: 0;
+  background: none;
 }
 
 /* Gloss: the mark is gloss black on matt black. A light falls on the panel
@@ -470,6 +477,11 @@
   .studies ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px 16px;
+  }
+
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .lightMark {

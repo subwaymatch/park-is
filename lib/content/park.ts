@@ -55,16 +55,26 @@ export const park: Project = {
     },
     {
       type: "text",
-      label: "Stationery",
+      label: "In use",
       paragraphs: [
-        "The set is black throughout: letterhead, envelope, cards, a notebook, a pencil, erasers and a box of matches. The mark is white where it has to be read at a glance, and gloss black where it can wait to be found.",
+        "The mark was made to hold up wherever it is put: in print, on a screen, as a sign, in a film’s first frame. It is kept small, so that the black around it does the work.",
       ],
     },
     {
       type: "embed",
-      name: "stationery",
-      caption: "The 2014 set, laid out flat and redrawn as vectors. The match heads are the only colour.",
-      bleed: true,
+      name: "mockups",
+      caption:
+        "Cards, letterhead, envelopes, the whole set, a notebook, a box, a phone, a laptop, a sign and a cinema screen. The scenes are generated; the mark in each is the vector, set in afterwards.",
+    },
+    {
+      type: "text",
+      label: "Fields",
+      paragraphs: ["The same mark at the same size on abstract fields, and on black forms cut out against the page."],
+    },
+    {
+      type: "embed",
+      name: "fields",
+      caption: "Light, smoke, sand, paper and water, and between them ink, stone, torn paper and cloth. All generated, with the mark set in.",
     },
     {
       type: "embed",

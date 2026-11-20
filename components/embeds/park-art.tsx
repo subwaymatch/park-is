@@ -12,8 +12,8 @@ import {
 import { Light, Stage } from "./park-stage";
 import styles from "./park.module.css";
 
-// Park's page has no site to record, so every figure on it is drawn here from the wordmark's outlines
-// (components/park-mark.tsx): nothing is a picture. Coordinates inside a mark are the wordmark's own, 200 × 61.
+// Park's page has no site to record. Its figures are drawn here from the wordmark's outlines
+// (components/park-mark.tsx), except the two galleries of generated pictures near the end. Coordinates inside a mark are the wordmark's own, 200 × 61.
 
 const vars = (v: Record<string, string | number>) => v as CSSProperties;
 const n = (v: number) => +v.toFixed(2);
@@ -428,137 +428,83 @@ export function Studies() {
   );
 }
 
-/** The wordmark at a width, with its top left corner at (x, y), optionally turned a quarter. */
-function Mark({ x, y, width, className, turn }: { x: number; y: number; width: number; className?: string; turn?: boolean }) {
-  const s = n(width / PARK_WIDTH);
-  return <path d={PARK_OUTLINE} className={className} transform={`translate(${x} ${y})${turn ? " rotate(90)" : ""} scale(${s})`} />;
-}
+/** A picture in a gallery: its file in public/media/park/, without extension, and what it shows. */
+type Shot = { file: string; alt: string; cutout?: boolean };
 
 /**
- * The 2014 stationery, laid out flat and redrawn: letterhead and pencil, notebook, phone, matches, two erasers, a
- * USB stick, cards and an envelope. Everything is black on black but the match heads; the mark is white on most
- * pieces and glossy black on the envelope.
+ * Generated pictures (GPT Image 2.6, low quality), 1536 × 1024. The scene is generated; the wordmark in it is not:
+ * whatever the model drew was painted out and the vector outline set in its place, small, at the same angle.
  */
-export function Stationery() {
+const MOCKUPS: Shot[][] = [
+  [{ file: "mockups/01-cards", alt: "Two stacks of black business cards, the wordmark small and white on each" }],
+  [
+    { file: "mockups/02-letterhead", alt: "A black letterhead with a black pencil across it, the wordmark small at its head" },
+    { file: "mockups/03-envelopes", alt: "Two black envelopes, the wordmark small on the front of one" },
+  ],
+  [{ file: "mockups/10-set", alt: "A black stationery set laid out in a grid and seen from above, the wordmark small on every piece" }],
+  [
+    { file: "mockups/04-notebook", alt: "A black notebook with an elastic band beside a black pen, the wordmark small on its cover" },
+    { file: "mockups/08-box", alt: "A black box with its lid on, the wordmark small on the lid" },
+  ],
+  [
+    { file: "mockups/05-phone", alt: "A black phone lying on a dark surface, its screen black but for the small wordmark" },
+    { file: "mockups/06-laptop", alt: "An open laptop in a dim room, its screen black but for the small wordmark" },
+  ],
+  [{ file: "mockups/07-sign", alt: "A black wall at night with the wordmark on it as a small sign of white light" }],
+  [{ file: "mockups/09-screen", alt: "An empty cinema, the wordmark small and white in the middle of the dark screen" }],
+];
+
+/** Abstract fields, and cut-outs that stand on the page's white: the wordmark small at the middle of each. */
+const FIELDS: Shot[][] = [
+  [{ file: "abstract/a01-streaks", alt: "Streaks of light across black, the wordmark small between them" }],
+  [
+    { file: "abstract/t01-ink", alt: "A pool of black ink with the wordmark small at its middle", cutout: true },
+    { file: "abstract/t02-stone", alt: "A smooth black stone with the wordmark small at its middle", cutout: true },
+  ],
+  [
+    { file: "abstract/a02-smoke", alt: "Wisps of smoke at two corners of a black field, the wordmark small at its middle" },
+    { file: "abstract/a03-dunes", alt: "Ripples of black sand under raking light, the wordmark small at the middle" },
+  ],
+  [
+    { file: "abstract/t03-paper", alt: "A torn sheet of black paper with the wordmark small at its middle", cutout: true },
+    { file: "abstract/t05-cloth", alt: "A round of black cloth in soft folds with the wordmark small at its middle", cutout: true },
+  ],
+  [
+    { file: "abstract/a04-paper", alt: "Curved sheets of black paper, the wordmark small at the middle" },
+    { file: "abstract/a05-water", alt: "Black water with ripples at one corner, the wordmark small at the middle" },
+  ],
+  [{ file: "abstract/a06-light", alt: "Shafts of light across a dark wall, the wordmark small at the middle" }],
+];
+
+/** Rows of pictures: one to a row at full width, or two side by side (one above the other on phones). */
+function Gallery({ rows }: { rows: Shot[][] }) {
   return (
-    <div className={styles.stationery}>
-      <svg viewBox="0 0 1600 900" role="img" aria-label="A black stationery set seen from above, each piece carrying the Park wordmark">
-        <defs>
-          <radialGradient id="park-desk" cx="0.42" cy="0.3" r="0.9">
-            <stop offset="0" stopColor="#2b2b2b" />
-            <stop offset="1" stopColor="#141414" />
-          </radialGradient>
-          <linearGradient id="park-paper" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#1d1d1d" />
-            <stop offset="1" stopColor="#141414" />
-          </linearGradient>
-          <linearGradient id="park-card" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#191919" />
-            <stop offset="1" stopColor="#0f0f0f" />
-          </linearGradient>
-          <linearGradient id="park-glass" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#101010" />
-            <stop offset="0.5" stopColor="#060606" />
-            <stop offset="1" stopColor="#0b0b0b" />
-          </linearGradient>
-          <linearGradient id="park-barrel" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#060606" />
-            <stop offset="0.35" stopColor="#262626" />
-            <stop offset="1" stopColor="#050505" />
-          </linearGradient>
-          {/* Filters work in sRGB: in the default linear space these blacks fall into two or three steps. */}
-          <filter id="park-shadow" x="-20%" y="-20%" width="150%" height="150%" colorInterpolationFilters="sRGB">
-            <feDropShadow dx="7" dy="12" stdDeviation="11" floodColor="#000" floodOpacity="0.6" />
-          </filter>
-          <filter id="park-shadow-small" x="-30%" y="-30%" width="170%" height="170%" colorInterpolationFilters="sRGB">
-            <feDropShadow dx="3" dy="5" stdDeviation="4" floodColor="#000" floodOpacity="0.6" />
-          </filter>
-        </defs>
-        <rect width="1600" height="900" fill="url(#park-desk)" />
-
-        {/* Letterhead, with a pencil lying on it. */}
-        <g filter="url(#park-shadow)">
-          <rect x="200" y="110" width="481" height="680" fill="url(#park-paper)" />
-        </g>
-        <Mark x={573} y={150} width={68} className={styles.white} />
-        <g filter="url(#park-shadow-small)">
-          <rect x="262" y="214" width="12" height="470" fill="url(#park-barrel)" />
-          <path d="M262 214L268 186L274 214Z" fill="#c9a57a" />
-          <path d="M266.3 194L268 186L269.7 194Z" fill="#111" />
-          <rect x="262" y="684" width="12" height="20" fill="#9a9a9a" />
-          <rect x="262" y="704" width="12" height="16" rx="2" fill="#ececec" />
-        </g>
-        <Mark x={271.5} y={590} width={30} className={styles.dim} turn />
-
-        {/* Notebook: a lighter panel across the cover and an elastic band down its edge. */}
-        <g filter="url(#park-shadow)">
-          <rect x="731" y="110" width="280" height="390" rx="9" fill="url(#park-card)" />
-        </g>
-        <rect x="731" y="232" width="280" height="146" fill="#202020" />
-        <rect x="962" y="110" width="12" height="390" fill="#0a0a0a" />
-        <Mark x={820} y={296.5} width={56} className={styles.white} />
-
-        {/* Phone. */}
-        <g filter="url(#park-shadow)">
-          <rect x="1061" y="110" width="150" height="300" rx="24" fill="#0a0a0a" />
-        </g>
-        <rect x="1061.5" y="110.5" width="149" height="299" rx="23.5" fill="none" stroke="#2c2c2c" />
-        <rect x="1072" y="152" width="128" height="208" fill="url(#park-glass)" />
-        <rect x="1124" y="131" width="24" height="4" rx="2" fill="#1c1c1c" />
-        <circle cx="1136" cy="385" r="11" fill="none" stroke="#242424" strokeWidth="1.5" />
-        <Mark x={1114} y={249.3} width={44} className={styles.white} />
-
-        {/* USB stick. */}
-        <g filter="url(#park-shadow-small)">
-          <rect x="1061" y="466" width="104" height="34" rx="5" fill="url(#park-card)" />
-          <rect x="1165" y="471" width="46" height="24" fill="#8f8f8f" />
-          <rect x="1180" y="477" width="9" height="5" fill="#3a3a3a" />
-          <rect x="1180" y="485" width="9" height="5" fill="#3a3a3a" />
-        </g>
-
-        {/* Matches: the tray pushed out of its sleeve. */}
-        <g filter="url(#park-shadow)">
-          <rect x="1269" y="110" width="123" height="70" fill="#151515" />
-          {Array.from({ length: 11 }, (_, i) => (
-            <g key={i}>
-              <rect x={1276.2 + i * 10.2} y="128" width="6.4" height="52" fill="#c8a57b" />
-              <rect x={1275.6 + i * 10.2} y="118" width="7.6" height="13" rx="3.6" fill="#6b3f33" />
-            </g>
-          ))}
-          <rect x="1261" y="160" width="139" height="140" fill="url(#park-card)" />
-        </g>
-        <Mark x={1345.5} y={205} width={50} className={styles.white} turn />
-
-        {/* Two erasers: one in a black sleeve, one bare. */}
-        <g filter="url(#park-shadow-small)">
-          <rect x="1261" y="340" width="139" height="64" rx="3" fill="#e9e9e7" />
-          <rect x="1261" y="340" width="96" height="64" fill="url(#park-card)" />
-        </g>
-        <Mark x={1288} y={365.9} width={40} className={styles.white} />
-        <g filter="url(#park-shadow-small)">
-          <rect x="1261" y="436" width="139" height="64" rx="3" fill="#e9e9e7" />
-        </g>
-
-        {/* Two stacks of cards. */}
-        {[550, 682].map((y) => (
-          <g key={y}>
-            <g filter="url(#park-shadow)">
-              <rect x="734" y={y + 3} width="210" height="108" fill="#0b0b0b" />
-              <rect x="731" y={y} width="210" height="108" fill="url(#park-card)" />
-            </g>
-            <Mark x={812} y={y + 46.7} width={48} className={styles.white} />
-          </g>
-        ))}
-
-        {/* Envelope: the flap's two edges, and the mark in gloss, black on black. */}
-        <g filter="url(#park-shadow)">
-          <rect x="991" y="550" width="409" height="240" fill="url(#park-paper)" />
-        </g>
-        <path d="M991 550L1195.5 668L1400 550" fill="none" stroke="#0c0c0c" strokeWidth="1.5" />
-        <Mark x={1165.5} y={716} width={60} className={styles.gloss} />
-      </svg>
-    </div>
+    <ul className={styles.gallery}>
+      {rows.flat().map((shot) => (
+        <li key={shot.file} className={rows.some((row) => row.length === 1 && row[0] === shot) ? styles.wide : undefined}>
+          <img
+            className={shot.cutout ? styles.cutout : undefined}
+            src={`/media/park/${shot.file}.webp`}
+            alt={shot.alt}
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
   );
+}
+
+/** The mark in use: cards, letterhead, envelopes, the whole set, a notebook, a box, a phone, a laptop, a sign and a cinema screen. */
+export function Mockups() {
+  return <Gallery rows={MOCKUPS} />;
+}
+
+/** The mark on abstract fields and cut-outs. */
+export function Fields() {
+  return <Gallery rows={FIELDS} />;
 }
 
 /** Black on black: the mark in gloss on matt black, seen only where the light falls. The pointer carries the light. */

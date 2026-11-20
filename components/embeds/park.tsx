@@ -1,4 +1,4 @@
-import { Construction, Gloss, Hero, Stationery, Strokes, Studies } from "./park-art";
+import { Construction, Fields, Gloss, Hero, Mockups, Strokes, Studies } from "./park-art";
 
 /** Live components for this project's page, by name. See components/embeds/index.tsx. */
 export const embeds: Record<string, () => React.ReactNode> = {
@@ -6,6 +6,7 @@ export const embeds: Record<string, () => React.ReactNode> = {
   strokes: () => <Strokes />,
   construction: () => <Construction />,
   studies: () => <Studies />,
-  stationery: () => <Stationery />,
+  mockups: () => <Mockups />,
+  fields: () => <Fields />,
   gloss: () => <Gloss />,
 };

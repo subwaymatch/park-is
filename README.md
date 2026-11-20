@@ -35,7 +35,7 @@ patterns drawn by the `tabbied` package, layeris before/after sliders and blend 
 rendered by `react-3d-mockups`, DashHour's generated sketches, illustrations and branch scenes (in
 `public/media/dashhour/gen/`), a drifting carousel of the Samsung DRS demo's generated printers and copiers (in
 `public/media/samsung-drs/products/`), another of stills from layeris's 2019 video (in
-`public/media/layeris/2019/`), and all of Park's figures, which are drawn from the wordmark's outlines. Their styles
+`public/media/layeris/2019/`), and Park's figures, which are drawn from the wordmark's outlines. Their styles
 are CSS modules beside them, imported by a module that exports the
 components using them: the build links a page's CSS only through exported components. The 3D scenes load three.js
 lazily, only on that page and only as a scene nears the viewport.
@@ -56,8 +56,11 @@ A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920Ã
 surface colour, so their frames have no hairline edge.
 
 Park has no site to record, so it has no clips: `heroEmbed` in its content file names a live component that fills the
-hero instead, and its folder holds only `og.jpg`, the Open Graph image, and `behance-ribbon.svg`, Behance's featured
-ribbon redrawn as a vector for the Featured fact.
+hero instead. Its folder holds `og.jpg`, the Open Graph image; `behance-ribbon.svg`, Behance's featured ribbon redrawn
+as a vector for the Featured fact; and two folders of generated pictures (GPT Image 2.6, low quality): `mockups/`,
+the mark on stationery, screens and a sign, and `abstract/`, the mark on abstract fields and on cut-outs with
+transparent backgrounds. In every one the wordmark is the vector, set in afterwards: the model's own drawing of it
+was painted out and the outline placed over it, smaller, at the same angle.
 
 The videos are H.264 with no audio track, recorded from the live sites with Playwright, except layeris's `intro.mp4`,
 the video from its docs site, which has sound. Loops play only while on screen, and not at all when the visitor
