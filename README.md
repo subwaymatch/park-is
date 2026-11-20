@@ -56,7 +56,8 @@ A figure's `shape` in `lib/content/<slug>.ts` sets its frame: `wide` 16:9 (1920Ã
 surface colour, so their frames have no hairline edge.
 
 Park has no site to record, so it has no clips: `heroEmbed` in its content file names a live component that fills the
-hero instead, and its folder holds only `og.jpg`, the Open Graph image.
+hero instead, and its folder holds only `og.jpg`, the Open Graph image, and `behance-ribbon.svg`, Behance's featured
+ribbon redrawn as a vector for the Featured fact.
 
 The videos are H.264 with no audio track, recorded from the live sites with Playwright, except layeris's `intro.mp4`,
 the video from its docs site, which has sound. Loops play only while on screen, and not at all when the visitor

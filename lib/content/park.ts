@@ -10,7 +10,13 @@ export const park: Project = {
     "Park is a personal identity: a wordmark in which each letter is a single line, and a stationery set printed black on black. It is the mark at the top of this site.",
     "It was published in January 2014 and featured in Behance’s Branding gallery that October.",
   ],
-  facts: [["Featured", "Behance, Branding gallery, 5 October 2014"]],
+  facts: [
+    [
+      "Featured",
+      "Behance, [Branding gallery](https://www.behance.net/galleries/graphic-design/branding), 5 October 2014",
+      { file: "behance-ribbon.svg", width: 62, height: 114 },
+    ],
+  ],
   heroEmbed: "hero",
   sections: [
     {
