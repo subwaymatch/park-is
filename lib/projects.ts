@@ -68,6 +68,7 @@ export type Project = {
   year: string;
   revived?: string;
   tagline: string;
+  /** Listed in a Links row at the top of the page; with none, the row is left out. */
   links: Link[];
   /** The About row: what the project is, in brief. */
   summary: string[];

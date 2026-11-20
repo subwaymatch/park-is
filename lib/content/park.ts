@@ -5,7 +5,7 @@ export const park: Project = {
   name: "Personal Branding",
   year: "2014",
   tagline: "A wordmark for my own name.",
-  links: [{ label: "Behance", url: "https://www.behance.net/gallery/13518301/Park-Personal-Brand" }],
+  links: [],
   summary: [
     "Park is a personal identity: a wordmark in which each letter is a single line, and a stationery set printed black on black. It is the mark at the top of this site.",
     "It was published in January 2014 and featured in Behance’s Branding gallery that October.",
@@ -13,8 +13,8 @@ export const park: Project = {
   facts: [
     [
       "Featured",
-      "Behance, [Branding gallery](https://www.behance.net/galleries/graphic-design/branding), 5 October 2014",
-      { file: "behance-ribbon.svg", width: 62, height: 114 },
+      "[Behance](https://www.behance.net/gallery/13518301/Park-Personal-Brand), Branding gallery, 5 October 2014",
+      { file: "behance-ribbon.svg", width: 62, height: 86 },
     ],
   ],
   heroEmbed: "hero",
