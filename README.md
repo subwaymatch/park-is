@@ -17,13 +17,13 @@ Workers. Every page is prerendered at build time and served from Workers Static 
 Each project's page is written in `lib/content/<slug>.ts`: a summary, a few facts, then a list of sections (text,
 figures, an animated logo for some, and live embeds). The types are in `lib/projects.ts`. Styles are in
 `app/globals.css`, and the logos in `components/project-logo.tsx`. The home page is a grid of those logos, two to a
-row on tablets and desktops and one on phones; every project needs one there, even if its page doesn't show it. With
-an odd number of projects the last card takes a whole row.
+row on tablets and desktops and one on phones; every project needs one there, even if its page doesn't show it. Each
+sits on a tile of fine dots on the page's white.
 
-On hover (or keyboard focus) each logo on the home page makes a move of its own: Tabbied's halves swing open,
-Dataslope's slopes steepen, the React 3D Mockups stack comes apart, layeris fans out, the Samsung DRS sheets part,
-DashHour's stub tears off along its perforation, and Park draws in the strokes it leaves out. These are transitions
-on `translate` and `rotate`, which add to the `transform` the idle loops animate; they are at the end of the Logos
+On hover (or keyboard focus) each logo on the home page makes a small move of its own: Tabbied's halves swing open,
+Dataslope tips into a rising slope, the React 3D Mockups stack comes apart, layeris fans out, the Samsung DRS sheets
+part, DashHour's stub tears along its perforation, and Park's letters ease apart. These are transitions on
+`translate` and `rotate`, which add to the `transform` the idle loops animate; they are at the end of the Logos
 section of `app/globals.css`, and apply only to a pointer that can hover, without reduced motion.
 
 The Park wordmark is vector: `components/park-mark.tsx` holds each letter's outline and the single line it is drawn
