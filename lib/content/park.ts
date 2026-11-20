@@ -10,21 +10,14 @@ export const park: Project = {
     "Park is a personal identity: a wordmark in which each letter is a single line, and a stationery set printed black on black. It is the mark at the top of this site.",
     "It was published in January 2014 and featured in Behance’s Branding gallery that October.",
   ],
-  facts: [
-    ["Typeface", "Cut from DIN"],
-    ["Featured", "Behance, Branding gallery, 5 October 2014"],
-    [
-      "Note",
-      "Nothing on this page is a picture. The 2014 presentation was photographic mock-ups, which are still [on Behance](https://www.behance.net/gallery/13518301/Park-Personal-Brand); here every figure is drawn in the browser from the wordmark’s outlines.",
-    ],
-  ],
+  facts: [["Featured", "Behance, Branding gallery, 5 October 2014"]],
   heroEmbed: "hero",
   sections: [
     {
       type: "embed",
       name: "strokes",
       caption:
-        "Four letters, four lines, none lifted from the page. Dashed: the strokes left out, which are the close of P’s bowl, A’s crossbar, and the stems of R and K.",
+        "Four letters, four lines, none lifted from the page. Dashed: the outlines of the strokes left out, which are the close of P’s bowl, A’s crossbar, and the stems of R and K.",
     },
     {
       type: "text",
@@ -39,20 +32,20 @@ export const park: Project = {
       type: "embed",
       name: "construction",
       caption:
-        "The construction: the lines each letter lies on, run out past it, the curves of the two bowls carried all the way round, and the one cut that takes R’s stem. The mark is a little over three times as wide as it is tall.",
+        "The construction: both edges of every straight stroke, run out past the letters, a cross where each bowl is struck from, and the one cut that takes R’s stem. The mark is a little over three times as wide as it is tall.",
     },
     {
       type: "text",
       label: "Studies",
       paragraphs: [
-        "Six studies made of nothing but the wordmark’s outlines: repeated, laid over one another, run out to the edge of the sheet, resized, rearranged and pulled straight.",
+        "Six studies made of nothing but the wordmark’s outlines: repeated, sliced, run out to the edge of the sheet, sent outwards in rings, rearranged and turned.",
       ],
     },
     {
       type: "embed",
       name: "studies",
       caption:
-        "Echo trails the mark behind itself. Monogram lays the four letters on one spot. Extended runs R’s lines off the sheet. Peaks is five As. Weave shifts each row by a letter. Unrolled pulls each letter’s line straight: A takes the most line, K the least.",
+        "Echo trails the mark behind itself. Cut slices it along R’s cut and slides the slices out of line. Extended runs the edges of R’s strokes off the sheet. Ripple sends its outline outwards. Weave shifts each row by a letter. Turn sweeps it round a point.",
     },
     {
       type: "text",

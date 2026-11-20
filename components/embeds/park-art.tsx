@@ -126,54 +126,70 @@ export function Strokes() {
   );
 }
 
+type Point = [number, number];
+/** One edge of a straight stroke, as two points on it. */
+type Edge = [Point, Point];
+
 /** A straight line through two points, run out to the heights y0 and y1. */
-function through([ax, ay]: [number, number], [bx, by]: [number, number], y0: number, y1: number) {
+function through([ax, ay]: Point, [bx, by]: Point, y0: number, y1: number) {
   const slope = (bx - ax) / (by - ay);
   return `M${n(ax + slope * (y0 - ay))} ${y0}L${n(ax + slope * (y1 - ay))} ${y1}`;
 }
 
-const APEX: [number, number] = [78.49, 0.15];
+// The construction shows the two edges of every straight stroke, never its middle.
+
+/** The levels: the cap line, the underside of the two top bars, the top and underside of R's lower bar, the baseline. */
+const LEVELS = [0, 4.19, 28.69, 32.87, 61];
+
+/** The upright edges: P's stem and the straight tail of its bowl, and the short straight on the side of R's bowl. */
+const UPRIGHTS: Partial<Record<ParkLetter, number[]>> = { P: [0.16, 4.57, 35.74, 40.23], R: [145, 149.37] };
+
 /** R's one straight cut: the outer edge of its leg, which runs on up through the left end of the top bar. */
-const CUT: [[number, number], [number, number]] = [
+const CUT: Edge = [
   [113.39, 0],
   [144.58, 61],
 ];
-/** The inner edge of R's leg. */
-const LEG: [[number, number], [number, number]] = [
-  [135.56, 32.87],
-  [149.88, 61],
-];
-const VERTEX: [number, number] = [176.13, 30.73];
 
-/** The lines the letters lie on, run out to the edges of the sheet. */
-const GUIDES = [
-  "M-34 0H234",
-  "M-34 61H234",
-  "M2.36 -30V91",
-  "M-34 2.1H234",
-  "M-34 30.78H234",
-  through([56.59, 61], APEX, -30, 91),
-  through([100.38, 61], APEX, -30, 91),
-  through(...CUT, -30, 91),
-  through([197.23, 0], VERTEX, -30, 91),
-  through(VERTEX, [197.21, 61], -30, 91),
-];
+/** The slanted edges: A's legs outside and in, R's cut and the inner edge of its leg, K's arms outside and in. */
+const SLANTS: Partial<Record<ParkLetter, Edge[]>> = {
+  A: [
+    [[54.09, 61], [76.38, 0]],
+    [[59.09, 61], [78.49, 6.26]],
+    [[78.49, 6.26], [97.88, 61]],
+    [[80.6, 0], [102.88, 61]],
+  ],
+  R: [CUT, [[135.56, 32.87], [149.88, 61]]],
+  K: [
+    [[194.46, 0], [173.25, 30.73]],
+    [[200, 0], [179.01, 30.73]],
+    [[179.01, 30.73], [200, 61]],
+    [[173.25, 30.73], [194.41, 61]],
+  ],
+};
 
-/** An oval as a path. */
-const oval = (cx: number, cy: number, rx: number, ry: number) => `M${n(cx - rx)} ${cy}a${rx} ${ry} 0 1 0 ${n(2 * rx)} 0a${rx} ${ry} 0 1 0 ${n(-2 * rx)} 0Z`;
+/** Where each bowl's curve is struck from, marked with a small cross. */
+const BOWL_CENTRES: Partial<Record<ParkLetter, Point>> = { P: [24.66, 14.5], R: [133.51, 16.45] };
 
-/** A round-cornered loop, as DIN draws a bowl: two half circles of radius r about x = cx, a straight between them. */
-const loop = (cx: number, r: number, top: number, bottom: number) =>
-  `M${cx} ${top}A${r} ${r} 0 0 1 ${n(cx + r)} ${n(top + r)}V${n(bottom - r)}A${r} ${r} 0 0 1 ${cx} ${bottom}` +
-  `A${r} ${r} 0 0 1 ${n(cx - r)} ${n(bottom - r)}V${n(top + r)}A${r} ${r} 0 0 1 ${cx} ${top}Z`;
+/**
+ * A letter's construction lines: its upright and slanted edges run from the height `top` to `bottom`, and a cross at
+ * the centre of its bowl.
+ */
+function edgeLines(letter: ParkLetter, top: number, bottom: number) {
+  const centre = BOWL_CENTRES[letter];
+  return [
+    ...(UPRIGHTS[letter] ?? []).map((x) => `M${x} ${top}V${bottom}`),
+    ...(SLANTS[letter] ?? []).map(([a, b]) => through(a, b, top, bottom)),
+    ...(centre ? [`M${n(centre[0] - 1.8)} ${centre[1]}h3.6M${centre[0]} ${n(centre[1] - 1.8)}v3.6`] : []),
+  ];
+}
 
-/** R's bowl carried all the way round: its outer and inner edge. */
-const R_BOWL = [loop(133.69, 15.68, 0, 32.87), loop(133.33, 11.67, 4.25, 28.69)];
+/** Every construction line on the sheet: the levels across it, then each letter's edges, left to right. */
+const GUIDES = [...LEVELS.map((y) => `M-34 ${y}H234`), ...PARK_LETTERS.flatMap((l) => edgeLines(l, -30, 91))];
 
-/** The curves of the two bowls carried all the way round: the ovals of P's corner, then R's loops. */
-const BOWLS = [oval(24.64, 14.13, 15.58, 14.13), oval(24.68, 14.86, 11.06, 10.73), ...R_BOWL];
-
-/** The construction: the mark in ink, the lines and curves it is built on run out around it, and its three angles. */
+/**
+ * The construction: the mark in ink, with both edges of every straight stroke run out to the edges of the sheet, a
+ * cross where each bowl is struck from, and its three angles.
+ */
 export function Construction() {
   return (
     <Stage className={styles.construction}>
@@ -182,25 +198,22 @@ export function Construction() {
           {GUIDES.map((d, i) => (
             <path key={d} d={d} pathLength={1} style={vars({ "--i": i })} />
           ))}
-          {BOWLS.map((d, i) => (
-            <path key={d} d={d} pathLength={1} style={vars({ "--i": GUIDES.length + i })} />
-          ))}
         </g>
         <path className={styles.ink} d={PARK_OUTLINE} />
         <g className={styles.angles}>
-          {/* A's apex, R's cut on the baseline, and the opening of K. */}
-          <path d="M75.45 8.62A9 9 0 0 0 81.53 8.62" />
-          <path d="M136.58 61A8 8 0 0 1 140.94 53.88" />
-          <path d="M180.67 24.15A8 8 0 0 1 180.67 37.31" />
+          {/* Between A's legs, between the baseline and R's cut, and between K's arms. */}
+          <path d="M75.49 14.74A9 9 0 0 0 81.49 14.74" />
+          <path d="M139.08 61A5.5 5.5 0 0 1 142.07 56.1" />
+          <path d="M181.84 26.6A5 5 0 0 1 181.86 34.84" />
         </g>
         <g className={styles.labels}>
           <text x="78.49" y="27" textAnchor="middle">
             40°
           </text>
-          <text x="134.6" y="56.6" textAnchor="end">
+          <text x="137.4" y="59" textAnchor="end">
             63°
           </text>
-          <text x="186.2" y="31.9">
+          <text x="185.6" y="31.9">
             111°
           </text>
           <text x="-32" y="-1.6">
@@ -219,7 +232,7 @@ export function Construction() {
 }
 
 /** Each letter's left and right edge in the wordmark. */
-const EDGES: Record<ParkLetter, [number, number]> = { P: [0.15, 40.35], A: [54.09, 102.88], R: [113.43, 149.88], K: [173.25, 200] };
+const EDGES: Record<ParkLetter, [number, number]> = { P: [0.16, 40.23], A: [54.09, 102.88], R: [113.39, 149.88], K: [173.25, 200] };
 
 /** A transform that stands a letter `height` tall on the line y = `base`, centred on x = `cx`. */
 function stand(letter: ParkLetter, cx: number, base: number, height: number) {
@@ -263,27 +276,64 @@ function Echo() {
   );
 }
 
-/** Monogram: the four letters on one spot at one height, as outlines, each filling in turn. */
-function Monogram() {
+/** How far the cut leans: across for every unit down. */
+const LEAN = (CUT[1][0] - CUT[0][0]) / (CUT[1][1] - CUT[0][1]);
+/** The width of a slice, in the wordmark's units. */
+const SLICE = 24;
+/** A slice's left edge at a height: slice 0 starts on R's own cut. */
+const sliceEdge = (k: number, y: number) => n(CUT[0][0] + k * SLICE + LEAN * y);
+/** The slices that cover the wordmark, and how far each slides along the cut. */
+const SLICES: [k: number, slide: number][] = [
+  [-7, 16],
+  [-6, -22],
+  [-5, 10],
+  [-4, -18],
+  [-3, 24],
+  [-2, -12],
+  [-1, 20],
+  [0, -14],
+  [1, 12],
+  [2, -24],
+  [3, 18],
+];
+
+/** Cut: the wordmark sliced by lines parallel to R's cut, each slice sliding along its line and back into register. */
+function Cut() {
   return (
-    <Plate name="Monogram" label="The four letters laid over one another as outlines">
-      {PARK_LETTERS.map((l, i) => (
-        <use key={l} href={use(l)} transform={stand(l, 50, 103, 80)} className={styles.monogram} style={vars({ "--i": i })} />
-      ))}
+    <Plate name="Cut" label="The wordmark cut into slanted slices that slide out of line">
+      <defs>
+        {SLICES.map(([k]) => (
+          <clipPath key={k} id={`park-slice-${k + 7}`}>
+            <path d={`M${sliceEdge(k, -90)} -90H${sliceEdge(k + 1, -90)}L${sliceEdge(k + 1, 150)} 150H${sliceEdge(k, 150)}Z`} />
+          </clipPath>
+        ))}
+      </defs>
+      <g transform="translate(8 49.7) scale(0.42)">
+        <g className={styles.cuts}>
+          {[...SLICES.map(([k]) => k), 4].map((k) => (
+            <path key={k} d={`M${sliceEdge(k, -200)} -200L${sliceEdge(k, 300)} 300`} />
+          ))}
+        </g>
+        {SLICES.map(([k, slide]) => (
+          <g key={k} clipPath={`url(#park-slice-${k + 7})`}>
+            <use href="#park-word" className={styles.slice} style={vars({ "--slide": slide })} />
+          </g>
+        ))}
+      </g>
     </Plate>
   );
 }
 
-/** Extended: the R alone, with every line and curve it is made of run out to the edges of the sheet. */
+/** Extended: the R alone, drawn as the construction draws it: both edges of each stroke run out to the edges of the sheet. */
 function Extended() {
   return (
-    <Plate name="Extended" label="The letter R with its lines and curves run out to the edges">
+    <Plate name="Extended" label="The letter R with the edges of its strokes run out to the edges of the sheet">
       <g transform={stand("R", 46, 96, 54)}>
         <g className={styles.hair}>
-          <path d="M-200 2.12H400M-200 30.78H400" />
-          <path d={through(...CUT, -200, 300)} />
-          <path d={through(...LEG, -200, 300)} />
-          {R_BOWL.map((d) => (
+          {LEVELS.map((y) => (
+            <path key={y} d={`M-200 ${y}H400`} />
+          ))}
+          {edgeLines("R", -200, 300).map((d) => (
             <path key={d} d={d} />
           ))}
         </g>
@@ -293,24 +343,22 @@ function Extended() {
   );
 }
 
-/** Peaks: the A five times at five sizes on one baseline, the nearer ones standing in front. */
-function Peaks() {
-  const peaks: [cx: number, height: number, opacity: number][] = [
-    [27, 44, 0.3],
-    [74, 56, 0.42],
-    [49, 84, 1],
-    [19, 26, 0.62],
-    [83, 30, 0.75],
-  ];
+/**
+ * Ripple: the wordmark's outline sent outwards as rings, like a stone's in water. Each ring is the outline stroked
+ * wide in white and then a little less wide in black, widest first, so only its rim shows.
+ */
+function Ripple() {
   return (
-    <Plate name="Peaks" label="The letter A five times at five sizes, like a range of peaks">
-      {peaks.map(([cx, height, opacity], i) => (
-        <g key={cx} transform={stand("A", cx, 103, height)} className={styles.peak} style={vars({ "--i": i })}>
-          {/* The ground between its legs, so a nearer peak hides the ones behind it. */}
-          <path d="M53.73 62L76.38 0H80.6L103.25 62Z" className={styles.ground} />
-          <use href={use("A")} opacity={opacity} />
-        </g>
-      ))}
+    <Plate name="Ripple" label="The wordmark with its outline spreading outwards in rings">
+      <g transform="translate(16 52.1) scale(0.34)">
+        {[5, 4, 3, 2, 1, 0].map((k) => (
+          <g key={k} style={vars({ "--k": k })}>
+            <use href="#park-word" className={styles.ring} />
+            <use href="#park-word" className={styles.gap} />
+          </g>
+        ))}
+        <use href="#park-word" />
+      </g>
     </Plate>
   );
 }
@@ -337,39 +385,21 @@ function Weave() {
   );
 }
 
-/**
- * How much line each letter takes, joint by joint: stem, bar, bowl and tail for P; two legs for A; bar, bowl, waist
- * and leg for R; two arms for K. In the wordmark's units.
- */
-const LENGTHS: Record<ParkLetter, number[]> = {
-  P: [58.94, 22.3, 20.23, 3.75],
-  A: [64.67, 64.67],
-  R: [19.04, 44.29, 1.69, 33.92],
-  K: [37.28, 36.89],
-};
-
-/** Unrolled: each letter's line pulled straight and stood up, a notch at every joint. A takes the most line, K the least. */
-function Unrolled() {
-  const scale = 0.64;
+/** Turn: the wordmark twelve times about one point, each copy fainter than the one ahead of it, the whole turning slowly. */
+function Turn() {
+  const count = 12;
   return (
-    <Plate name="Unrolled" label="Each letter's line pulled straight and stood upright, to compare their lengths">
-      {PARK_LETTERS.map((l, i) => {
-        const x = 23 + i * 18;
-        const total = LENGTHS[l].reduce((a, b) => a + b, 0) * scale;
-        let at = 0;
-        return (
-          <g key={l}>
-            <g className={styles.bar} style={vars({ "--i": i })}>
-              <rect x={x - 1.45} y={n(101 - total)} width="2.9" height={n(total)} />
-              {LENGTHS[l].slice(0, -1).map((len) => {
-                at += len * scale;
-                return <rect key={at} className={styles.notch} x={x - 2} y={n(101 - at - 0.3)} width="4" height="0.6" />;
-              })}
-            </g>
-            <use href={use(l)} transform={stand(l, x, 112, 5.5)} opacity="0.6" />
-          </g>
-        );
-      })}
+    <Plate name="Turn" label="The wordmark twelve times about one point, fading as it goes round">
+      <g className={styles.turn}>
+        {Array.from({ length: count }, (_, i) => (
+          <use
+            key={i}
+            href="#park-word"
+            transform={`rotate(${(-i * 360) / count} 50 62.5) translate(63 57.3) scale(0.17)`}
+            opacity={n(1 - (0.88 * i) / (count - 1))}
+          />
+        ))}
+      </g>
     </Plate>
   );
 }
@@ -388,11 +418,11 @@ export function Studies() {
       </svg>
       <ul>
         <Echo />
-        <Monogram />
+        <Cut />
         <Extended />
-        <Peaks />
+        <Ripple />
         <Weave />
-        <Unrolled />
+        <Turn />
       </ul>
     </Stage>
   );

@@ -256,28 +256,33 @@
   }
 }
 
-/* Monogram: outlines, each letter filling for a moment in turn. */
-.monogram {
-  fill: #ffffff;
-  fill-opacity: 0.07;
-  stroke: rgb(255 255 255 / 0.85);
+/* Cut: each slice slides along the cut by its own distance (--slide, in the
+   wordmark's units; 0.455 across and 0.89 down is one unit along the cut),
+   holds, and slides back into register. Still, it stays out of line. */
+.cuts path {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.16);
   stroke-width: 1px;
   vector-effect: non-scaling-stroke;
 }
 
-.studies[data-seen] .monogram {
-  animation: monogram 8s ease-in-out calc(var(--i) * 2s) infinite;
+.slice {
+  translate: calc(var(--slide) * 0.455px) calc(var(--slide) * 0.89px);
 }
 
-@keyframes monogram {
+.studies[data-seen] .slice {
+  animation: slice 7s cubic-bezier(0.65, 0, 0.2, 1) infinite;
+}
+
+@keyframes slice {
   0%,
-  30%,
+  14%,
   100% {
-    fill-opacity: 0.04;
+    translate: 0 0;
   }
-  8%,
-  20% {
-    fill-opacity: 0.9;
+  46%,
+  70% {
+    translate: calc(var(--slide) * 0.455px) calc(var(--slide) * 0.89px);
   }
 }
 
@@ -288,8 +293,61 @@
   vector-effect: non-scaling-stroke;
 }
 
-.ground {
-  fill: #0c0c0c;
+/* Ripple: ring k stands 6k units out from the outline; moving, it travels on
+   to where the next one stood, fading as it goes, so the rings flow outwards
+   without a seam. */
+.ring,
+.gap {
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.ring {
+  stroke: #ffffff;
+  stroke-width: calc(var(--k) * 12px + 1.5px);
+  stroke-opacity: calc(0.72 - var(--k) * 0.12);
+}
+
+.gap {
+  stroke: #0c0c0c;
+  stroke-width: max(0px, calc(var(--k) * 12px - 1.5px));
+}
+
+.studies[data-seen] .ring {
+  animation: ring 3.2s linear infinite;
+}
+
+.studies[data-seen] .gap {
+  animation: gap 3.2s linear infinite;
+}
+
+@keyframes ring {
+  to {
+    stroke-width: calc(var(--k) * 12px + 13.5px);
+    stroke-opacity: calc(0.6 - var(--k) * 0.12);
+  }
+}
+
+@keyframes gap {
+  to {
+    stroke-width: calc(var(--k) * 12px + 10.5px);
+  }
+}
+
+/* Turn: once round in a minute and a half, about the middle of the plate. */
+.turn {
+  transform-box: view-box;
+  transform-origin: 50px 62.5px;
+}
+
+.studies[data-seen] .turn {
+  animation: turn 90s linear infinite;
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .studies[data-seen] .weave {
@@ -303,26 +361,6 @@
   }
   50% {
     opacity: 0.16;
-  }
-}
-
-/* Unrolled: the bars rise from the baseline, one after another. */
-.bar {
-  transform-box: fill-box;
-  transform-origin: bottom;
-}
-
-.notch {
-  fill: #0c0c0c;
-}
-
-.studies[data-seen] .bar {
-  animation: rise 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.2s + var(--i) * 0.12s) backwards;
-}
-
-@keyframes rise {
-  from {
-    transform: scaleY(0);
   }
 }
 
