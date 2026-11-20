@@ -2,9 +2,9 @@ import type { Project } from "../projects";
 
 export const park: Project = {
   slug: "park",
-  name: "Park",
+  name: "Personal Branding",
   year: "2014",
-  tagline: "A wordmark for my own name: four letters, four lines.",
+  tagline: "A wordmark for my own name.",
   links: [{ label: "Behance", url: "https://www.behance.net/gallery/13518301/Park-Personal-Brand" }],
   summary: [
     "Park is a personal identity: a wordmark in which each letter is a single line, and a stationery set printed black on black. It is the mark at the top of this site.",

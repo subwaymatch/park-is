@@ -373,7 +373,7 @@ iframe.media-fill {
 .project-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 48px 24px;
+  gap: 72px 24px;
 }
 
 .project-card {
@@ -394,7 +394,7 @@ iframe.media-fill {
 /* The dots are laid out from the tile's centre, so its edges cut them evenly. */
 .project-card .logo-stage {
   aspect-ratio: 3 / 2;
-  background: var(--bg) radial-gradient(circle, rgb(27 27 25 / 0.22) 0.85px, transparent 1.35px) center / 14px 14px;
+  background: var(--bg) radial-gradient(circle, rgb(27 27 25 / 0.11) 0.85px, transparent 1.35px) center / 14px 14px;
 }
 
 .project-card .logo-glow {
@@ -1401,7 +1401,7 @@ figcaption {
 
   .project-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+    gap: 56px;
   }
 }
 
