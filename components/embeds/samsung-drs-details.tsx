@@ -13,7 +13,7 @@ type Cell = { span: number; items: Crop[] };
 const crop = (file: string, w: number, h: number, label: string): Crop => ({ file, w, h, label });
 
 const C = {
-  engineering: crop("engineering", 917, 234, "Engineering fields"),
+  engineering: crop("engineering", 917, 250, "Engineering fields"),
   mapC3150: crop("map-c3150", 760, 324, "Europe, CIS, MEA"),
   mapK4440: crop("map-k4440", 760, 324, "Korea, Japan, Europe"),
   mapC520: crop("map-c520", 760, 324, "Americas, Europe"),
